@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import ResourceCard from '@components/cards/Resource.astro';
+import Layout from '@layouts/BaseLayout.astro';
+
+const resources = await getCollection('resources');
+
+// Sort resources alphabetically by name
+const sortedResources = resources.sort((a, b) =>
+  a.data.name.localeCompare(b.data.name),
+);
+
+const meta = {
+  title: 'Resources',
+  description:
+    'Discover useful resources, organizations, and networks in Digital Dundee',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Digital Dundee Resources',
+};
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <h1>Resources</h1>
+
+    {
+      sortedResources.length > 0 ? (
+        <section>
+          <div class="grid">
+            {sortedResources.map((resource) => (
+              <ResourceCard
+                name={resource.data.name}
+                description={resource.data.description}
+                resourceUrl={resource.data.resourceUrl}
+                imageSrc={resource.data.imagePrimary?.src}
+                imageAlt={resource.data.imagePrimary?.alt || resource.data.name}
+                href={`/resources/${resource.id}`}
+              />
+            ))}
+          </div>
+        </section>
+      ) : (
+        <p>No resources found.</p>
+      )
+    }
+  </main>
+</Layout>

@@ -19,7 +19,7 @@
     "@astrojs/mdx": "^4.3.10",
     "@astrojs/sitemap": "^3.6.0",
     "@iconify-json/ri": "^1.2.6",
-    "astro": "^5.15.5",
+    "astro": "^5.15.6",
     "astro-capo": "^0.0.1",
     "astro-icon": "^1.1.5",
     "motion": "^12.23.24",

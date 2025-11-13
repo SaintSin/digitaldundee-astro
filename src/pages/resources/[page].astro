@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { getCollection } from 'astro:content';
+import ResourceCard from '@components/cards/Resource.astro';
+import Pagination from '@components/Pagination.astro';
+import Layout from '@layouts/BaseLayout.astro';
+import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const resources = await getCollection('resources');
+
+  // Sort resources alphabetically by name
+  const sortedResources = resources.sort((a, b) =>
+    a.data.name.localeCompare(b.data.name),
+  );
+
+  return paginate(sortedResources, {
+    pageSize: DEFAULT_PAGE_SIZE,
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+
+const meta = getPaginatedMeta(
+  'Resources',
+  'Discover useful resources, organizations, and networks in Digital Dundee',
+  page.currentPage,
+  'generic-social-1200x630.png',
+  'Digital Dundee Resources',
+);
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <h1>Resources</h1>
+
+    {
+      page.data.length > 0 ? (
+        <>
+          <section class="grid">
+            {page.data.map((resource) => (
+              <ResourceCard
+                name={resource.data.name}
+                description={resource.data.description}
+                resourceUrl={resource.data.resourceUrl}
+                imageSrc={resource.data.imagePrimary?.src}
+                imageAlt={resource.data.imagePrimary?.alt || resource.data.name}
+                href={`/resources/${resource.id}`}
+              />
+            ))}
+          </section>
+
+          <Pagination
+            currentPage={page.currentPage}
+            totalPages={page.lastPage}
+            baseUrl="/resources"
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+          />
+        </>
+      ) : (
+        <p>No resources found.</p>
+      )
+    }
+  </main>
+</Layout>

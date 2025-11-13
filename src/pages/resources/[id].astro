@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Layout from '@layouts/BaseLayout.astro';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const resources = await getCollection('resources');
+  return resources.map((resource) => ({
+    params: { id: resource.id },
+    props: { resource },
+  }));
+}) satisfies GetStaticPaths;
+
+const { resource } = Astro.props;
+const { name, description, resourceUrl, imagePrimary } = resource.data;
+
+const meta = {
+  title: name,
+  description: description || `Learn more about ${name}`,
+  imageOG: imagePrimary?.src
+    ? imagePrimary.src.src
+    : 'generic-social-1200x630.png',
+  altOG: imagePrimary?.alt || name,
+};
+
+const { Content } = await render(resource);
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <article>
+      <header>
+        {
+          imagePrimary && (
+            <Image src={imagePrimary.src} alt={imagePrimary.alt} />
+          )
+        }
+        <h1>{name}</h1>
+
+        {description && <p class="lead">{description}</p>}
+
+        {
+          resourceUrl && (
+            <a href={resourceUrl} target="_blank" rel="noopener noreferrer">
+              Visit Resource Website
+            </a>
+          )
+        }
+      </header>
+
+      <Content />
+
+      <a href="/resources">Back to Resources</a>
+    </article>
+  </main>
+</Layout>

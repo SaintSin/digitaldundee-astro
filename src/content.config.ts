@@ -28,17 +28,18 @@ const resources = defineCollection({
     z.object({
       name: z.string(),
       description: z.string(),
-      resourceUrl: z.string(),
-
+      resourceUrl: z.string().optional(),
       seo: z.object({
         title: z.string(),
         description: z.string(),
         ogImage: z.string().optional(),
       }),
-      imagePrimary: z.object({
-        src: image(),
-        alt: z.string(),
-      }),
+      imagePrimary: z
+        .object({
+          src: image(),
+          alt: z.string(),
+        })
+        .optional(),
     }),
 });
 const companies = defineCollection({
