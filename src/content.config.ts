@@ -19,6 +19,28 @@ const news = defineCollection({
       }),
     }),
 });
+const resources = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.{md,mdx,mdoc}',
+    base: 'src/content/resources',
+  }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      description: z.string(),
+      resourceUrl: z.string(),
+
+      seo: z.object({
+        title: z.string(),
+        description: z.string(),
+        ogImage: z.string().optional(),
+      }),
+      imagePrimary: z.object({
+        src: image(),
+        alt: z.string(),
+      }),
+    }),
+});
 const companies = defineCollection({
   loader: glob({
     pattern: '**/[^_]*.{md,mdx,mdoc}',
@@ -67,4 +89,4 @@ const events = defineCollection({
     }),
 });
 
-export const collections = { news, companies, events };
+export const collections = { news, companies, events, resources };

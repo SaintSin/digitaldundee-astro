@@ -81,13 +81,18 @@ function htmlToMarkdown(html) {
   if (!html) return '';
 
   let md = html
+    // Remove style attributes and other inline attributes
+    .replace(/\s*style="[^"]*"/gi, '')
+    .replace(/\s*class="[^"]*"/gi, '')
+    .replace(/\s*id="[^"]*"/gi, '')
+    .replace(/\s*data-[^=]*="[^"]*"/gi, '')
     // Handle images
     .replace(/<img[^>]*>/gi, '')
     // Handle formatting
-    .replace(/<strong>(.*?)<\/strong>/gi, '**$1**')
-    .replace(/<b>(.*?)<\/b>/gi, '**$1**')
-    .replace(/<em>(.*?)<\/em>/gi, '*$1*')
-    .replace(/<i>(.*?)<\/i>/gi, '*$1*')
+    .replace(/<strong[^>]*>(.*?)<\/strong>/gi, '**$1**')
+    .replace(/<b[^>]*>(.*?)<\/b>/gi, '**$1**')
+    .replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*')
+    .replace(/<i[^>]*>(.*?)<\/i>/gi, '*$1*')
     .replace(/<a\s+href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)')
     .replace(/<h2[^>]*>(.*?)<\/h2>/gi, '\n## $1\n')
     .replace(/<h3[^>]*>(.*?)<\/h3>/gi, '\n### $1\n')
@@ -100,13 +105,20 @@ function htmlToMarkdown(html) {
     .replace(/<ol[^>]*>|<\/ol>/gi, '\n')
     .replace(/<div[^>]*>|<\/div>/gi, '')
     .replace(/<span[^>]*>|<\/span>/gi, '')
+    .replace(/<dt[^>]*>|<\/dt>/gi, '')
+    .replace(/<dd[^>]*>|<\/dd>/gi, '')
+    .replace(/<dl[^>]*>|<\/dl>/gi, '')
+    .replace(/<blockquote[^>]*>|<\/blockquote>/gi, '')
     .replace(/&nbsp;/gi, ' ')
     .replace(/&amp;/gi, '&')
     .replace(/&lt;/gi, '<')
     .replace(/&gt;/gi, '>')
     .replace(/&quot;/gi, '"')
     .replace(/&#39;/gi, "'")
-    .replace(/&pound;/gi, '£');
+    .replace(/&pound;/gi, '£')
+    .replace(/&rsquo;/gi, "'")
+    .replace(/&ldquo;/gi, '"')
+    .replace(/&rdquo;/gi, '"');
 
   // Clean up extra whitespace
   md = md.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
