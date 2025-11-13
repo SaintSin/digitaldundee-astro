@@ -1,5 +1,6 @@
 // @ts-check
 
+import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import icon from 'astro-icon';
@@ -9,6 +10,6 @@ export default defineConfig({
   image: {
     responsiveStyles: true,
   },
-  integrations: [sitemap(), icon()],
+  integrations: [sitemap(), icon(), mdx()],
   site: 'http://localhost/',
 });
