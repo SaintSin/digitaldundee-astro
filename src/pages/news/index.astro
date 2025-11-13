@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import NewsCard from '@components/cards/News.astro';
+import Pagination from '@components/Pagination.astro';
+import Layout from '@layouts/BaseLayout.astro';
+import {
+  sortByDateDesc,
+  DEFAULT_PAGE_SIZE,
+  getPaginatedMeta,
+} from '@utils/pagination';
+
+const news = await getCollection('news');
+const sortedNews = sortByDateDesc(news);
+
+// Paginate manually for the first page
+const totalPages = Math.ceil(sortedNews.length / DEFAULT_PAGE_SIZE);
+const firstPageData = sortedNews.slice(0, DEFAULT_PAGE_SIZE);
+
+const meta = getPaginatedMeta(
+  'News',
+  'Latest news and updates from Digital Dundee',
+  1,
+  'generic-social-1200x630.png',
+  'Digital Dundee News',
+);
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <h1>News</h1>
+
+    {
+      firstPageData.length > 0 ? (
+        <>
+          <section class="grid">
+            {firstPageData.map((item) => (
+              <NewsCard
+                title={item.data.title}
+                excerpt={item.data.excerpt}
+                pubDate={item.data.pubDate}
+                imageSrc={item.data.imagePrimary.src}
+                imageAlt={item.data.imagePrimary.alt}
+                href={`/news/${item.id}`}
+              />
+            ))}
+          </section>
+
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={1}
+              totalPages={totalPages}
+              baseUrl="/news"
+              nextUrl={totalPages > 1 ? '/news/2' : undefined}
+            />
+          )}
+        </>
+      ) : (
+        <p>No news articles found.</p>
+      )
+    }
+  </main>
+</Layout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-block: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { getCollection } from 'astro:content';
+import NewsCard from '@components/cards/News.astro';
+import Pagination from '@components/Pagination.astro';
+import Layout from '@layouts/BaseLayout.astro';
+import {
+  sortByDateDesc,
+  DEFAULT_PAGE_SIZE,
+  getPaginatedMeta,
+} from '@utils/pagination';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const news = await getCollection('news');
+  const sortedNews = sortByDateDesc(news);
+
+  return paginate(sortedNews, {
+    pageSize: DEFAULT_PAGE_SIZE,
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+
+const meta = getPaginatedMeta(
+  'News',
+  'Latest news and updates from Digital Dundee',
+  page.currentPage,
+  'generic-social-1200x630.png',
+  'Digital Dundee News',
+);
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <h1>News</h1>
+
+    {
+      page.data.length > 0 ? (
+        <>
+          <section class="grid">
+            {page.data.map((item) => (
+              <NewsCard
+                title={item.data.title}
+                excerpt={item.data.excerpt}
+                pubDate={item.data.pubDate}
+                imageSrc={item.data.imagePrimary.src}
+                imageAlt={item.data.imagePrimary.alt}
+                href={`/news/${item.id}`}
+              />
+            ))}
+          </section>
+
+          <Pagination
+            currentPage={page.currentPage}
+            totalPages={page.lastPage}
+            baseUrl="/news"
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+          />
+        </>
+      ) : (
+        <p>No news articles found.</p>
+      )
+    }
+  </main>
+</Layout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-block: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

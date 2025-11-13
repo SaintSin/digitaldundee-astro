@@ -19,5 +19,16 @@ const news = defineCollection({
       }),
     }),
 });
+const companies = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.{md,mdx,mdoc}',
+    base: 'src/content/companies',
+  }),
+  schema: z.object({
+    title: z.string(),
+    sector: z.array(z.string()), // Array of strings
+    serviceArea: z.array(z.string()).optional(), // Optional array
+  }),
+});
 
-export const collections = { news };
+export const collections = { news, companies };
