@@ -1,0 +1,88 @@
+# News Migration - Content Sanitization Summary
+
+## Issues Corrected
+
+### 1. Microsoft Office XML Artifacts
+**Issue:** Multiple files contained `<o:p></o:p>` XML tags from Microsoft Office
+**Files affected:** 6 files
+- tay5g-challenge-fund-announces-winners-promising-innovations-scotland.mdx
+- tay5g-scotland-redesign-sustainable-fashion.mdx
+- tay5g-drones-offshore-services-lift.mdx
+- pop-5g-drones-transform-mountain-search-and-rescue.mdx
+- games-talks-live-scotland-dundee-sessions-speaker-slots.mdx
+- game-changing-esports-event-powered-5g.mdx
+
+**Fix:** Removed all instances of `<o:p></o:p>` tags using replace_all
+
+### 2. HTML Tags with Inline Styles
+**Issue:** HTML `<strong>`, `<em>`, `<a>` and `<span>` tags with verbose inline CSS styles
+**Files affected:** 5 files
+- tech-entrepreneur-martha-lane-fox-dundee-economic-summit.mdx
+- dundee-wins-innovative-entrepreneurial-university-award.mdx
+- abertay-university-new-labs-video-games-digital-arts.mdx
+- games-talks-live-scotland-dundee-sessions-speaker-slots.mdx
+- tay5g-real-time-remote-screen-international-global-production-awards-finalist.mdx
+
+**Fix:** Converted all HTML tags to proper Markdown:
+- `<strong style="...">text</strong>` → `**text**`
+- `<em style="...">text</em>` → `*text*`
+- `<a style="..." href="url">text</a>` → `[text](url)`
+
+### 3. Nested HTML List Items
+**Issue:** Standalone `<li>` tags without proper `<ul>` wrapper
+**Files affected:** 2 files
+- announcing-dundee-digital-fortnight-2023.mdx (previously corrected)
+- games-talks-live-scotland-dundee-sessions-speaker-slots.mdx
+
+**Fix:** Converted to proper Markdown unordered lists using `-` markers
+
+### 4. Missing Media Source Error Messages
+**Issue:** Embedded error message "The referenced media source is missing and needs to be re-embedded."
+**Files affected:** 1 file
+- esports-arena-planned-dundee-waterfront.mdx
+
+**Fix:** Removed the error message
+
+### 5. Frontmatter with HTML in Metadata
+**Issue:** Excerpt and SEO descriptions containing HTML tags with inline styles
+**Files affected:** 3 files
+- tech-entrepreneur-martha-lane-fox-dundee-economic-summit.mdx
+- dundee-wins-innovative-entrepreneurial-university-award.mdx
+
+**Fix:** Cleaned frontmatter to contain plain text descriptions
+
+### 6. Malformed Link Formatting
+**Issue:** Nested bold and link tags `[**<strong>text</strong>**](url)`
+**Files affected:** 1 file
+- £125k-digital-innovation-games-sector.mdx
+
+**Fix:** Simplified to proper Markdown `[**text**](url)`
+
+### 7. Duplicate Content
+**Issue:** Paragraphs and quotes duplicated within the same file
+**Files affected:** 1 file
+- abertay-university-new-labs-video-games-digital-arts.mdx
+
+**Fix:** Removed duplicate paragraphs and redundant content
+
+### 8. Broken Image Captions and Attribution
+**Issue:** Image captions with excessive asterisks and formatting artifacts `**\*text\*\***`
+**Files affected:** 1 file
+- tay5g-drones-offshore-services-lift.mdx
+
+**Fix:** Cleaned to proper Markdown italic formatting `*text*`
+
+## Summary Statistics
+
+- **Total files cleaned:** 13 unique files
+- **Total edits made:** ~25 individual fixes
+- **Issues by type:**
+  - Microsoft Office XML artifacts: 6 files
+  - HTML with inline styles: 5 files
+  - List formatting: 2 files
+  - Frontmatter HTML: 3 files
+  - Other (duplicates, errors, malformed links): 3 files
+
+## Result
+
+All 80 migrated news articles now have clean, semantic Markdown formatting that will render properly in Astro without HTML artifacts, broken tags, or styling issues.

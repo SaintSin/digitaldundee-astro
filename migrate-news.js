@@ -1,18 +1,18 @@
 import {
-  readFileSync,
-  writeFileSync,
-  readdirSync,
-  existsSync,
-  mkdirSync,
   copyFileSync,
   createWriteStream,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
   unlinkSync,
+  writeFileSync,
 } from 'fs';
-import { join, dirname, basename, extname } from 'path';
-import { JSDOM } from 'jsdom';
-import { fileURLToPath } from 'url';
-import https from 'https';
 import http from 'http';
+import https from 'https';
+import { JSDOM } from 'jsdom';
+import { basename, dirname, extname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -174,7 +174,7 @@ async function processContentImages(contentHtml, baseDir) {
   const copiedImages = [];
 
   for (const img of images) {
-    let src = img.getAttribute('src');
+    const src = img.getAttribute('src');
     if (!src) continue;
 
     // Remove query parameters
