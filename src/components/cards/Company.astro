@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  name: string;
+  imageSrc?: ImageMetadata;
+  imageAlt: string;
+  href: string;
+  companyUrl: string;
+}
+
+const { name, companyUrl, imageSrc, imageAlt, href } = Astro.props;
+---
+
+<article class="card">
+  <a href={href} class="card__link">
+    {
+      imageSrc && (
+        <div class="card__image">
+          <Image src={imageSrc} alt={imageAlt} />
+        </div>
+      )
+    }
+    <div class="card__content">
+      <h2 class="card__title">{name}</h2>
+      {companyUrl && <p class="card__url">{companyUrl}</p>}
+    </div>
+  </a>
+</article>

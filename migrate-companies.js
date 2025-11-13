@@ -224,7 +224,7 @@ async function parseCompany(htmlPath, filename) {
 function needsQuotes(str) {
   // Check for special characters that require quoting
   const specialChars = /[:#{}[\]!|>&%@`]/;
-  const startsWithSpecial = /^[-?:,\[\]{}#&*!|>'"%@`]/;
+  const startsWithSpecial = /^[-?:,[\]{}#&*!|>'"%@`]/;
   const booleanLike = /^(true|false|yes|no|on|off|null|~)$/i;
   const numberLike = /^[0-9]/;
 

@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Layout from '@layouts/BaseLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const companies = await getCollection('companies');
+  return companies.map((company) => ({
+    params: { id: company.id },
+    props: { company },
+  }));
+}) satisfies GetStaticPaths;
+
+const { company } = Astro.props;
+const { title, companyUrl, logo, sector, serviceArea } = company.data;
+
+const meta = {
+  title: title,
+  description: `Learn more about ${title}, a Digital Dundee company`,
+  imageOG: logo?.src ? logo.src.src : 'generic-social-1200x630.png',
+  altOG: logo?.alt || title,
+};
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <article>
+      <header>
+        {logo && <Image src={logo.src} alt={logo.alt} />}
+        <h1>{title}</h1>
+        {
+          companyUrl && (
+            <a href={companyUrl} target="_blank" rel="noopener noreferrer">
+              {companyUrl}
+            </a>
+          )
+        }
+      </header>
+
+      {
+        sector && sector.length > 0 && (
+          <>
+            <h2>Sector</h2>
+            <ul>
+              {sector.map((term) => (
+                <li>{term}</li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+
+      {
+        serviceArea && serviceArea.length > 0 && (
+          <>
+            <h2>Service Area</h2>
+            <ul>
+              {serviceArea.map((term) => (
+                <li>{term}</li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+
+      <a href="/meet-companies">Back to Companies</a>
+    </article>
+  </main>
+</Layout>

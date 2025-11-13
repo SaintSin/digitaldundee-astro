@@ -1,14 +1,14 @@
 ---
-import type { GetStaticPaths, Page } from 'astro';
 import { getCollection } from 'astro:content';
 import NewsCard from '@components/cards/News.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
 import {
-  sortByDateDesc,
   DEFAULT_PAGE_SIZE,
   getPaginatedMeta,
+  sortByDateDesc,
 } from '@utils/pagination';
+import type { GetStaticPaths, Page } from 'astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const news = await getCollection('news');
@@ -68,18 +68,3 @@ const meta = getPaginatedMeta(
     }
   </main>
 </Layout>
-
-<style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-block: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

@@ -1,0 +1,84 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { getCollection } from 'astro:content';
+import CompanyCard from '@components/cards/Company.astro';
+import Pagination from '@components/Pagination.astro';
+import Layout from '@layouts/BaseLayout.astro';
+import {
+  sortByTitle,
+  DEFAULT_PAGE_SIZE,
+  getPaginatedMeta,
+} from '@utils/pagination';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const companies = await getCollection('companies');
+  const sortedCompanies = sortByTitle(companies);
+
+  return paginate(sortedCompanies, {
+    pageSize: DEFAULT_PAGE_SIZE,
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+
+const meta = getPaginatedMeta(
+  'Meet Companies',
+  'Discover the innovative companies in Digital Dundee',
+  page.currentPage,
+  'generic-social-1200x630.png',
+  'Digital Dundee Companies',
+);
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <h1>Meet Companies</h1>
+
+    {
+      page.data.length > 0 ? (
+        <>
+          <section class="grid">
+            {page.data.map((company) => (
+              <CompanyCard
+                name={company.data.title}
+                companyUrl={company.data.companyUrl || ''}
+                imageSrc={company.data.logo?.src}
+                imageAlt={company.data.logo?.alt || company.data.title}
+                href={`/meet-companies/${company.id}`}
+              />
+            ))}
+          </section>
+
+          <Pagination
+            currentPage={page.currentPage}
+            totalPages={page.lastPage}
+            baseUrl="/meet-companies"
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+          />
+        </>
+      ) : (
+        <p>No companies found.</p>
+      )
+    }
+  </main>
+</Layout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-block: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
