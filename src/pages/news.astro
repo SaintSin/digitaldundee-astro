@@ -15,7 +15,7 @@ const meta = {
 <Layout metaData={meta}>
   <main class="wrapper flow">
     <h1>News</h1>
-    <ul>
+    <ul class="grid">
       {
         news.map((item) => (
           <li>
@@ -32,3 +32,16 @@ const meta = {
     </ul>
   </main>
 </Layout>
+<style>
+  ul {
+    margin: none;
+    padding: none;
+
+    li {
+      list-style: none;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+</style>
