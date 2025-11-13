@@ -38,5 +38,19 @@ const companies = defineCollection({
       serviceArea: z.array(z.string()).optional(),
     }),
 });
+const eventsCollection = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.{md,mdx,mdoc}',
+    base: 'src/content/events',
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    startDate: z.coerce.date(), // Automatically converts string to Date
+    endDate: z.coerce.date(),
+    location: z.string().optional(),
+    isAllDay: z.boolean().default(false),
+  }),
+});
 
 export const collections = { news, companies };
