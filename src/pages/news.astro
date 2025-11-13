@@ -1,35 +1,35 @@
 ---
 import { getCollection } from 'astro:content';
+import NewsCard from '@components/cards/News.astro';
 import Layout from '@layouts/BaseLayout.astro';
 
 const news = await getCollection('news');
 
 const meta = {
-  title: 'Error 404: Unable to find page',
-  description: 'The unable to find the page',
+  title: 'News',
+  description: 'Latest news and updates from Digital Dundee',
   imageOG: 'generic-social-1200x630.png',
-  altOG: 'Alt text for OG image',
+  altOG: 'Digital Dundee News',
 };
 ---
 
 <Layout metaData={meta}>
   <main class="wrapper flow">
     <h1>News</h1>
-    <ul class="grid">
+    <secion class="grid">
       {
         news.map((item) => (
-          <li>
-            <a href={`/news/${item.id}`}>
-              {item.data.title}
-              <br />
-              {item.data.pubDate}
-              <br />
-              {item.data.excerpt}
-            </a>
-          </li>
+          <NewsCard
+            title={item.data.title}
+            excerpt={item.data.excerpt}
+            pubDate={item.data.pubDate}
+            imageSrc={item.data.imagePrimary.src}
+            imageAlt={item.data.imagePrimary.alt}
+            href={`/news/${item.id}`}
+          />
         ))
       }
-    </ul>
+    </secion>
   </main>
 </Layout>
 <style>

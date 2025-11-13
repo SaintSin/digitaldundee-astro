@@ -5,10 +5,14 @@ import {
   existsSync,
   mkdirSync,
   copyFileSync,
+  createWriteStream,
+  unlinkSync,
 } from 'fs';
 import { join, dirname, basename, extname } from 'path';
 import { JSDOM } from 'jsdom';
 import { fileURLToPath } from 'url';
+import https from 'https';
+import http from 'http';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -27,9 +31,47 @@ if (!existsSync(ASSETS_DIR)) {
   mkdirSync(ASSETS_DIR, { recursive: true });
 }
 
-// Replace spaces with hyphens in filename
+// Replace spaces with hyphens in filename and decode URL encoding
 function sanitizeFilename(filename) {
-  return filename.replace(/\s+/g, '-');
+  // Decode URL encoding (e.g., %20 to space)
+  const decoded = decodeURIComponent(filename);
+  // Replace spaces with hyphens
+  return decoded.replace(/\s+/g, '-');
+}
+
+// Download image from URL
+async function downloadImage(url, destPath) {
+  return new Promise((resolve, reject) => {
+    const protocol = url.startsWith('https') ? https : http;
+
+    protocol
+      .get(url, (response) => {
+        if (response.statusCode === 200) {
+          const fileStream = createWriteStream(destPath);
+          response.pipe(fileStream);
+          fileStream.on('finish', () => {
+            fileStream.close();
+            resolve(true);
+          });
+          fileStream.on('error', (err) => {
+            try {
+              unlinkSync(destPath);
+            } catch (e) {
+              // Ignore if file doesn't exist
+            }
+            reject(err);
+          });
+        } else if (response.statusCode === 301 || response.statusCode === 302) {
+          // Handle redirects
+          downloadImage(response.headers.location, destPath)
+            .then(resolve)
+            .catch(reject);
+        } else {
+          reject(new Error(`Failed to download: ${response.statusCode}`));
+        }
+      })
+      .on('error', reject);
+  });
 }
 
 // Extract text content and clean it
@@ -126,14 +168,14 @@ function htmlToMarkdown(html, imageMap) {
 }
 
 // Process images in content
-function processContentImages(contentHtml, baseDir) {
+async function processContentImages(contentHtml, baseDir) {
   const dom = new JSDOM(contentHtml);
   const images = dom.window.document.querySelectorAll('img');
   const copiedImages = [];
 
-  images.forEach((img) => {
+  for (const img of images) {
     let src = img.getAttribute('src');
-    if (!src) return;
+    if (!src) continue;
 
     // Remove query parameters
     const cleanSrc = src.split('?')[0];
@@ -146,20 +188,23 @@ function processContentImages(contentHtml, baseDir) {
         cleanSrc;
     } else if (cleanSrc.startsWith('http')) {
       // Skip external URLs
-      return;
+      continue;
     }
 
-    if (existsSync(imagePath)) {
-      const ext = extname(cleanSrc);
-      const originalName = basename(cleanSrc, ext);
-      const sanitizedName = sanitizeFilename(originalName) + ext;
-      const destPath = join(ASSETS_DIR, sanitizedName);
+    const ext = extname(cleanSrc);
+    const originalName = basename(cleanSrc, ext);
+    const sanitizedName = sanitizeFilename(originalName) + ext;
+    const destPath = join(ASSETS_DIR, sanitizedName);
+    let imageCopied = false;
 
-      // Copy image if it doesn't exist
-      if (!existsSync(destPath)) {
+    // Copy image if it doesn't exist
+    if (!existsSync(destPath)) {
+      // Try local first
+      if (existsSync(imagePath)) {
         try {
           copyFileSync(imagePath, destPath);
           console.log(`  Copied inline image: ${sanitizedName}`);
+          imageCopied = true;
         } catch (err) {
           console.error(
             `  Failed to copy inline image ${imagePath}:`,
@@ -168,6 +213,25 @@ function processContentImages(contentHtml, baseDir) {
         }
       }
 
+      // If not found locally, download from website
+      if (!imageCopied) {
+        const imageUrl = `https://digitaldundee.com${cleanSrc}`;
+        try {
+          await downloadImage(imageUrl, destPath);
+          console.log(`  Downloaded inline image: ${sanitizedName}`);
+          imageCopied = true;
+        } catch (err) {
+          console.error(
+            `  Failed to download inline image from ${imageUrl}:`,
+            err.message,
+          );
+        }
+      }
+    } else {
+      imageCopied = true;
+    }
+
+    if (imageCopied) {
       copiedImages.push({
         original: src,
         sanitized: sanitizedName,
@@ -175,13 +239,13 @@ function processContentImages(contentHtml, baseDir) {
         title: img.getAttribute('title') || '',
       });
     }
-  });
+  }
 
   return copiedImages;
 }
 
 // Parse HTML file and extract article data
-function parseArticle(htmlPath, filename) {
+async function parseArticle(htmlPath, filename) {
   console.log(`\nProcessing: ${filename}`);
 
   try {
@@ -237,26 +301,44 @@ function parseArticle(htmlPath, filename) {
             alt: cleanText(imgAlt),
           };
 
-          // Try to copy the image
-          const possiblePaths = [
-            join(dirname(htmlPath), imgSrc),
-            join(dirname(htmlPath), '..', imgSrc),
-            '/Users/stjohn/Documents/GitHub/Astro/Sites/Digital Dundee/digitaldundee.com' +
-              imgSrc,
-          ];
+          // Try to copy the image locally first
+          const destPath = join(ASSETS_DIR, sanitizedName);
+          let imageCopied = false;
 
-          for (const imgPath of possiblePaths) {
-            if (existsSync(imgPath)) {
-              const destPath = join(ASSETS_DIR, sanitizedName);
-              if (!existsSync(destPath)) {
+          if (!existsSync(destPath)) {
+            const possiblePaths = [
+              join(dirname(htmlPath), imgSrc),
+              join(dirname(htmlPath), '..', imgSrc),
+              '/Users/stjohn/Documents/GitHub/Astro/Sites/Digital Dundee/digitaldundee.com' +
+                imgSrc,
+            ];
+
+            for (const imgPath of possiblePaths) {
+              if (existsSync(imgPath)) {
                 try {
                   copyFileSync(imgPath, destPath);
                   console.log(`  Copied primary image: ${sanitizedName}`);
+                  imageCopied = true;
+                  break;
                 } catch (err) {
                   console.error(`  Failed to copy primary image:`, err.message);
                 }
               }
-              break;
+            }
+
+            // If not found locally, try downloading from website
+            if (!imageCopied) {
+              const imageUrl = `https://digitaldundee.com${cleanSrc}`;
+              try {
+                await downloadImage(imageUrl, destPath);
+                console.log(`  Downloaded primary image: ${sanitizedName}`);
+                imageCopied = true;
+              } catch (err) {
+                console.error(
+                  `  Failed to download image from ${imageUrl}:`,
+                  err.message,
+                );
+              }
             }
           }
         }
@@ -269,7 +351,7 @@ function parseArticle(htmlPath, filename) {
       if (contentEl) {
         // First, process and copy all images from the content
         const imageMap = new Map();
-        processContentImages(contentEl.innerHTML, dirname(htmlPath));
+        await processContentImages(contentEl.innerHTML, dirname(htmlPath));
 
         // Then convert HTML to markdown with image handling
         content = htmlToMarkdown(contentEl.innerHTML, imageMap);
@@ -318,7 +400,7 @@ seo:
   description: ${JSON.stringify(frontmatter.seo.description)}
   ogImage: ${JSON.stringify(frontmatter.seo.ogImage)}
 imagePrimary:
-  src: ${JSON.stringify(frontmatter.imagePrimary.src)}
+  src: ../../assets/images/${frontmatter.imagePrimary.src}
   alt: ${JSON.stringify(frontmatter.imagePrimary.alt)}
 ---
 
@@ -357,7 +439,7 @@ async function migrate() {
       continue;
     }
 
-    const articleData = parseArticle(sourcePath, file);
+    const articleData = await parseArticle(sourcePath, file);
 
     if (articleData) {
       generateMDX(articleData, outputPath);
