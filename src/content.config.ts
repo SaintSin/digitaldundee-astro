@@ -24,11 +24,19 @@ const companies = defineCollection({
     pattern: '**/[^_]*.{md,mdx,mdoc}',
     base: 'src/content/companies',
   }),
-  schema: z.object({
-    title: z.string(),
-    sector: z.array(z.string()), // Array of strings
-    serviceArea: z.array(z.string()).optional(), // Optional array
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      companyUrl: z.string().url().optional(),
+      logo: z
+        .object({
+          src: image(),
+          alt: z.string(),
+        })
+        .optional(),
+      sector: z.array(z.string()),
+      serviceArea: z.array(z.string()).optional(),
+    }),
 });
 
 export const collections = { news, companies };

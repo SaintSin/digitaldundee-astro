@@ -76,7 +76,7 @@ pnpm install
 pnpm dev
 ```
 
-Visit `http://localhost:4321` to see your site.
+Visit `https://localhost:4321` to see your site.
 
 ## Available Commands
 

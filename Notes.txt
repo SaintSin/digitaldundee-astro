@@ -1,5 +1,8 @@
 # News Migration - Content Sanitization Summary
 
+Meet the companies urls use http not https:!
+
+
 ## Issues Corrected
 
 ### 1. Microsoft Office XML Artifacts

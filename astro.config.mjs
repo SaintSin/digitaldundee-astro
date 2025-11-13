@@ -11,5 +11,5 @@ export default defineConfig({
     responsiveStyles: true,
   },
   integrations: [sitemap(), icon(), mdx()],
-  site: 'http://localhost/',
+  site: 'https://localhost/',
 });
