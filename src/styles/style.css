@@ -1,0 +1,21 @@
+@import '_reset.scss' layer(components);
+
+@import '_globals.scss' layer(components);
+@import '_layout.scss' layer(components);
+
+@import 'compositions/flow.css' layer(components);
+@import 'compositions/wrapper.css' layer(components);
+@import 'compositions/grid.css' layer(components);
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--color-bg);
+  min-height: 100vh;
+  color: var(--color-text);
+  font-family: var(--font-system-ui);
+}
+
+.content {
+  height: 100%;
+}
