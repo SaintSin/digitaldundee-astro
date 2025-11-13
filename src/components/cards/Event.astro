@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  eventDate: Date;
+  eventEndDate?: Date;
+  eventStartTime?: string;
+  eventEndTime?: string;
+  location?: string;
+  imageSrc?: ImageMetadata;
+  imageAlt: string;
+  href: string;
+}
+
+const {
+  title,
+  eventDate,
+  eventEndDate,
+  eventStartTime,
+  eventEndTime,
+  location,
+  imageSrc,
+  imageAlt,
+  href,
+} = Astro.props;
+
+// Format date
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+};
+---
+
+<article>
+  <a href={href}>
+    {imageSrc && <Image src={imageSrc} alt={imageAlt} />}
+    <h2>{title}</h2>
+    <time datetime={eventDate.toISOString()}>
+      {formatDate(eventDate)}
+      {eventStartTime && ` - ${eventStartTime}`}
+      {eventEndTime && ` to ${eventEndTime}`}
+    </time>
+    {location && <p>{location}</p>}
+  </a>
+</article>

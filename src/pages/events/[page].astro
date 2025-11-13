@@ -1,0 +1,82 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { getCollection } from 'astro:content';
+import EventCard from '@components/cards/Event.astro';
+import Pagination from '@components/Pagination.astro';
+import Layout from '@layouts/BaseLayout.astro';
+import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const events = await getCollection('events');
+  const now = new Date();
+
+  // Split into forthcoming and previous
+  const forthcomingEvents = events
+    .filter((event) => new Date(event.data.eventDate) >= now)
+    .sort((a, b) => a.data.eventDate.getTime() - b.data.eventDate.getTime());
+
+  const previousEvents = events
+    .filter((event) => new Date(event.data.eventDate) < now)
+    .sort((a, b) => b.data.eventDate.getTime() - a.data.eventDate.getTime());
+
+  // Combine for pagination (forthcoming first, then previous)
+  const sortedEvents = [...forthcomingEvents, ...previousEvents];
+
+  return paginate(sortedEvents, {
+    pageSize: DEFAULT_PAGE_SIZE,
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+const now = new Date();
+
+const meta = getPaginatedMeta(
+  'Events',
+  'Discover upcoming and past events in Digital Dundee',
+  page.currentPage,
+  'generic-social-1200x630.png',
+  'Digital Dundee Events',
+);
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <h1>Events</h1>
+
+    {
+      page.data.length > 0 ? (
+        <>
+          <section class="grid">
+            {page.data.map((event) => (
+              <EventCard
+                title={event.data.title}
+                eventDate={event.data.eventDate}
+                eventEndDate={event.data.eventEndDate}
+                eventStartTime={event.data.eventStartTime}
+                eventEndTime={event.data.eventEndTime}
+                location={event.data.location}
+                imageSrc={event.data.imagePrimary?.src}
+                imageAlt={event.data.imagePrimary?.alt || event.data.title}
+                href={`/events/${event.id}`}
+              />
+            ))}
+          </section>
+
+          <Pagination
+            currentPage={page.currentPage}
+            totalPages={page.lastPage}
+            baseUrl="/events"
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+          />
+        </>
+      ) : (
+        <p>No events found.</p>
+      )
+    }
+  </main>
+</Layout>

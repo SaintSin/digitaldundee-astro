@@ -38,19 +38,33 @@ const companies = defineCollection({
       serviceArea: z.array(z.string()).optional(),
     }),
 });
-const eventsCollection = defineCollection({
+const events = defineCollection({
   loader: glob({
     pattern: '**/[^_]*.{md,mdx,mdoc}',
     base: 'src/content/events',
   }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    startDate: z.coerce.date(), // Automatically converts string to Date
-    endDate: z.coerce.date(),
-    location: z.string().optional(),
-    isAllDay: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string().optional(),
+      eventDate: z.coerce.date(),
+      eventEndDate: z.coerce.date().optional(),
+      eventStartTime: z.string().optional(),
+      eventEndTime: z.string().optional(),
+      location: z.string().optional(),
+      eventUrl: z.string().url().optional(),
+      seo: z.object({
+        title: z.string(),
+        description: z.string(),
+        ogImage: z.string().optional(),
+      }),
+      imagePrimary: z
+        .object({
+          src: image(),
+          alt: z.string(),
+        })
+        .optional(),
+    }),
 });
 
-export const collections = { news, companies };
+export const collections = { news, companies, events };

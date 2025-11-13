@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Layout from '@layouts/BaseLayout.astro';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const events = await getCollection('events');
+  return events.map((event) => ({
+    params: { id: event.id },
+    props: { event },
+  }));
+}) satisfies GetStaticPaths;
+
+const { event } = Astro.props;
+const {
+  title,
+  eventDate,
+  eventEndDate,
+  eventStartTime,
+  eventEndTime,
+  location,
+  eventUrl,
+  imagePrimary,
+} = event.data;
+
+// Format date
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-GB', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+};
+
+const meta = {
+  title: title,
+  description: event.data.description || `Learn more about ${title}`,
+  imageOG: imagePrimary?.src
+    ? imagePrimary.src.src
+    : 'generic-social-1200x630.png',
+  altOG: imagePrimary?.alt || title,
+};
+
+const { Content } = await render(event);
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <article>
+      <header>
+        {
+          imagePrimary && (
+            <Image src={imagePrimary.src} alt={imagePrimary.alt} />
+          )
+        }
+        <h1>{title}</h1>
+
+        <time datetime={eventDate.toISOString()}>
+          {formatDate(eventDate)}
+          {eventStartTime && ` - ${eventStartTime}`}
+          {eventEndTime && ` to ${eventEndTime}`}
+        </time>
+
+        {location && <p>{location}</p>}
+
+        {
+          eventUrl && (
+            <a href={eventUrl} target="_blank" rel="noopener noreferrer">
+              Event Website
+            </a>
+          )
+        }
+      </header>
+
+      <Content />
+
+      <a href="/events">Back to Events</a>
+    </article>
+  </main>
+</Layout>

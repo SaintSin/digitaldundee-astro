@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import EventCard from '@components/cards/Event.astro';
+import Layout from '@layouts/BaseLayout.astro';
+
+const events = await getCollection('events');
+const now = new Date();
+
+// Split into forthcoming and previous events
+const forthcomingEvents = events
+  .filter((event) => new Date(event.data.eventDate) >= now)
+  .sort((a, b) => a.data.eventDate.getTime() - b.data.eventDate.getTime());
+
+const previousEvents = events
+  .filter((event) => new Date(event.data.eventDate) < now)
+  .sort((a, b) => b.data.eventDate.getTime() - a.data.eventDate.getTime());
+
+const meta = {
+  title: 'Events',
+  description: 'Discover upcoming and past events in Digital Dundee',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Digital Dundee Events',
+};
+---
+
+<Layout metaData={meta}>
+  <main class="wrapper flow">
+    <h1>Events</h1>
+
+    {
+      forthcomingEvents.length > 0 && (
+        <>
+          <section>
+            <h2>Forthcoming Events</h2>
+            <div class="grid">
+              {forthcomingEvents.map((event) => (
+                <EventCard
+                  title={event.data.title}
+                  eventDate={event.data.eventDate}
+                  eventEndDate={event.data.eventEndDate}
+                  eventStartTime={event.data.eventStartTime}
+                  eventEndTime={event.data.eventEndTime}
+                  location={event.data.location}
+                  imageSrc={event.data.imagePrimary?.src}
+                  imageAlt={event.data.imagePrimary?.alt || event.data.title}
+                  href={`/events/${event.id}`}
+                />
+              ))}
+            </div>
+          </section>
+        </>
+      )
+    }
+
+    {
+      previousEvents.length > 0 && (
+        <>
+          <section>
+            <h2>Previous Events</h2>
+            <div class="grid">
+              {previousEvents.map((event) => (
+                <EventCard
+                  title={event.data.title}
+                  eventDate={event.data.eventDate}
+                  eventEndDate={event.data.eventEndDate}
+                  eventStartTime={event.data.eventStartTime}
+                  eventEndTime={event.data.eventEndTime}
+                  location={event.data.location}
+                  imageSrc={event.data.imagePrimary?.src}
+                  imageAlt={event.data.imagePrimary?.alt || event.data.title}
+                  href={`/events/${event.id}`}
+                />
+              ))}
+            </div>
+          </section>
+        </>
+      )
+    }
+
+    {
+      forthcomingEvents.length === 0 && previousEvents.length === 0 && (
+        <p>No events found.</p>
+      )
+    }
+  </main>
+</Layout>
