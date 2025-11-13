@@ -220,24 +220,46 @@ async function parseCompany(htmlPath, filename) {
   }
 }
 
+// Check if a string needs quotes in YAML
+function needsQuotes(str) {
+  // Check for special characters that require quoting
+  const specialChars = /[:#{}[\]!|>&%@`]/;
+  const startsWithSpecial = /^[-?:,\[\]{}#&*!|>'"%@`]/;
+  const booleanLike = /^(true|false|yes|no|on|off|null|~)$/i;
+  const numberLike = /^[0-9]/;
+
+  return (
+    specialChars.test(str) ||
+    startsWithSpecial.test(str) ||
+    booleanLike.test(str) ||
+    numberLike.test(str) ||
+    str.includes('\n')
+  );
+}
+
+// Format a string for YAML (with quotes only if needed)
+function yamlString(str) {
+  return needsQuotes(str) ? JSON.stringify(str) : str;
+}
+
 // Generate MDX file
 function generateMDX(data, outputPath) {
   const { title, companyUrl, logo, sector, serviceArea } = data;
 
   // Build frontmatter
   let frontmatter = `---
-title: ${JSON.stringify(title)}`;
+title: ${yamlString(title)}`;
 
   if (companyUrl) {
     frontmatter += `
-companyUrl: ${JSON.stringify(companyUrl)}`;
+companyUrl: ${companyUrl}`;
   }
 
   if (logo) {
     frontmatter += `
 logo:
   src: ../../assets/images/companies/${logo.src}
-  alt: ${JSON.stringify(logo.alt)}`;
+  alt: ${yamlString(logo.alt)}`;
   }
 
   // Add sector array
@@ -246,7 +268,7 @@ logo:
 sector:`;
     sector.forEach((term) => {
       frontmatter += `
-  - ${JSON.stringify(term)}`;
+  - ${yamlString(term)}`;
     });
   } else {
     frontmatter += `
@@ -259,7 +281,7 @@ sector: []`;
 serviceArea:`;
     serviceArea.forEach((term) => {
       frontmatter += `
-  - ${JSON.stringify(term)}`;
+  - ${yamlString(term)}`;
     });
   }
 

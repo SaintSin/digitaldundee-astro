@@ -96,11 +96,11 @@ Visit `https://localhost:4321` to see your site.
 The following path aliases are configured in `tsconfig.json`:
 
 ```typescript
-import Component from '@components/Component.astro';
-import Layout from '@layouts/BaseLayout.astro';
-import image from '@images/photo.jpg';
-import '@styles/style.css';
-import type { MetaData } from '@types';
+import Component from "@components/Component.astro";
+import Layout from "@layouts/BaseLayout.astro";
+import image from "@images/photo.jpg";
+import "@styles/style.css";
+import type { MetaData } from "@types";
 ```
 
 Available aliases:
@@ -207,14 +207,14 @@ Each page should define metadata:
 
 ```astro
 ---
-import Layout from '@layouts/BaseLayout.astro';
-import type { MetaData } from '@types';
+import Layout from "@layouts/BaseLayout.astro";
+import type { MetaData } from "@types";
 
 const meta: MetaData = {
-  title: 'Page Title',
-  description: 'Page description for SEO',
-  imageOG: 'social-image.png', // optional
-  altOG: 'Alt text for social image', // optional
+  title: "Page Title",
+  description: "Page description for SEO",
+  imageOG: "social-image.png", // optional
+  altOG: "Alt text for social image", // optional
 };
 ---
 
