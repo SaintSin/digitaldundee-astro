@@ -17,6 +17,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Load date mapping
+const dateMappingPath = join(__dirname, 'news-dates-mapping.json');
+let dateMapping = {};
+if (existsSync(dateMappingPath)) {
+  dateMapping = JSON.parse(readFileSync(dateMappingPath, 'utf-8'));
+  console.log(`Loaded ${Object.keys(dateMapping).length} date mappings\n`);
+}
+
 // Paths
 const SOURCE_DIR =
   '/Users/stjohn/Documents/GitHub/Astro/Sites/Digital Dundee/digitaldundee.com/news';
@@ -129,12 +137,17 @@ function htmlToMarkdown(html, imageMap) {
     return '';
   });
 
-  // Simple conversions
+  // Remove style attributes and other inline attributes
   md = md
-    .replace(/<strong>(.*?)<\/strong>/gi, '**$1**')
-    .replace(/<b>(.*?)<\/b>/gi, '**$1**')
-    .replace(/<em>(.*?)<\/em>/gi, '*$1*')
-    .replace(/<i>(.*?)<\/i>/gi, '*$1*')
+    .replace(/\s*style="[^"]*"/gi, '')
+    .replace(/\s*class="[^"]*"/gi, '')
+    .replace(/\s*id="[^"]*"/gi, '')
+    .replace(/\s*data-[^=]*="[^"]*"/gi, '')
+    // Handle formatting
+    .replace(/<strong[^>]*>(.*?)<\/strong>/gi, '**$1**')
+    .replace(/<b[^>]*>(.*?)<\/b>/gi, '**$1**')
+    .replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*')
+    .replace(/<i[^>]*>(.*?)<\/i>/gi, '*$1*')
     .replace(/<a\s+href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)')
     .replace(/<h2[^>]*>(.*?)<\/h2>/gi, '\n## $1\n')
     .replace(/<h3[^>]*>(.*?)<\/h3>/gi, '\n### $1\n')
@@ -150,13 +163,17 @@ function htmlToMarkdown(html, imageMap) {
     .replace(/<dt[^>]*>|<\/dt>/gi, '')
     .replace(/<dd[^>]*>|<\/dd>/gi, '')
     .replace(/<dl[^>]*>|<\/dl>/gi, '')
+    .replace(/<blockquote[^>]*>|<\/blockquote>/gi, '')
     .replace(/&nbsp;/gi, ' ')
     .replace(/&amp;/gi, '&')
     .replace(/&lt;/gi, '<')
     .replace(/&gt;/gi, '>')
     .replace(/&quot;/gi, '"')
     .replace(/&#39;/gi, "'")
-    .replace(/&pound;/gi, '£');
+    .replace(/&pound;/gi, '£')
+    .replace(/&rsquo;/gi, "'")
+    .replace(/&ldquo;/gi, '"')
+    .replace(/&rdquo;/gi, '"');
 
   // Clean up extra whitespace and standalone "Image" labels
   md = md
@@ -263,12 +280,13 @@ async function parseArticle(htmlPath, filename) {
     const metaDesc = doc.querySelector('meta[name="description"]');
     const description = metaDesc ? metaDesc.getAttribute('content') : '';
 
-    // Extract date
-    const timeEl = doc.querySelector('time[datetime]');
+    // Extract date from mapping or fallback to current date
     let pubDate = new Date();
-    if (timeEl) {
-      const datetime = timeEl.getAttribute('datetime');
-      pubDate = new Date(datetime);
+    if (dateMapping[filename]) {
+      pubDate = new Date(dateMapping[filename]);
+      console.log(`  Using mapped date: ${dateMapping[filename]}`);
+    } else {
+      console.log(`  ⚠ No date mapping found for: ${filename}`);
     }
 
     // Extract main content

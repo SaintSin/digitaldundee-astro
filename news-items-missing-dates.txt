@@ -1,0 +1,56 @@
+# News Articles Missing Publication Dates
+
+The following 14 news articles do not have publication dates in the news listing pages
+and are currently set to 2025-11-13 (migration date). These dates need to be manually
+researched and updated.
+
+## List of Articles (Slug | Title)
+
+1. 4g's-speeding-dundee
+   "4G's speeding to Dundee"
+
+2. abertays-new-movie-magic-lab-sees-dundee-benefit-£140m-pot
+   "Abertay's new 'movie magic' lab sees Dundee benefit from £140m pot"
+
+3. dare-be-digital-2014-–-one-week-apply
+   "Dare to be Digital 2014 – one week to apply"
+
+4. dia-technology-accelerator-chiasma-£40k-funding-available
+   "DiA Technology Accelerator Chiasma £40k funding available"
+
+5. dundee-researcher's-image-voted-winner-images-impact'
+   "Dundee researcher's image voted winner of 'Images with Impact'"
+
+6. dundee-software-firm's-£400000-funding-boost
+   "Dundee software firm's £400,000 funding boost"
+
+7. forum-showcase-dundee's-tech-prowess
+   "Forum to showcase Dundee's tech prowess"
+
+8. generation-tech-crossing-digital-divide'
+   "Generation-Tech: Crossing the Digital Divide'"
+
+9. introducing-dundee's-latest-startup-goroadie
+   "Introducing Dundee's Latest Startup: GoRoadie"
+
+10. it's-not-one-thing'-–-opening-digital-world-people-aphasia
+    "'It's Not One Thing' – opening up the digital world for people with aphasia"
+
+11. kate-forbes-digital-scotland-2020-after-£118m-digital
+    "Kate Forbes at Digital Scotland 2020 after £11.8m for digital"
+
+12. va-game-designer-opens-scotland's-biggest-video-games-festival
+    "V&A Game Designer opens Scotland's biggest video games festival"
+
+13. £11million-ai-grant-mine-arguments-and-analyse-opinion
+    "£1.1million AI grant to mine arguments and analyse opinion"
+
+14. £125k-digital-innovation-games-sector
+    "£125k for digital innovation in the games sector"
+
+## Notes
+
+- These articles may be from older pages not included in the scraped listing pages (0-14)
+- Some may have special characters in slugs that prevented matching
+- Dates should be manually researched and added to news-dates-mapping.json
+- After updating the mapping, re-run: node migrate-news.js
