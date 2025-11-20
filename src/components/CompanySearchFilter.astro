@@ -1,0 +1,224 @@
+---
+interface Props {
+  sectors: string[];
+  serviceAreas: string[];
+}
+
+const { sectors, serviceAreas } = Astro.props;
+---
+
+<form id="company-filter-form" class="filter-form">
+  <div class="filter-group">
+    <label for="sector-filter">Sector</label>
+    <select id="sector-filter" name="sector">
+      <option value="">- Any -</option>
+      {sectors.map((sector) => <option value={sector}>{sector}</option>)}
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="service-area-filter">Service Area</label>
+    <select id="service-area-filter" name="serviceArea">
+      <option value="">- Any -</option>
+      {
+        serviceAreas.map((serviceArea) => (
+          <option value={serviceArea}>{serviceArea}</option>
+        ))
+      }
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="keyword-filter">Keyword</label>
+    <input
+      type="text"
+      id="keyword-filter"
+      name="keyword"
+      placeholder="Search companies..."
+    />
+  </div>
+
+  <div class="button-group">
+    <button type="submit" class="btn-primary">Apply</button>
+    <button type="button" id="reset-filter" class="btn-secondary">Reset</button>
+  </div>
+</form>
+
+<style>
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-block-end: 2rem;
+    border-radius: 0.5rem;
+    background: var(--color-bg-secondary, #f5f5f5);
+    padding: 1.5rem;
+  }
+
+  .filter-group {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 200px;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  select,
+  input[type='text'] {
+    border: 1px solid var(--color-border, #ccc);
+    border-radius: 0.25rem;
+    background: white;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  select:focus,
+  input[type='text']:focus {
+    outline: 2px solid var(--color-primary, #007bff);
+    outline-offset: 2px;
+  }
+
+  .button-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    transition: background 0.2s;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background: var(--color-primary, #007bff);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-dark, #0056b3);
+  }
+
+  .btn-secondary {
+    background: var(--color-secondary, #6c757d);
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-secondary-dark, #5a6268);
+  }
+
+  @media (max-width: 768px) {
+    .filter-form {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .filter-group {
+      min-width: 100%;
+    }
+
+    .button-group {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById(
+    'company-filter-form',
+  ) as HTMLFormElement;
+  const sectorSelect = document.getElementById(
+    'sector-filter',
+  ) as HTMLSelectElement;
+  const serviceAreaSelect = document.getElementById(
+    'service-area-filter',
+  ) as HTMLSelectElement;
+  const keywordInput = document.getElementById(
+    'keyword-filter',
+  ) as HTMLInputElement;
+  const resetButton = document.getElementById(
+    'reset-filter',
+  ) as HTMLButtonElement;
+
+  // Parse URL parameters on page load
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('sector')) {
+    sectorSelect.value = urlParams.get('sector') || '';
+  }
+  if (urlParams.has('serviceArea')) {
+    serviceAreaSelect.value = urlParams.get('serviceArea') || '';
+  }
+  if (urlParams.has('keyword')) {
+    keywordInput.value = urlParams.get('keyword') || '';
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const sector = sectorSelect.value;
+    const serviceArea = serviceAreaSelect.value;
+    const keyword = keywordInput.value.trim();
+
+    const params = new URLSearchParams();
+    if (sector) params.set('sector', sector);
+    if (serviceArea) params.set('serviceArea', serviceArea);
+    if (keyword) params.set('keyword', keyword);
+
+    // Update URL and trigger filtering
+    const newUrl = params.toString()
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+
+    window.location.href = newUrl;
+  });
+
+  // Reset button handler
+  resetButton.addEventListener('click', () => {
+    // Clear all form fields
+    sectorSelect.value = '';
+    serviceAreaSelect.value = '';
+    keywordInput.value = '';
+
+    // Navigate to the base URL without any parameters
+    const basePath = window.location.pathname.replace(/\/\d+$/, '');
+    window.location.href = basePath;
+  });
+
+  // Trigger filtering event for other components to listen to
+  function triggerFilterEvent() {
+    const event = new CustomEvent('company-filter-change', {
+      detail: {
+        sector: sectorSelect.value,
+        serviceArea: serviceAreaSelect.value,
+        keyword: keywordInput.value.trim(),
+      },
+    });
+    document.dispatchEvent(event);
+  }
+
+  sectorSelect.addEventListener('change', triggerFilterEvent);
+  serviceAreaSelect.addEventListener('change', triggerFilterEvent);
+  keywordInput.addEventListener('input', triggerFilterEvent);
+
+  // Trigger initial filter on page load if there are URL params
+  if (urlParams.toString()) {
+    triggerFilterEvent();
+  }
+</script>

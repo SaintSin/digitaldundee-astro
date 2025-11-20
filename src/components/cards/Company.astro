@@ -11,20 +11,18 @@ interface Props {
 }
 
 const { name, companyUrl, imageSrc, imageAlt, href } = Astro.props;
+import '@styles/blocks/card.css';
 ---
 
 <article class="card">
-  <a href={href} class="card__link">
-    {
-      imageSrc && (
-        <div class="card__image">
-          <Image src={imageSrc} alt={imageAlt} />
-        </div>
-      )
-    }
-    <div class="card__content">
-      <h2 class="card__title">{name}</h2>
-      {companyUrl && <p class="card__url">{companyUrl}</p>}
-    </div>
+  <a href={href}>
+    {imageSrc && <Image src={imageSrc} alt={imageAlt} />}
+    <h3 class="card__title">{name}</h3>
+    {companyUrl && <p class="card__url">{companyUrl}</p>}
   </a>
 </article>
+<style>
+  .card {
+    background: transparent;
+  }
+</style>
