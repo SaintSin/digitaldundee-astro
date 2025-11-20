@@ -16,10 +16,10 @@
     "test": "astro check && biome check ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.11",
+    "@astrojs/mdx": "^4.3.12",
     "@astrojs/sitemap": "^3.6.0",
     "@iconify-json/ri": "^1.2.6",
-    "astro": "^5.15.9",
+    "astro": "^5.16.0",
     "astro-capo": "^0.0.1",
     "astro-icon": "^1.1.5",
     "motion": "^12.23.24",

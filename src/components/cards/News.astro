@@ -17,7 +17,7 @@ const { title, excerpt, pubDate, imageSrc, imageAlt, href } = Astro.props;
 <article class="card">
   <a href={href}>
     <Image src={imageSrc} alt={imageAlt} />
-    <h2>{title}</h2>
+    <h3>{title}</h3>
     <time datetime={pubDate.toISOString()}>
       {pubDate.toLocaleDateString('en-GB')}
     </time>
@@ -25,6 +25,31 @@ const { title, excerpt, pubDate, imageSrc, imageAlt, href } = Astro.props;
   </a>
 </article>
 <style>
+  .card {
+    --padding: var(--space-xs);
+    background: white;
+    img {
+      aspect-ratio: 1.8;
+      min-width: 100%;
+    }
+    h3 {
+      padding-inline: var(--padding);
+      padding-block: var(--padding);
+      font-size: var(--step--1);
+      text-wrap: balance;
+    }
+    time,
+    p {
+      padding-inline: var(--padding);
+      font-size: var(--step--1);
+    }
+    p {
+      padding-block-end: var(--padding);
+    }
+    time {
+      font-style: italic;
+    }
+  }
   a {
     text-decoration: none;
   }
