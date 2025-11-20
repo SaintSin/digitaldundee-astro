@@ -1,11 +1,14 @@
 ---
 import { Image } from 'astro:assets';
-import image1 from '@images/panda-01.jpg';
+import TwoColumnCTA from '@components/SectionSample.astro';
+import imagePromoLeft from '@images/site/promo-left.jpg';
+import imagePromoRight from '@images/site/promo-right.jpg';
+import image1 from '@images/site/smartphone.jpg';
 // pages/index.astro
 import Layout from '@layouts/BaseLayout.astro';
 
 const meta = {
-  title: 'Welcome to Astro',
+  title: 'Welcome to Digital Dundee and Tay Tech | Digital Dundee',
   description: 'The metadescription',
   imageOG: 'generic-social-1200x630.png',
   altOG: 'Alt text for OG image',
@@ -13,44 +16,101 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <header>
+    <h1>Dundee, A Digital City Where You Can</h1>
+  </header><TwoColumnCTA />
   <main class="wrapper flow">
-    <h1>Start</h1>
-    <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut
-      magnam laborum assumenda, odio, accusamus vero nisi impedit culpa incidunt
-      deserunt, quo dolorem. Soluta accusamus natus, culpa iure nemo iste!
-    </p>
-    <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut
-      magnam laborum assumenda, odio, accusamus vero nisi impedit culpa incidunt
-      deserunt, quo dolorem. Soluta accusamus natus, culpa iure nemo iste!
-    </p>
-
-    <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut
-      magnam laborum assumenda, odio, accusamus vero nisi impedit culpa incidunt
-      deserunt, quo dolorem. Soluta accusamus natus, culpa iure nemo iste!
-    </p>
-    <ul>
-      <li>Modern CSS</li>
-      <li>CUBE CSS</li>
-      <li>OG Meta</li>
-      <li>Minimal Starter</li>
-      <li>Experimental Edition</li>
-      <li>Component library</li>
-    </ul>
-    <ol>
-      <li>Minimal Starter<br /></li>
-      <li>Experimental Edition</li>
-      <li>Components Edition</li>
-    </ol>
+    <h2>Welcome to Digital Dundee and Tay Tech</h2>
+    <p>With you to discover</p>
+    <div>
+      <p>
+        Tech is in the DNA of Dundee and the Tay Cities region. With a strong
+        culture of innovation the city and region are a thriving hub for
+        creativity, digital media and ICT and home to many companies taking tech
+        in new directions. Dundee has a vibrant and growing mobile application,
+        software and games development scene driven by collaboration between
+        entrepreneurs, academia and diverse skills and talent. A 2021 Tech
+        Nation report says Dundee is one of the most likely cities to become a
+        leading UK tech hub. Britain’s “coolest little city” is transforming
+        through Tay Cities Deal and £1billion Waterfront investment that
+        includes plans for a major new esports arena. It’s the perfect place to
+        start and scale your tech business in Scotland and the UK, source
+        services and find project partners.
+      </p>
+    </div>
+    <Image src={image1} alt="Smartphone" />
+    <div>
+      <p>
+        Landmarks like Grand Theft Auto, thin flat screens for phones and
+        devices, and Minecraft have laid the foundations for a city that is
+        future ready. City region companies and universities, Abertay, Dundee
+        and St. Andrews, research and develop diverse products and services.
+        These encompass software, business solutions, ICT, robotics, games,
+        media, screen production, analytics, AI, IoT and cybersecurity serving
+        many industry sectors such as include esports, transport, defence,
+        space, entertainment, financial services, physical and life sciences,
+        healthcare, energy, renewables and tourism. Leading tech companies
+        include NCR, 4J Studios, Waracle, Brightsolid, GoRoadie and Broker
+        Insights. Michelin Scotland Innovation Parc (MSIP) is a magnet for
+        sustainable mobility industries.
+      </p>
+    </div>
+    <div>
+      <p>
+        The Tay Cities Region offers excellent connectivity. Digital
+        connectivity includes 99% access to superfast broadband, accelerating
+        roll-out of local full fibre networks (LFFN) and research and
+        development facilities for 5G. For travel, there are direct flights
+        between London City, Belfast and Dundee Airports and the city is within
+        easy reach of international airports at Aberdeen, Edinburgh and Glasgow.
+      </p>
+      <p>
+        A UNESCO City of Design. Dundee is home to the first V&A outside London.
+        The city has a unique vibe so whether you are freelance or work with a
+        start-up or major company, you can enjoy a high quality of life, unique
+        culture and warm welcome.
+      </p>
+    </div>
+    <p>Get In Touch</p>
+    <div>
+      <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
+      <p>
+        Digital Dundee is a portal for people and businesses in digital,
+        creative and tech in the city and wider region. Putting collaboration
+        with industry, academia and the third sector front and centre, it’s
+        about growing the community, the city’s already world class
+        connectivity, being a smart city and spotting opportunities.
+      </p>
+      <p>Find Out More</p>
+      <Image
+        src={imagePromoLeft}
+        alt="Taybridge at night, long exposure with star trails"
+      />
+    </div>
+    <div>
+      <h2>MAKING THINGS HAPPEN FOR DIGITAL USERS</h2>
+      <p>
+        The Tay Cities Region offers a unique and warm welcome with fast and
+        easy access to assistance and connections to help make great things
+        happen. All of this comes with the benefits of a significantly lower
+        cost base. Whatever sector you work in we can help you find the right
+        mix of creative, digital and tech - any or all of these so you can work
+        with your clients, sell your products and services, provide cutting edge
+        training or get R&D insights or investment.
+      </p>
+      <p>Find Out More</p>
+      <Image
+        src={imagePromoRight}
+        alt="A group of young gamers in front of computers"
+      />
+    </div>
+    <div><h2>Latest News</h2></div>
+    <div><h2>Upcoming Events</h2></div>
   </main>
 </Layout>
 <style>
-  .resize-h {
-    border: 1px solid var(--color-text-subtle);
-    padding: 1rem;
-    overflow: auto;
-    resize: horizontal;
+  p {
+    color: rgb(118, 118, 118);
+    line-height: 1.625;
   }
 </style>

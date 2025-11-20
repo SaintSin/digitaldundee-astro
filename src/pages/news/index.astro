@@ -4,9 +4,9 @@ import NewsCard from '@components/cards/News.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
 import {
-  sortByDateDesc,
   DEFAULT_PAGE_SIZE,
   getPaginatedMeta,
+  sortByDateDesc,
 } from '@utils/pagination';
 
 const news = await getCollection('news');

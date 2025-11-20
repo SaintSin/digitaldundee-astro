@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import type { GetStaticPaths } from 'astro';
 import Layout from '@layouts/BaseLayout.astro';
+import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const companies = await getCollection('companies');

@@ -4,9 +4,9 @@ import CompanyCard from '@components/cards/Company.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
 import {
-  sortByTitle,
   DEFAULT_PAGE_SIZE,
   getPaginatedMeta,
+  sortByTitle,
 } from '@utils/pagination';
 
 const companies = await getCollection('companies');

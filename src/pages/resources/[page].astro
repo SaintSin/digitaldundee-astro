@@ -1,10 +1,10 @@
 ---
-import type { GetStaticPaths, Page } from 'astro';
 import { getCollection } from 'astro:content';
 import ResourceCard from '@components/cards/Resource.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
 import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
+import type { GetStaticPaths, Page } from 'astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const resources = await getCollection('resources');

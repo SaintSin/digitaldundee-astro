@@ -1,0 +1,58 @@
+---
+// SectionSample.astro
+import { Image } from 'astro:assets';
+import imagePromoLeft from '@images/site/promo-left.jpg';
+import imagePromoRight from '@images/site/promo-right.jpg';
+import '@styles/two_column.css';
+---
+
+<section class="full-width-split-screen overlay">
+  <Image
+    src={imagePromoLeft}
+    quality={40}
+    alt="Cat lying down staring at camera"
+    layout="full-width"
+  />
+  <div class="">
+    <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
+    <p>
+      Digital Dundee is a portal for people and businesses in digital, creative
+      and tech in the city and wider region. Putting collaboration with
+      industry, academia and the third sector front and centre, it’s about
+      growing the community, the city’s already world class connectivity, being
+      a smart city and spotting opportunities.
+    </p>
+    <p>Find Out More</p>
+  </div>
+
+  <Image
+    src={imagePromoRight}
+    quality={40}
+    alt="A cute kitten"
+    loading={'eager'}
+    layout="full-width"
+  />
+  <div class="secondary">
+    <h2>MAKING THINGS HAPPEN FOR DIGITAL USERS</h2>
+    <p>
+      The Tay Cities Region offers a unique and warm welcome with fast and easy
+      access to assistance and connections to help make great things happen. All
+      of this comes with the benefits of a significantly lower cost base.
+      Whatever sector you work in we can help you find the right mix of
+      creative, digital and tech - any or all of these so you can work with your
+      clients, sell your products and services, provide cutting edge training or
+      get R&D insights or investment.
+    </p>
+    <p>Find Out More</p>
+  </div>
+</section>
+
+<style>
+  .overlay {
+    p,
+    h2 {
+      color: white;
+    }
+  }
+</style>
+<script src="@scripts/image-sizes.ts"></script>
