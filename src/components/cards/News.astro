@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import '@styles/blocks/card.css';
 
 interface Props {
   title: string;
@@ -24,33 +25,3 @@ const { title, excerpt, pubDate, imageSrc, imageAlt, href } = Astro.props;
     <p>{excerpt}</p>
   </a>
 </article>
-<style>
-  .card {
-    --padding: var(--space-xs);
-    background: white;
-    img {
-      aspect-ratio: 1.8;
-      min-width: 100%;
-    }
-    h3 {
-      padding-inline: var(--padding);
-      padding-block: var(--padding);
-      font-size: var(--step--1);
-      text-wrap: balance;
-    }
-    time,
-    p {
-      padding-inline: var(--padding);
-      font-size: var(--step--1);
-    }
-    p {
-      padding-block-end: var(--padding);
-    }
-    time {
-      font-style: italic;
-    }
-  }
-  a {
-    text-decoration: none;
-  }
-</style>

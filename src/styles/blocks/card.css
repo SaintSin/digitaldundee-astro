@@ -1,0 +1,33 @@
+.card {
+  --padding: var(--space-xs);
+  background: white;
+  img {
+    aspect-ratio: 1.8;
+    min-width: 100%;
+  }
+  h3 {
+    padding-inline: var(--padding);
+    padding-block: var(--padding);
+    font-size: var(--step--1);
+    text-wrap: balance;
+  }
+  time,
+  p {
+    padding-inline: var(--padding);
+    font-size: var(--step--1);
+  }
+  p {
+    display: -webkit-box;
+    padding-block-end: var(--padding);
+    -webkit-line-clamp: 3; /* number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+  time {
+    font-style: italic;
+  }
+}
+.card a {
+  text-decoration: none;
+}

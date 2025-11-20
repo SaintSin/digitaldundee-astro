@@ -13,21 +13,14 @@ interface Props {
 
 const { name, description, resourceUrl, imageSrc, imageAlt, href } =
   Astro.props;
+import '@styles/blocks/card.css';
 ---
 
 <article class="card">
-  <a href={href} class="card__link">
-    {
-      imageSrc && (
-        <div class="card__image">
-          <Image src={imageSrc} alt={imageAlt} />
-        </div>
-      )
-    }
-    <div class="card__content">
-      <h2 class="card__title">{name}</h2>
-      {description && <p class="card__description">{description}</p>}
-      {resourceUrl && <p class="card__url">{resourceUrl}</p>}
-    </div>
+  <a href={href}>
+    {imageSrc && <Image src={imageSrc} alt={imageAlt} />}
+    <h3>{name}</h3>
+    {description && <p>{description}</p>}
+    {resourceUrl && <p>{resourceUrl}</p>}
   </a>
 </article>

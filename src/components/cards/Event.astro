@@ -34,17 +34,17 @@ const formatDate = (date: Date) => {
     year: 'numeric',
   }).format(date);
 };
+import '@styles/blocks/card.css';
 ---
 
-<article>
+<article class="card">
   <a href={href}>
     {imageSrc && <Image src={imageSrc} alt={imageAlt} />}
-    <h2>{title}</h2>
+    <h3>{title}</h3>
     <time datetime={eventDate.toISOString()}>
       {formatDate(eventDate)}
       {eventStartTime && ` - ${eventStartTime}`}
       {eventEndTime && ` to ${eventEndTime}`}
     </time>
-    {location && <p>{location}</p>}
   </a>
 </article>
