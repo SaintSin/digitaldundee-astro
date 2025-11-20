@@ -11,7 +11,7 @@ export default defineConfig({
     fonts: [
       {
         provider: fontProviders.google(),
-        name: 'OpenSans',
+        name: 'Open Sans',
         cssVariable: '--font-opensans',
       },
       {

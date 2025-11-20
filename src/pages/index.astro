@@ -6,6 +6,7 @@ import imagePromoRight from '@images/site/promo-right.jpg';
 import image1 from '@images/site/smartphone.jpg';
 // pages/index.astro
 import Layout from '@layouts/BaseLayout.astro';
+import '@styles/two_column.css';
 
 const meta = {
   title: 'Welcome to Digital Dundee and Tay Tech | Digital Dundee',
@@ -18,11 +19,12 @@ const meta = {
 <Layout metaData={meta}>
   <header>
     <h1>Dundee, A Digital City Where You Can</h1>
-  </header><TwoColumnCTA />
-  <main class="wrapper flow">
-    <h2>Welcome to Digital Dundee and Tay Tech</h2>
-    <p>With you to discover</p>
-    <div>
+  </header>
+  <h2 class="align-center">Welcome to Digital Dundee and Tay Tech</h2>
+  <h3 class="align-center">With you to discover</h3>
+
+  <section class="full-width-split-screen contained">
+    <div class="">
       <p>
         Tech is in the DNA of Dundee and the Tay Cities region. With a strong
         culture of innovation the city and region are a thriving hub for
@@ -38,8 +40,17 @@ const meta = {
         services and find project partners.
       </p>
     </div>
-    <Image src={image1} alt="Smartphone" />
     <div>
+      <Image
+        src={image1}
+        quality={40}
+        alt="A hand holding a smartphone with bokeh-like lens flare"
+        layout="full-width"
+      />
+    </div>
+  </section>
+  <section class="full-width-split-screen">
+    <div class="pad-top-0">
       <p>
         Landmarks like Grand Theft Auto, thin flat screens for phones and
         devices, and Minecraft have laid the foundations for a city that is
@@ -55,7 +66,7 @@ const meta = {
         sustainable mobility industries.
       </p>
     </div>
-    <div>
+    <div class="pad-top-0 flow">
       <p>
         The Tay Cities Region offers excellent connectivity. Digital
         connectivity includes 99% access to superfast broadband, accelerating
@@ -71,8 +82,16 @@ const meta = {
         culture and warm welcome.
       </p>
     </div>
-    <p>Get In Touch</p>
-    <div>
+  </section>
+
+  <section class="full-width-split-screen overlay">
+    <Image
+      src={imagePromoLeft}
+      quality={40}
+      alt="Cat lying down staring at camera"
+      layout="full-width"
+    />
+    <div class="">
       <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
       <p>
         Digital Dundee is a portal for people and businesses in digital,
@@ -82,12 +101,16 @@ const meta = {
         connectivity, being a smart city and spotting opportunities.
       </p>
       <p>Find Out More</p>
-      <Image
-        src={imagePromoLeft}
-        alt="Taybridge at night, long exposure with star trails"
-      />
     </div>
-    <div>
+
+    <Image
+      src={imagePromoRight}
+      quality={40}
+      alt="A cute kitten"
+      loading={'eager'}
+      layout="full-width"
+    />
+    <div class="secondary">
       <h2>MAKING THINGS HAPPEN FOR DIGITAL USERS</h2>
       <p>
         The Tay Cities Region offers a unique and warm welcome with fast and
@@ -99,11 +122,10 @@ const meta = {
         training or get R&D insights or investment.
       </p>
       <p>Find Out More</p>
-      <Image
-        src={imagePromoRight}
-        alt="A group of young gamers in front of computers"
-      />
     </div>
+  </section>
+
+  <main class="wrapper flow">
     <div><h2>Latest News</h2></div>
     <div><h2>Upcoming Events</h2></div>
   </main>
@@ -113,4 +135,21 @@ const meta = {
     color: rgb(118, 118, 118);
     line-height: 1.625;
   }
+  .overlay {
+    p,
+    h2 {
+      color: white;
+    }
+    p {
+      font-weight: 700;
+    }
+    h2 {
+      font-weight: 600;
+      font-size: var(--step-2);
+    }
+  }
+  .pad-top-0 {
+    padding-block-start: 0;
+  }
 </style>
+<script src="@scripts/image-sizes.ts"></script>
