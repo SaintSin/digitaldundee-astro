@@ -50,6 +50,19 @@ function sanitizeSlug(name) {
     .replace(/^-+|-+$/g, '');
 }
 
+function sanitizeImageFilename(filename) {
+  // Split filename into name and extension
+  const lastDotIndex = filename.lastIndexOf('.');
+  const name =
+    lastDotIndex > 0 ? filename.substring(0, lastDotIndex) : filename;
+  const ext = lastDotIndex > 0 ? filename.substring(lastDotIndex) : '';
+
+  // Sanitize the name part (keep case for readability, replace spaces with hyphens)
+  const sanitizedName = name.replace(/\s+/g, '-');
+
+  return sanitizedName + ext;
+}
+
 async function downloadImage(url, filepath) {
   // Convert relative URLs to absolute
   const fullUrl = url.startsWith('http')
@@ -178,7 +191,10 @@ async function processSuccessStory(slug) {
     primaryImageAlt = imgAlt;
 
     if (imgSrc) {
-      const imgFileName = path.basename(imgSrc.split('?')[0]);
+      const decodedFileName = decodeURIComponent(
+        path.basename(imgSrc.split('?')[0]),
+      );
+      const imgFileName = sanitizeImageFilename(decodedFileName);
       const localImgPath = path.join(IMAGES_DIR, imgFileName);
 
       try {
@@ -204,7 +220,10 @@ async function processSuccessStory(slug) {
     for (const img of images) {
       const imgSrc = img.getAttribute('src');
       if (imgSrc) {
-        const imgFileName = path.basename(imgSrc.split('?')[0]);
+        const decodedFileName = decodeURIComponent(
+          path.basename(imgSrc.split('?')[0]),
+        );
+        const imgFileName = sanitizeImageFilename(decodedFileName);
         const localImgPath = path.join(IMAGES_DIR, imgFileName);
 
         try {
