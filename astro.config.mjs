@@ -21,10 +21,11 @@ export default defineConfig({
         weights: ['100 900'],
       },
     ],
+    svgo: true,
   },
   image: {
     responsiveStyles: true,
   },
   integrations: [sitemap(), icon(), mdx()],
-  site: 'https://localhost/',
+  site: 'https://digitaldundee.netlify.app',
 });
