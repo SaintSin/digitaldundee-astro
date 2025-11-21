@@ -7,6 +7,8 @@ import icon from 'astro-icon';
 
 import netlify from '@astrojs/netlify';
 
+import partytown from '@astrojs/partytown';
+
 // https://astro.build/config
 export default defineConfig({
   experimental: {
@@ -30,7 +32,7 @@ export default defineConfig({
     responsiveStyles: true,
   },
 
-  integrations: [sitemap(), icon(), mdx()],
+  integrations: [sitemap(), icon(), mdx(), partytown()],
   site: 'https://digitaldundee.netlify.app',
   adapter: netlify(),
 });
