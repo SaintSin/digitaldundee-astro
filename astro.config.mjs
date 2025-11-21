@@ -5,6 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   experimental: {
@@ -23,9 +25,12 @@ export default defineConfig({
     ],
     svgo: true,
   },
+
   image: {
     responsiveStyles: true,
   },
+
   integrations: [sitemap(), icon(), mdx()],
   site: 'https://digitaldundee.netlify.app',
+  adapter: netlify(),
 });

@@ -90,4 +90,32 @@ const events = defineCollection({
     }),
 });
 
-export const collections = { news, companies, events, resources };
+const successStories = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.{md,mdx,mdoc}',
+    base: 'src/content/success-stories',
+  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      pubDate: z.coerce.date(),
+      excerpt: z.string(),
+      seo: z.object({
+        title: z.string(),
+        description: z.string(),
+        ogImage: z.string().optional(),
+      }),
+      imagePrimary: z.object({
+        src: image(),
+        alt: z.string(),
+      }),
+    }),
+});
+
+export const collections = {
+  news,
+  companies,
+  events,
+  resources,
+  'success-stories': successStories,
+};

@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Layout from '@layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const successStories = await getCollection('success-stories');
+  return successStories.map((story) => ({
+    params: { id: story.id },
+    props: { story },
+  }));
+}
+
+const { story } = Astro.props;
+const { Content } = await render(story);
+
+const meta = {
+  title: story.data.seo.title,
+  description: story.data.seo.description,
+  imageOG: story.data.seo.ogImage || story.data.imagePrimary.src,
+  altOG: story.data.imagePrimary.alt,
+};
+---
+
+<Layout metaData={meta}>
+  <h2>{story.data.title}</h2>
+  <main class="wrapper flow">
+    <Content />
+  </main>
+</Layout>
