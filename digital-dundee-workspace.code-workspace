@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "../../../../../../.claude-worktrees/digitaldundee-astro/hardcore-swartz"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "prettier.documentSelectors": ["**/*.astro"],
+    "files.associations": {
+      "*.css": "css"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
+  }
+}

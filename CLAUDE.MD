@@ -2,12 +2,11 @@
 
 ## Project Overview
 
-Digital Dundee is a static website built with Astro showcasing the digital technology sector in Dundee, Scotland. The site features companies, news, events, resources, and success stories related to Dundee's tech ecosystem.
+DigitalDundee.com is a website for promoting and showcasing the digital technology sector in Dundee, Scotland. The site is slow, and has many issues. This is an attempt to produce a better version of the site,  with Astro as the development framework. The site features companies, news, events, resources, and success stories related to Dundee's tech ecosystem.
 
 **Site URL**: https://digitaldundee.netlify.app
 **Repository**: Digital Dundee Astro
 **Main Branch**: main
-**Current Branch**: hardcore-swartz
 
 ## Tech Stack
 

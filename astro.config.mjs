@@ -1,13 +1,11 @@
 // @ts-check
 
 import mdx from '@astrojs/mdx';
+import netlify from '@astrojs/netlify';
+import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
-
-import netlify from '@astrojs/netlify';
-
-import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +15,7 @@ export default defineConfig({
         provider: fontProviders.google(),
         name: 'Open Sans',
         cssVariable: '--font-opensans',
+        weights: ['600'],
       },
       {
         provider: fontProviders.google(),
