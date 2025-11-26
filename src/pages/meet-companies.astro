@@ -1,15 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
-import CompanyCard from '@components/cards/Company.astro';
 import CompanySearchFilter from '@components/CompanySearchFilter.astro';
+import CompanyCard from '@components/cards/Company.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
+import { getUniqueSectors, getUniqueServiceAreas } from '@utils/companyFilters';
 import {
   DEFAULT_PAGE_SIZE,
   getPaginatedMeta,
   sortByTitle,
 } from '@utils/pagination';
-import { getUniqueSectors, getUniqueServiceAreas } from '@utils/companyFilters';
 
 // Switch to server-side rendering to support dynamic filtering
 export const prerender = false;

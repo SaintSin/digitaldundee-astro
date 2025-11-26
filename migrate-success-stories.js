@@ -1,9 +1,9 @@
 import fs from 'fs';
-import path from 'path';
-import { parse } from 'node-html-parser';
 import https from 'https';
-import { promisify } from 'util';
+import { parse } from 'node-html-parser';
+import path from 'path';
 import { pipeline } from 'stream';
+import { promisify } from 'util';
 
 const streamPipeline = promisify(pipeline);
 
@@ -246,7 +246,7 @@ async function processSuccessStory(slug) {
 
     for (const para of paragraphs) {
       // Get text content from paragraph
-      let paraText = para.textContent.trim();
+      const paraText = para.textContent.trim();
 
       if (paraText) {
         // Handle bold/strong tags

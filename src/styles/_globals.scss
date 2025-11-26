@@ -5,6 +5,10 @@
 
   --flow-space: var(--space-s);
 
+  /* Font families */
+  --font-opensans: 'Open Sans Variable', system-ui, sans-serif;
+  --font-montserrat: 'Montserrat Variable', system-ui, sans-serif;
+
   /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
   --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
