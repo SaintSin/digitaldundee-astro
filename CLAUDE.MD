@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-DigitalDundee.com is a website for promoting and showcasing the digital technology sector in Dundee, Scotland. The site is slow, and has many issues. This is an attempt to produce a better version of the site,  with Astro as the development framework. The site features companies, news, events, resources, and success stories related to Dundee's tech ecosystem.
+DigitalDundee.com is a website for promoting and showcasing the digital technology sector in Dundee, Scotland. The site is slow, and has many issues. This is an attempt to produce a better version of the site, with Astro as the development framework. The site features companies, news, events, resources, and success stories related to Dundee's tech ecosystem.
 
 **Site URL**: https://digitaldundee.netlify.app
 **Repository**: Digital Dundee Astro
@@ -67,63 +67,75 @@ DigitalDundee.com is a website for promoting and showcasing the digital technolo
 All content is managed through Astro's content collections using MDX files:
 
 ### Companies (`src/content/companies/`)
+
 - 250+ tech companies in Dundee
 - Frontmatter: `title`, `companyUrl`, `logo`, `sector`, `serviceArea`
 - Displayed on meet-companies pages with filtering
 
 ### Events (`src/content/events/`)
+
 - 100+ tech events and meetups
 - Frontmatter: `title`, `eventDate`, `eventEndDate`, `eventStartTime`, `eventEndTime`, `location`, `eventUrl`, `seo`, `imagePrimary`, `description`
 - Paginated listing with individual detail pages
 
 ### News (`src/content/news/`)
+
 - 80+ news articles about Dundee tech sector
 - Frontmatter includes metadata and SEO fields
 - Paginated listing with individual article pages
 
 ### Resources (`src/content/resources/`)
+
 - 140+ resources for the tech community
 - Similar structure to news and events
 - Paginated listing
 
 ### Success Stories (`src/content/success-stories/`)
+
 - Success stories from Dundee's tech ecosystem
 - Individual pages for each story
 
 ## Key Features
 
 ### Pagination
+
 - Events, news, resources, and companies all use Astro's pagination
 - Pattern: `/[page].astro` for paginated routes
 - Individual items: `/[id].astro` for detail pages
 
 ### Image Optimization
+
 - Uses Astro's built-in Image component
 - Images stored in `src/assets/images/`
 - Responsive images with automatic optimization
 - Sharp for image processing
 
 ### SEO
+
 - Complete meta tags in Basehead component
 - Open Graph and Twitter Card support
 - Sitemap integration
 - SEO fields in content frontmatter
 
 ### Fonts
+
 - Google Fonts integration (Open Sans, Montserrat)
 - Experimental font provider in astro.config.mjs
 - CSS variables: `--font-opensans`, `--font-montserrat`
 
 ### Analytics
+
 - Google Analytics with Partytown integration
 - Partytown runs analytics in a web worker for better performance
 
 ### SVGO
+
 - Experimental SVGO enabled for SVG optimization
 
 ## Path Aliases
 
 Configured in `tsconfig.json`:
+
 - `@assets/*` → `src/assets/*`
 - `@components/*` → `src/components/*`
 - `@data/*` → `src/data/*`
@@ -151,12 +163,14 @@ npm run test         # Run type check and Biome check
 ## CSS Architecture
 
 Uses CUBE CSS methodology:
+
 - **Composition Classes**: `.flow`, `.wrapper`, `.grid`
 - **Utilities**: Layout and spacing utilities
 - **Blocks**: Component-specific styles
 - **Exceptions**: State-based variations
 
 ### Design Tokens
+
 - Open Props for consistent design tokens
 - Fluid typography and spacing (Utopia scales)
 - SCSS variables in `_globals.scss`
@@ -164,18 +178,21 @@ Uses CUBE CSS methodology:
 ## Development Workflow
 
 ### When Adding New Content
+
 1. Add MDX file to appropriate `src/content/` directory
 2. Follow existing frontmatter structure
 3. Add images to `src/assets/images/` subdirectory
 4. Reference images using relative paths from MDX
 
 ### When Creating New Pages
+
 1. Add `.astro` file to `src/pages/`
 2. Use `BaseLayout` for consistent layout
 3. Define metadata for SEO
 4. Use path aliases for imports
 
 ### When Styling Components
+
 1. Follow CUBE CSS methodology
 2. Use composition classes for layout
 3. Add component-specific styles in component file or separate SCSS
@@ -200,18 +217,21 @@ Uses CUBE CSS methodology:
 ## Common Tasks
 
 ### Adding a New Company
+
 1. Create `src/content/companies/company-name.mdx`
 2. Add logo to `src/assets/images/companies/`
 3. Use existing company files as template
 4. Include: title, companyUrl, logo, sector, serviceArea
 
 ### Adding a News Article
+
 1. Create `src/content/news/article-slug.mdx`
 2. Add featured image to `src/assets/images/news/`
 3. Include SEO metadata and description
 4. Content appears automatically in paginated news listing
 
 ### Adding an Event
+
 1. Create `src/content/events/event-slug.mdx`
 2. Include all date/time fields
 3. Add event image to `src/assets/images/events/`
