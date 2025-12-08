@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import CompanyCard from '@components/cards/Company.astro';
+import CompanySearchFilter from '@components/CompanySearchFilter.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
 import {
@@ -8,38 +9,93 @@ import {
   getPaginatedMeta,
   sortByTitle,
 } from '@utils/pagination';
+import { getUniqueSectors, getUniqueServiceAreas } from '@utils/companyFilters';
 
-// Handle old query parameter URLs by redirecting to new format
-const pageParam = Astro.url.searchParams.get('page');
-if (pageParam && pageParam !== '1') {
-  return Astro.redirect(`/meet-companies/${pageParam}`, 301);
-}
+// Switch to server-side rendering to support dynamic filtering
+export const prerender = false;
 
 const companies = await getCollection('companies');
 const sortedCompanies = sortByTitle(companies);
 
-// Paginate manually for the first page
-const totalPages = Math.ceil(sortedCompanies.length / DEFAULT_PAGE_SIZE);
-const firstPageData = sortedCompanies.slice(0, DEFAULT_PAGE_SIZE);
+// Extract filter values from URL
+const sector = Astro.url.searchParams.get('sector');
+const serviceArea = Astro.url.searchParams.get('serviceArea');
+const keyword = Astro.url.searchParams.get('keyword');
+const currentPage = parseInt(Astro.url.searchParams.get('page') || '1', 10);
+
+// Filter companies based on search parameters
+let filteredCompanies = sortedCompanies;
+
+if (sector) {
+  filteredCompanies = filteredCompanies.filter((company) =>
+    company.data.sector?.includes(sector),
+  );
+}
+
+if (serviceArea) {
+  filteredCompanies = filteredCompanies.filter((company) =>
+    company.data.serviceArea?.includes(serviceArea),
+  );
+}
+
+if (keyword) {
+  const lowerKeyword = keyword.toLowerCase();
+  filteredCompanies = filteredCompanies.filter((company) =>
+    company.data.title.toLowerCase().includes(lowerKeyword),
+  );
+}
+
+// Manual pagination
+const totalPages = Math.ceil(filteredCompanies.length / DEFAULT_PAGE_SIZE);
+const startIndex = (currentPage - 1) * DEFAULT_PAGE_SIZE;
+const endIndex = startIndex + DEFAULT_PAGE_SIZE;
+const pageData = filteredCompanies.slice(startIndex, endIndex);
+
+// Get unique values for filter dropdowns
+const uniqueSectors = getUniqueSectors(companies);
+const uniqueServiceAreas = getUniqueServiceAreas(companies);
 
 const meta = getPaginatedMeta(
   'Meet Companies',
   'Discover the innovative companies in Digital Dundee',
-  1,
+  currentPage,
   'generic-social-1200x630.png',
   'Digital Dundee Companies',
 );
+
+// Helper function to build pagination URLs with current filters
+function buildPaginationUrl(page: number): string {
+  const params = new URLSearchParams();
+  if (sector) params.set('sector', sector);
+  if (serviceArea) params.set('serviceArea', serviceArea);
+  if (keyword) params.set('keyword', keyword);
+  if (page > 1) params.set('page', String(page));
+
+  const queryString = params.toString();
+  return queryString ? `/meet-companies?${queryString}` : '/meet-companies';
+}
 ---
 
 <Layout metaData={meta}>
   <main class="wrapper flow">
     <h1>Meet Companies</h1>
 
+    <CompanySearchFilter
+      sectors={uniqueSectors}
+      serviceAreas={uniqueServiceAreas}
+    />
+
     {
-      firstPageData.length > 0 ? (
+      filteredCompanies.length > 0 ? (
         <>
+          <p class="results-count">
+            {filteredCompanies.length === sortedCompanies.length
+              ? `Showing all ${filteredCompanies.length} companies`
+              : `Found ${filteredCompanies.length} ${filteredCompanies.length === 1 ? 'company' : 'companies'}`}
+          </p>
+
           <section class="grid" data-layout="fourths">
-            {firstPageData.map((company) => (
+            {pageData.map((company) => (
               <CompanyCard
                 name={company.data.title}
                 companyUrl={company.data.companyUrl || ''}
@@ -52,16 +108,25 @@ const meta = getPaginatedMeta(
 
           {totalPages > 1 && (
             <Pagination
-              currentPage={1}
+              currentPage={currentPage}
               totalPages={totalPages}
               baseUrl="/meet-companies"
-              nextUrl={totalPages > 1 ? '/meet-companies/2' : undefined}
+              prevUrl={currentPage > 1 ? buildPaginationUrl(currentPage - 1) : undefined}
+              nextUrl={currentPage < totalPages ? buildPaginationUrl(currentPage + 1) : undefined}
             />
           )}
         </>
       ) : (
-        <p>No companies found.</p>
+        <p>No companies found matching your search criteria.</p>
       )
     }
   </main>
 </Layout>
+
+<style>
+  .results-count {
+    margin-block-end: 1rem;
+    font-style: italic;
+    color: var(--color-text-muted, #666);
+  }
+</style>
