@@ -1,6 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import Card from '@components/cards/Success.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/success-stories.jpg';
 import Layout from '@layouts/BaseLayout.astro';
 import { sortByDateDesc } from '@utils/pagination';
 
@@ -17,7 +20,15 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <Hero
+    title="Success Stories"
+    image={header}
+    alt="Success stories page header"
+  />
+
   <main class="wrapper flow">
+    <Breadcrumbs />
+
     <h1>Success Stories</h1>
 
     {

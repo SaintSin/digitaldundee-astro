@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/companies.jpg';
 import Layout from '@layouts/BaseLayout.astro';
 import type { GetStaticPaths } from 'astro';
 
@@ -25,8 +27,13 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <Hero title={title} image={header} alt="Meet the companies page header" />
   <main class="wrapper flow">
-    <Breadcrumbs />
+    <Breadcrumbs
+      customLabels={{
+        'meet-companies': 'Meet The Companies',
+      }}
+    />
     <article>
       <header>
         {logo && <Image src={logo.src} alt={logo.alt} />}

@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/about.jpg';
 import Layout from '@layouts/BaseLayout.astro';
-
 export async function getStaticPaths() {
   const successStories = await getCollection('success-stories');
   return successStories.map((story) => ({
@@ -23,8 +25,12 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
-  <h2>{story.data.title}</h2>
+  <Hero title={story.data.title} image={header} alt="page header" />
+
   <main class="wrapper flow">
+    <Breadcrumbs />
+
+    <h2>{story.data.title}</h2>
     <Content />
   </main>
 </Layout>

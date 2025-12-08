@@ -3,8 +3,11 @@ import { getCollection } from 'astro:content';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import CompanySearchFilter from '@components/CompanySearchFilter.astro';
 import CompanyCard from '@components/cards/Company.astro';
+import Hero from '@components/Hero.astro';
 import Pagination from '@components/Pagination.astro';
+import header from '@images/header/companies.jpg';
 import Layout from '@layouts/BaseLayout.astro';
+
 import { getUniqueSectors, getUniqueServiceAreas } from '@utils/companyFilters';
 import {
   DEFAULT_PAGE_SIZE,
@@ -78,9 +81,19 @@ function buildPaginationUrl(page: number): string {
 ---
 
 <Layout metaData={meta}>
+  <Hero
+    title="Meet The Companies"
+    image={header}
+    alt="Meet the companies page header"
+  />
+
   <main class="wrapper flow">
-    <Breadcrumbs />
-    <h1>Meet Companies</h1>
+    <Breadcrumbs
+      customLabels={{
+        'meet-companies': 'Meet The Companies',
+      }}
+    />
+    <h1>Meet The Companies</h1>
 
     <CompanySearchFilter
       sectors={uniqueSectors}
