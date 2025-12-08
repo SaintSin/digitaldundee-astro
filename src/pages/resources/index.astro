@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import ResourceCard from '@components/cards/Resource.astro';
+import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
+import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
 
 const resources = await getCollection('resources');
 
@@ -10,13 +12,17 @@ const sortedResources = resources.sort((a, b) =>
   a.data.name.localeCompare(b.data.name),
 );
 
-const meta = {
-  title: 'Resources',
-  description:
-    'Discover useful resources, organizations, and networks in Digital Dundee',
-  imageOG: 'generic-social-1200x630.png',
-  altOG: 'Digital Dundee Resources',
-};
+// Paginate manually for the first page
+const totalPages = Math.ceil(sortedResources.length / DEFAULT_PAGE_SIZE);
+const firstPageData = sortedResources.slice(0, DEFAULT_PAGE_SIZE);
+
+const meta = getPaginatedMeta(
+  'Resources',
+  'Discover useful resources, organizations, and networks in Digital Dundee',
+  1,
+  'generic-social-1200x630.png',
+  'Digital Dundee Resources',
+);
 ---
 
 <Layout metaData={meta}>
@@ -24,10 +30,10 @@ const meta = {
     <h1>Resources</h1>
 
     {
-      sortedResources.length > 0 ? (
-        <section>
-          <div class="grid">
-            {sortedResources.map((resource) => (
+      firstPageData.length > 0 ? (
+        <>
+          <section class="grid" data-layout="thirds">
+            {firstPageData.map((resource) => (
               <ResourceCard
                 name={resource.data.name}
                 description={resource.data.description}
@@ -37,8 +43,17 @@ const meta = {
                 href={`/resources/${resource.id}`}
               />
             ))}
-          </div>
-        </section>
+          </section>
+
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={1}
+              totalPages={totalPages}
+              baseUrl="/resources"
+              nextUrl={totalPages > 1 ? '/resources/2' : undefined}
+            />
+          )}
+        </>
       ) : (
         <p>No resources found.</p>
       )

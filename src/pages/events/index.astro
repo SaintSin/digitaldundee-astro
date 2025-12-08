@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import EventCard from '@components/cards/Event.astro';
+import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
+import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
 
 const events = await getCollection('events');
 const now = new Date();
@@ -15,12 +17,28 @@ const previousEvents = events
   .filter((event) => new Date(event.data.eventDate) < now)
   .sort((a, b) => b.data.eventDate.getTime() - a.data.eventDate.getTime());
 
-const meta = {
-  title: 'Events',
-  description: 'Discover upcoming and past events in Digital Dundee',
-  imageOG: 'generic-social-1200x630.png',
-  altOG: 'Digital Dundee Events',
-};
+// Combine for pagination (forthcoming first, then previous)
+const sortedEvents = [...forthcomingEvents, ...previousEvents];
+
+// Paginate manually for the first page
+const totalPages = Math.ceil(sortedEvents.length / DEFAULT_PAGE_SIZE);
+const firstPageData = sortedEvents.slice(0, DEFAULT_PAGE_SIZE);
+
+// Split firstPageData back into forthcoming and previous for display
+const firstPageForthcoming = firstPageData.filter(
+  (event) => new Date(event.data.eventDate) >= now,
+);
+const firstPagePrevious = firstPageData.filter(
+  (event) => new Date(event.data.eventDate) < now,
+);
+
+const meta = getPaginatedMeta(
+  'Events',
+  'Discover upcoming and past events in Digital Dundee',
+  1,
+  'generic-social-1200x630.png',
+  'Digital Dundee Events',
+);
 ---
 
 <Layout metaData={meta}>
@@ -28,58 +46,61 @@ const meta = {
     <h1>Events</h1>
 
     {
-      forthcomingEvents.length > 0 && (
-        <>
-          <section>
-            <h2>Forthcoming Events</h2>
-            <div class="grid">
-              {forthcomingEvents.map((event) => (
-                <EventCard
-                  title={event.data.title}
-                  eventDate={event.data.eventDate}
-                  eventEndDate={event.data.eventEndDate}
-                  eventStartTime={event.data.eventStartTime}
-                  eventEndTime={event.data.eventEndTime}
-                  location={event.data.location}
-                  imageSrc={event.data.imagePrimary?.src}
-                  imageAlt={event.data.imagePrimary?.alt || event.data.title}
-                  href={`/events/${event.id}`}
-                />
-              ))}
-            </div>
-          </section>
-        </>
+      firstPageForthcoming.length > 0 && (
+        <section>
+          <h2>Forthcoming Events</h2>
+          <div class="grid" data-layout="thirds">
+            {firstPageForthcoming.map((event) => (
+              <EventCard
+                title={event.data.title}
+                eventDate={event.data.eventDate}
+                eventEndDate={event.data.eventEndDate}
+                eventStartTime={event.data.eventStartTime}
+                eventEndTime={event.data.eventEndTime}
+                location={event.data.location}
+                imageSrc={event.data.imagePrimary?.src}
+                imageAlt={event.data.imagePrimary?.alt || event.data.title}
+                href={`/events/${event.id}`}
+              />
+            ))}
+          </div>
+        </section>
       )
     }
 
     {
-      previousEvents.length > 0 && (
-        <>
-          <section>
-            <h2>Previous Events</h2>
-            <div class="grid">
-              {previousEvents.map((event) => (
-                <EventCard
-                  title={event.data.title}
-                  eventDate={event.data.eventDate}
-                  eventEndDate={event.data.eventEndDate}
-                  eventStartTime={event.data.eventStartTime}
-                  eventEndTime={event.data.eventEndTime}
-                  location={event.data.location}
-                  imageSrc={event.data.imagePrimary?.src}
-                  imageAlt={event.data.imagePrimary?.alt || event.data.title}
-                  href={`/events/${event.id}`}
-                />
-              ))}
-            </div>
-          </section>
-        </>
+      firstPagePrevious.length > 0 && (
+        <section>
+          <h2>Previous Events</h2>
+          <div class="grid" data-layout="thirds">
+            {firstPagePrevious.map((event) => (
+              <EventCard
+                title={event.data.title}
+                eventDate={event.data.eventDate}
+                eventEndDate={event.data.eventEndDate}
+                eventStartTime={event.data.eventStartTime}
+                eventEndTime={event.data.eventEndTime}
+                location={event.data.location}
+                imageSrc={event.data.imagePrimary?.src}
+                imageAlt={event.data.imagePrimary?.alt || event.data.title}
+                href={`/events/${event.id}`}
+              />
+            ))}
+          </div>
+        </section>
       )
     }
 
+    {firstPageData.length === 0 && <p>No events found.</p>}
+
     {
-      forthcomingEvents.length === 0 && previousEvents.length === 0 && (
-        <p>No events found.</p>
+      totalPages > 1 && (
+        <Pagination
+          currentPage={1}
+          totalPages={totalPages}
+          baseUrl="/events"
+          nextUrl={totalPages > 1 ? '/events/2' : undefined}
+        />
       )
     }
   </main>

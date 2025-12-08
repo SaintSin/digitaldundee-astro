@@ -50,7 +50,7 @@ const meta = getPaginatedMeta(
     {
       page.data.length > 0 ? (
         <>
-          <section class="grid">
+          <section class="grid" data-layout="thirds">
             {page.data.map((event) => (
               <EventCard
                 title={event.data.title}

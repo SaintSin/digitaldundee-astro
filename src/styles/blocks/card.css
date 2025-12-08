@@ -1,7 +1,8 @@
 .card {
   --padding: var(--space-xs);
   background: white;
-  img {
+  img,
+  svg {
     aspect-ratio: 1.8;
     min-width: 100%;
   }
@@ -30,4 +31,8 @@
 }
 .card a {
   text-decoration: none;
+}
+
+article.resources svg {
+  display: block;
 }
