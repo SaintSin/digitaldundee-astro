@@ -1,15 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
-import CompanyCard from '@components/cards/Company.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import CompanySearchFilter from '@components/CompanySearchFilter.astro';
+import CompanyCard from '@components/cards/Company.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
+import { getUniqueSectors, getUniqueServiceAreas } from '@utils/companyFilters';
 import {
   DEFAULT_PAGE_SIZE,
   getPaginatedMeta,
   sortByTitle,
 } from '@utils/pagination';
-import { getUniqueSectors, getUniqueServiceAreas } from '@utils/companyFilters';
 
 // Switch to server-side rendering to support dynamic filtering
 export const prerender = false;
@@ -78,6 +79,7 @@ function buildPaginationUrl(page: number): string {
 
 <Layout metaData={meta}>
   <main class="wrapper flow">
+    <Breadcrumbs />
     <h1>Meet Companies</h1>
 
     <CompanySearchFilter
@@ -111,8 +113,16 @@ function buildPaginationUrl(page: number): string {
               currentPage={currentPage}
               totalPages={totalPages}
               baseUrl="/meet-companies"
-              prevUrl={currentPage > 1 ? buildPaginationUrl(currentPage - 1) : undefined}
-              nextUrl={currentPage < totalPages ? buildPaginationUrl(currentPage + 1) : undefined}
+              prevUrl={
+                currentPage > 1
+                  ? buildPaginationUrl(currentPage - 1)
+                  : undefined
+              }
+              nextUrl={
+                currentPage < totalPages
+                  ? buildPaginationUrl(currentPage + 1)
+                  : undefined
+              }
             />
           )}
         </>
@@ -126,7 +136,7 @@ function buildPaginationUrl(page: number): string {
 <style>
   .results-count {
     margin-block-end: 1rem;
-    font-style: italic;
     color: var(--color-text-muted, #666);
+    font-style: italic;
   }
 </style>
