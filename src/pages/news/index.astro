@@ -32,7 +32,7 @@ const meta = getPaginatedMeta(
     {
       firstPageData.length > 0 ? (
         <>
-          <section class="grid">
+          <section class="grid" data-layout="thirds">
             {firstPageData.map((item) => (
               <NewsCard
                 title={item.data.title}
@@ -60,18 +60,3 @@ const meta = getPaginatedMeta(
     }
   </main>
 </Layout>
-
-<style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-block: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
