@@ -1,0 +1,36 @@
+---
+// components/Hero.astro
+
+const { title, image, alt } = Astro.props;
+
+import { Image } from 'astro:assets';
+---
+
+<header class="hero">
+  <Image src={image} alt={alt} />
+  <h1>{title}</h1>
+</header>
+
+<style>
+  .hero {
+    display: grid;
+    padding-block-end: var(--space-xl);
+  }
+
+  .hero > * {
+    grid-area: 1 / 1;
+  }
+
+  img {
+    z-index: 1;
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  h1 {
+    place-self: center;
+    z-index: 2;
+    color: white;
+    font-size: var(--step-5);
+  }
+</style>

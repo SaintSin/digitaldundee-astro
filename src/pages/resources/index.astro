@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ResourceCard from '@components/cards/Resource.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
@@ -27,6 +28,7 @@ const meta = getPaginatedMeta(
 
 <Layout metaData={meta}>
   <main class="wrapper flow">
+    <Breadcrumbs />
     <h1>Resources</h1>
 
     {

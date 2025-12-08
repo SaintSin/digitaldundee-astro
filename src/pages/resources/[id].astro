@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+
 import Layout from '@layouts/BaseLayout.astro';
 import type { GetStaticPaths } from 'astro';
 
@@ -29,6 +31,7 @@ const { Content } = await render(resource);
 
 <Layout metaData={meta}>
   <main class="wrapper flow">
+    <Breadcrumbs />
     <article>
       <header>
         {

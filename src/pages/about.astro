@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import image1 from '@images/panda-01.jpg';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/about.jpg';
 import Layout from '@layouts/BaseLayout.astro';
 
 const meta = {
@@ -12,7 +14,79 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
-  <main class="wrapper">
-    <h1>About</h1>
+  <Hero title="About" image={header} alt="About page header" />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+
+    <h2>ABOUT DIGITAL DUNDEE, TAY TECH AND TAY5G</h2>
+    <p>
+      This is a portal for the creative, digital, and tech sectors of Dundee and
+      the wider Tay Cities region. We are a service based at Dundee City Council
+      collaborating with the local, national and international tech ecosystem to
+      help develop a dynamic, innovative and competitive city region. That means
+      developing talent and skills and raising Dundee’s profile as a perfect
+      place where people and businesses can make the most of opportunities and
+      face new challenges.
+    </p>
+    <p>We are here to:</p>
+    <ul>
+      <li>
+        Promote the Dundee and Tay Cities region technology brand
+        internationally
+      </li>
+      <li>
+        Help create the best environment for creative, digital and tech
+        companies
+      </li>
+      <li>Attract investment and support business growth</li>
+      <li>Connect local and international talent with companies</li>
+      <li>Contribute to accelerating the technology ecosystem</li>
+      <li>Provide free help and support</li>
+    </ul>
+    <p>
+      You might be looking for ideas and inspiration, the exactly right tech
+      partner, service, skills and talent or even a new place to call home. We
+      want to be on your go-to list for a chat and promise not to bend your
+      brain with marketing speak about our fabulous city. We try to keep it real
+      and impartial and most importantly customised to what you want.
+    </p>
+    <h2>COLLABORATION AND NETWORKING</h2>
+    <p>
+      We are well networked in to knowledge, ideas, and resources. So this
+      portal offers information and signposting to the creative, digital and
+      tech ecosystem and what is on offer including support, space and
+      resources.
+    </p>
+    <p>
+      At the very top of our approach is working with industry, academia, key
+      stakeholders and other partners – as a brief idea, the universities of
+      Abertay, Dundee and St. Andrews, Dundee &amp; Angus, Fife College and
+      Perth College UHI and stakeholders like Scottish Enterprise, Scottish
+      Development International, the Scottish Government Digital Office and
+      Dundee and Angus Chamber of Commerce.
+    </p>
+    <p>
+      A quick landmark – Grand Theft Auto came from Dundee. Dundee’s tech scene
+      goes well beyond games but it set the scene for a city with a global
+      reputation and not just for games design. Dundee saw the first university
+      degree for games design in the world. The sector remains a core component
+      of the wider creative and tech communities.
+    </p>
+    <p>The big picture</p>
+    <p>
+      Companies in Dundee, and the Tay Cities region research, develop and
+      deliver products and services across diverse areas. This includes
+      software, business solutions, ICT, robotics, games, media and screen
+      production, analytics, AI and IoT for industries/verticals like:
+    </p>
+    <ul>
+      <li>Automotive and Transportation</li>
+      <li>Defence, Security and Space</li>
+      <li>Entertainment</li>
+      <li>Financial Services, FinTech and InsurTech</li>
+      <li>Medtech, Life Sciences and Healthcare</li>
+      <li>Energy, Renewables and Windtech</li>
+      <li>TourismTech</li>
+    </ul>
   </main>
 </Layout>
