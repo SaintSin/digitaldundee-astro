@@ -1,0 +1,44 @@
+---
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/be-dundee.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+
+const meta = {
+  title: 'Welcome to Astro',
+  description: 'The metadescription',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Alt text for OG image',
+};
+---
+
+<Layout metaData={meta}>
+  <Hero title="Be Dundee" image={header} alt="Be Dundee page header" />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+    <h2>Be Dundee</h2>
+    <p>
+      Dundee is the perfect location for creative, digital and technology
+      businesses. Growing its Smart City credentials, Dundee has a vibrant,
+      emerging and diverse economy and the ambition to compete globally to
+      deliver cultural and commercial success. It’s a city with innovation at
+      its heart. Winning creative brands from 'Peter Pan' to 'The Beano' and
+      'Grand Theft Auto' to 'Minecraft' have laid the foundations for a
+      city:region that offers a unique and warm welcome with fast and easy
+      access to assistance and connections to help make great things happen.
+    </p>
+    <p>
+      Creativity and Innovation thrive in this connected city with the
+      Technation report highlighting Dundee’s performance within the digital
+      sector. Impacts highlighted by the most recent reports to focus on cities
+      include:
+    </p>
+    <ul>
+      <li>£181 m Digital tech business turnover (2017)</li>
+      <li>£115k Digital tech turnover by employee (2017)</li>
+      <li>£205m GVA (2017)</li>
+      <li>1,569 Jobs in digital tech (2017)</li>
+      <li>2,660 Digital tech jobs (2017)</li>
+    </ul>
+  </main>
+</Layout>
