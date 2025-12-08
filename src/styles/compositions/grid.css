@@ -35,6 +35,12 @@ to change how empty grid tracks are handled */
   --grid-min-item-size: clamp(16rem, 33%, 20rem);
 }
 
+/* Four column grid layout */
+.grid[data-layout='fourths'] {
+  --grid-placement: auto-fit;
+  --grid-min-item-size: clamp(14rem, 25%, 16rem);
+}
+
 /* Twelve column grid layout */
 .grid[data-layout='twelfths'] {
   display: grid;

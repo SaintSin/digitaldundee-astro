@@ -14,7 +14,7 @@ const { name, companyUrl, imageSrc, imageAlt, href } = Astro.props;
 import '@styles/blocks/card.css';
 ---
 
-<article class="card">
+<article class="card company">
   <a href={href}>
     {imageSrc && <Image src={imageSrc} alt={imageAlt} />}
     <h3 class="card__title">{name}</h3>
@@ -24,5 +24,11 @@ import '@styles/blocks/card.css';
 <style>
   .card {
     background: transparent;
+    img {
+      object-fit: contain;
+    }
+  }
+  * {
+    outline: 1px solid red;
   }
 </style>
