@@ -49,6 +49,7 @@ body {
   background: var(--color-bg);
   min-height: 100vh;
   color: var(--color-text);
+  line-height: 150%;
   font-family: 'Open Sans Variable';
 }
 
@@ -63,6 +64,13 @@ h5 {
   font-family: var(--font-montserrat);
 }
 p {
+  max-width: var(--maxchars);
+}
+li {
+  max-width: calc(var(--maxchars)-5);
+}
+p,
+li {
   font-size: var(--step--1);
   text-wrap: pretty;
 }

@@ -6,7 +6,7 @@ import Nav from '@components/page/HeaderNav.astro';
 
 <header class="header">
   <div class="wrapper">
-    <h2>Header</h2>
+    <a href="/" class="brand">Digital <strong>DUNDEE</strong></a>
     <Nav />
   </div>
 </header>
@@ -20,5 +20,21 @@ import Nav from '@components/page/HeaderNav.astro';
     /* border-bottom: rgb(118, 118, 118); */
     background: var(--color-bg);
     padding-block: var(--size-fluid-1);
+  }
+  .brand {
+    display: inline-block;
+    color: rgb(35, 35, 35);
+    font-size: var(--step-1);
+    font-family: var(--font-opensans);
+    text-decoration: none;
+    strong {
+      font-weight: 600;
+    }
+    strong:before {
+      margin-inline-end: var(--space-3xs);
+      content: '|';
+      color: rgb(255, 0, 255);
+      font-weight: 400;
+    }
   }
 </style>

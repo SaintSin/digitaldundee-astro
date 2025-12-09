@@ -9,17 +9,17 @@
   --font-opensans: 'Open Sans Variable', system-ui, sans-serif;
   --font-montserrat: 'Montserrat Variable', system-ui, sans-serif;
 
-  /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,18,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
-  --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
-  --step--1: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
-  --step-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
-  --step-1: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
-  --step-2: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
-  --step-3: clamp(1.9438rem, 1.7707rem + 0.8652vw, 2.4413rem);
-  --step-4: clamp(2.3325rem, 2.0823rem + 1.2511vw, 3.0519rem);
-  --step-5: clamp(2.7994rem, 2.4461rem + 1.7663vw, 3.815rem);
-  --step-6: clamp(3.3594rem, 2.8694rem + 2.45vw, 4.7681rem);
+  --step--2: clamp(0.72rem, 0.8026rem + -0.1065vw, 0.7813rem);
+  --step--1: clamp(0.9rem, 0.9505rem + -0.0652vw, 0.9375rem);
+  --step-0: clamp(1.125rem, 1.125rem + 0vw, 1.125rem);
+  --step-1: clamp(1.35rem, 1.3304rem + 0.0978vw, 1.4063rem);
+  --step-2: clamp(1.62rem, 1.5721rem + 0.2397vw, 1.7578rem);
+  --step-3: clamp(1.944rem, 1.8559rem + 0.4405vw, 2.1973rem);
+  --step-4: clamp(2.3328rem, 2.1889rem + 0.7196vw, 2.7466rem);
+  --step-5: clamp(2.7994rem, 2.5789rem + 1.1024vw, 3.4332rem);
+  --step-6: clamp(3.3592rem, 3.035rem + 1.6214vw, 4.2915rem);
 
   /* @link https://utopia.fyi/space/calculator?c=320,18,1.125,1140,20,1.2,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
 
