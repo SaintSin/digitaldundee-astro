@@ -1,12 +1,14 @@
 ---
+// pages/index.astro
+
 import { Image } from 'astro:assets';
 import TwoColumnCTA from '@components/SectionSample.astro';
 import imagePromoLeft from '@images/site/promo-left.jpg';
 import imagePromoRight from '@images/site/promo-right.jpg';
 import image1 from '@images/site/smartphone.jpg';
-// pages/index.astro
 import Layout from '@layouts/BaseLayout.astro';
 import '@styles/two_column.css';
+import VideoBack from '@components/Video.astro';
 
 const meta = {
   title: 'Welcome to Digital Dundee and Tay Tech | Digital Dundee',
@@ -20,6 +22,7 @@ const meta = {
   <header>
     <h1>Dundee, A Digital City Where You Can</h1>
   </header>
+  <VideoBack />
   <h2 class="align-center">Welcome to Digital Dundee and Tay Tech</h2>
   <h3 class="align-center">With you to discover</h3>
 

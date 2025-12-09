@@ -1,0 +1,16 @@
+---
+import { YouTube } from 'astro-embed';
+
+const VIDEO_ID = '3BD5xl_HyL4';
+
+// All parameters must be concatenated into a single string
+const PLAYER_PARAMS = `loop=1&controls=0&playlist=${VIDEO_ID}&autoplay=1&mute=1&rel=0`;
+---
+
+<div class="background-video-container">
+  <YouTube
+    id={VIDEO_ID}
+    class="background-video-player"
+    params={PLAYER_PARAMS}
+  />
+</div>
