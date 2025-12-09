@@ -1,11 +1,18 @@
 ---
-// Using YouTube emebed creates performance issues
+// Using YouTube embed creates performance issues
 // const VIDEO_ID = '3BD5xl_HyL4';
+
+const fadeWords = ['Create', 'Locate', 'Generate', 'Produce', 'Innovate'];
 ---
 
 <div class="background-video-container">
   <div class="text-overlay">
-    <h1>Dundee<br /> A Digital City<br />Where You Can</h1>
+    <h1>
+      <strong>Dundee</strong><br />
+      A Digital City<br />
+      Where You Can<br />
+      <span class="fade-word" id="fadeWord">{fadeWords[0]}</span>
+    </h1>
   </div>
   <div class="video-overlay"></div>
 
@@ -14,52 +21,105 @@
   </video>
 </div>
 
-<script>
+<script define:vars={{ fadeWords }}>
+  // Remove loading overlay
   setTimeout(() => {
-    document.querySelector('.video-overlay')?.remove();
-  }, 500); // Remove overlay after 2 seconds when video should be playing
+    const overlay = document.querySelector('.video-overlay');
+    if (overlay) {
+      overlay.classList.add('fade-out');
+      // Remove from DOM after transition completes
+      setTimeout(() => overlay.remove(), 1000);
+    }
+  }, 500);
+
+  // Fade text animation
+  let currentIndex = 0;
+  const fadeWordElement = document.getElementById('fadeWord');
+
+  setInterval(() => {
+    if (fadeWordElement) {
+      fadeWordElement.classList.add('fade-out');
+
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % fadeWords.length;
+        fadeWordElement.textContent = fadeWords[currentIndex];
+        fadeWordElement.classList.remove('fade-out');
+      }, 1000); // Wait for fade out before changing text
+    }
+  }, 3000); // Change word every 3 seconds
 </script>
 <style>
   .background-video-container {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
-    z-index: -1; /* Behind other content */
+    z-index: -1;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
   }
 
-  .background-video-container iframe {
+  video {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100vw;
     width: auto;
 
-    /* Scale up to cover viewport while maintaining aspect ratio */
-    min-width: 100%;
-    height: 100vh;
+    /* Force video to cover entire viewport */
+    min-width: 100vw;
     height: auto;
-    min-height: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+  }
 
-    /* Alternative: force 16:9 to cover entire viewport */
-    @media (aspect-ratio > 16/9) {
-      height: 56.25vw; /* 9/16 = 56.25% */
-    }
-    @media (aspect-ratio < 16/9) {
-      width: 177.78vh; /* 16/9 = 177.78% */
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 90vw;
+    max-width: 1200px;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .text-overlay h1 {
+    margin: 0;
+    font-weight: 400;
+    font-size: var(--step-6);
+    line-height: 1.2;
+    text-transform: uppercase;
+    strong {
+      font-weight: 800;
     }
   }
+
+  .fade-word {
+    display: inline-block;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .fade-word.fade-out {
+    opacity: 0;
+  }
+
   .video-overlay {
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 1;
     z-index: 1;
-    background-color: #4bc86e;
+    transition: opacity 1s ease-out;
+    background-color: #1c1c1c;
     width: 100%;
     height: 100%;
     pointer-events: none;
+  }
+  .video-overlay.fade-out {
+    opacity: 0;
   }
 </style>
