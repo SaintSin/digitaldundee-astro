@@ -1,16 +1,65 @@
 ---
-import { YouTube } from 'astro-embed';
-
-const VIDEO_ID = '3BD5xl_HyL4';
-
-// All parameters must be concatenated into a single string
-const PLAYER_PARAMS = `loop=1&controls=0&playlist=${VIDEO_ID}&autoplay=1&mute=1&rel=0`;
+// Using YouTube emebed creates performance issues
+// const VIDEO_ID = '3BD5xl_HyL4';
 ---
 
 <div class="background-video-container">
-  <YouTube
-    id={VIDEO_ID}
-    class="background-video-player"
-    params={PLAYER_PARAMS}
-  />
+  <div class="text-overlay">
+    <h1>Dundee<br /> A Digital City<br />Where You Can</h1>
+  </div>
+  <div class="video-overlay"></div>
+
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="/videos/background.mp4" type="video/mp4" />
+  </video>
 </div>
+
+<script>
+  setTimeout(() => {
+    document.querySelector('.video-overlay')?.remove();
+  }, 500); // Remove overlay after 2 seconds when video should be playing
+</script>
+<style>
+  .background-video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Behind other content */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .background-video-container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    width: auto;
+
+    /* Scale up to cover viewport while maintaining aspect ratio */
+    min-width: 100%;
+    height: 100vh;
+    height: auto;
+    min-height: 100%;
+
+    /* Alternative: force 16:9 to cover entire viewport */
+    @media (aspect-ratio > 16/9) {
+      height: 56.25vw; /* 9/16 = 56.25% */
+    }
+    @media (aspect-ratio < 16/9) {
+      width: 177.78vh; /* 16/9 = 177.78% */
+    }
+  }
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #4bc86e;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+</style>
