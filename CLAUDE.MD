@@ -171,9 +171,13 @@ Uses CUBE CSS methodology:
 
 ### Design Tokens
 
-- Open Props for consistent design tokens
-- Fluid typography and spacing (Utopia scales)
-- SCSS variables in `_globals.scss`
+- **Open Props** for consistent design tokens
+- **Utopia.fyi scales** for fluid typography and spacing
+- All spacing and sizing tokens defined in `src/styles/_globals.scss`
+- **ALWAYS use Utopia tokens** from `_globals.scss` - never hardcode values:
+  - Spacing: `var(--space-3xs)` through `var(--space-3xl)` and pairs like `var(--space-s-m)`
+  - Typography: `var(--step--2)` through `var(--step-6)`
+  - Use these consistently across all components and styles
 
 ## Development Workflow
 
@@ -197,6 +201,36 @@ Uses CUBE CSS methodology:
 2. Use composition classes for layout
 3. Add component-specific styles in component file or separate SCSS
 4. Leverage Open Props tokens
+
+### When Writing JavaScript/Scripts in Components
+
+**IMPORTANT**: Always handle Astro view transitions properly!
+
+1. Wrap initialization code in a named function (e.g., `setupMyComponent()`)
+2. Listen to **both** events:
+   ```javascript
+   document.addEventListener('DOMContentLoaded', setupMyComponent);
+   document.addEventListener('astro:after-swap', setupMyComponent);
+   ```
+3. Add guard clauses to check if elements exist before attaching listeners
+4. This ensures scripts work on initial page load AND after view transitions
+
+Example pattern:
+```javascript
+<script>
+  function setupMyComponent() {
+    const element = document.querySelector('.my-element');
+    if (!element) return;
+
+    element.addEventListener('click', () => {
+      // Handle click
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupMyComponent);
+  document.addEventListener('astro:after-swap', setupMyComponent);
+</script>
+```
 
 ## Deployment
 
