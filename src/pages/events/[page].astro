@@ -1,17 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import EventCard from '@components/cards/Event.astro';
+import Hero from '@components/Hero.astro';
 import Pagination from '@components/Pagination.astro';
+import header from '@images/header/events.jpg';
 import Layout from '@layouts/BaseLayout.astro';
+import type { CollectionPage } from '@types';
 import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
 import {
+  BREADCRUMB_LABELS,
   digitalDundeeOrganization,
   generateBreadcrumbs,
-  BREADCRUMB_LABELS,
 } from '@utils/schema';
-import type { CollectionPage } from '@types';
 import type { GetStaticPaths, Page } from 'astro';
-
 export const getStaticPaths = (async ({ paginate }) => {
   const events = await getCollection('events');
   const now = new Date();
@@ -62,8 +64,10 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <Hero title="Events" image={header} alt="About page header" />
+
   <main class="wrapper flow">
-    <h1>Events</h1>
+    <Breadcrumbs />
 
     {
       page.data.length > 0 ? (

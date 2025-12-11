@@ -3,15 +3,17 @@ import { getCollection } from 'astro:content';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 
 import ResourceCard from '@components/cards/Resource.astro';
+import Hero from '@components/Hero.astro';
 import Pagination from '@components/Pagination.astro';
+import header from '@images/header/resources.jpg';
 import Layout from '@layouts/BaseLayout.astro';
+import type { CollectionPage } from '@types';
 import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
 import {
+  BREADCRUMB_LABELS,
   digitalDundeeOrganization,
   generateBreadcrumbs,
-  BREADCRUMB_LABELS,
 } from '@utils/schema';
-import type { CollectionPage } from '@types';
 import type { GetStaticPaths, Page } from 'astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -56,9 +58,10 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <Hero title="Resources" image={header} alt="Resources page header" />
+
   <main class="wrapper flow">
     <Breadcrumbs />
-    <h1>Resources</h1>
 
     {
       page.data.length > 0 ? (

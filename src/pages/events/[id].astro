@@ -1,16 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/events.jpg';
 import Layout from '@layouts/BaseLayout.astro';
+import type { Event as EventSchema, Place } from '@types';
 import {
+  BREADCRUMB_LABELS,
   digitalDundeeOrganization,
   generateBreadcrumbs,
-  BREADCRUMB_LABELS,
   SITE_URL,
 } from '@utils/schema';
-import type { Event as EventSchema, Place } from '@types';
 import type { GetStaticPaths } from 'astro';
-
 export const getStaticPaths = (async () => {
   const events = await getCollection('events');
   return events.map((event) => ({
@@ -72,7 +74,11 @@ const { Content } = await render(event);
 ---
 
 <Layout metaData={meta}>
+  <Hero title={title} image={header} alt="About page header" />
+
   <main class="wrapper flow">
+    <Breadcrumbs />
+
     <article>
       <header>
         {
@@ -80,7 +86,6 @@ const { Content } = await render(event);
             <Image src={imagePrimary.src} alt={imagePrimary.alt} />
           )
         }
-        <h1>{title}</h1>
 
         <time datetime={eventDate.toISOString()}>
           {formatDate(eventDate)}
@@ -100,8 +105,6 @@ const { Content } = await render(event);
       </header>
 
       <Content />
-
-      <a href="/events">Back to Events</a>
     </article>
   </main>
 </Layout>

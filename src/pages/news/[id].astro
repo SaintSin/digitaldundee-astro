@@ -1,14 +1,14 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
+import header from '@images/header/news.jpg';
 import Layout from '@layouts/BaseLayout.astro';
+import type { NewsArticle } from '@types';
 import {
+  BREADCRUMB_LABELS,
   digitalDundeeOrganization,
   generateBreadcrumbs,
-  BREADCRUMB_LABELS,
   SITE_URL,
 } from '@utils/schema';
-import type { NewsArticle } from '@types';
 
 export async function getStaticPaths() {
   const news = await getCollection('news');
@@ -17,6 +17,10 @@ export async function getStaticPaths() {
     props: { article },
   }));
 }
+
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+
 const { article } = Astro.props;
 const { Content } = await render(article);
 
@@ -41,6 +45,10 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <Hero title={article.data.title} image={header} alt="News page header" />
+
+  <Breadcrumbs />
+
   <h2>{article.data.title}</h2>
   <main class="wrapper flow">
     <Content />

@@ -10,7 +10,6 @@
     padding-inline: var(--padding);
     padding-block: var(--padding);
     font-size: var(--step--1);
-    text-wrap: balance;
   }
   time,
   p {

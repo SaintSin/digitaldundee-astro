@@ -1,19 +1,22 @@
 ---
 import { getCollection } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 import NewsCard from '@components/cards/News.astro';
+import Hero from '@components/Hero.astro';
 import Pagination from '@components/Pagination.astro';
+import header from '@images/header/news.jpg';
 import Layout from '@layouts/BaseLayout.astro';
+import type { CollectionPage } from '@types';
 import {
   DEFAULT_PAGE_SIZE,
   getPaginatedMeta,
   sortByDateDesc,
 } from '@utils/pagination';
 import {
+  BREADCRUMB_LABELS,
   digitalDundeeOrganization,
   generateBreadcrumbs,
-  BREADCRUMB_LABELS,
 } from '@utils/schema';
-import type { CollectionPage } from '@types';
 
 const news = await getCollection('news');
 const sortedNews = sortByDateDesc(news);
@@ -44,8 +47,10 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <Hero title="News" image={header} alt="News page header" />
+
   <main class="wrapper flow">
-    <h1>News</h1>
+    <Breadcrumbs />
 
     {
       firstPageData.length > 0 ? (

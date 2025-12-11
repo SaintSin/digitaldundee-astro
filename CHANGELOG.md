@@ -7,6 +7,7 @@ All notable changes to the Digital Dundee Astro project.
 ### JSON-LD Structured Data Implementation
 
 #### Added
+
 - **Schema.org type definitions** (`/src/types/index.ts`)
   - GovernmentOrganization
   - Organization
@@ -44,12 +45,14 @@ All notable changes to the Digital Dundee Astro project.
     - `/src/pages/success-stories/index.astro` - CollectionPage schema with breadcrumbs
 
 #### Removed
+
 - **WebPage schema** - Removed as redundant with meta tags
   - Deleted WebPage interface from type definitions
   - Removed from Thing union type
   - Simplified homepage and about page schemas
 
 #### Technical Decisions
+
 - **Image fields omitted** from NewsArticle and Event schemas to avoid cache-busting issues with Astro's optimized image hashes
 - **Organization schema** appears on all pages for consistent entity recognition
 - **CollectionPage** used for listing pages (news, events, resources) instead of generic WebPage
@@ -58,6 +61,7 @@ All notable changes to the Digital Dundee Astro project.
 ### Components
 
 #### Added
+
 - **RecentNews component** (`/src/components/RecentNews.astro`)
   - Displays configurable number of recent news articles (default: 6)
   - Sorted by date descending
@@ -71,6 +75,7 @@ All notable changes to the Digital Dundee Astro project.
   - Uses EventCard component
 
 ### SEO & Performance
+
 - Structured data now follows Schema.org best practices
 - GovernmentOrganization type for Digital Dundee entity
 - Rich snippets support for news articles and events

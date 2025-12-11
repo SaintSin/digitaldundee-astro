@@ -4,15 +4,18 @@ import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ResourceCard from '@components/cards/Resource.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
+import type { CollectionPage } from '@types';
 import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
 import {
+  BREADCRUMB_LABELS,
   digitalDundeeOrganization,
   generateBreadcrumbs,
-  BREADCRUMB_LABELS,
 } from '@utils/schema';
-import type { CollectionPage } from '@types';
 
 const resources = await getCollection('resources');
+
+import Hero from '@components/Hero.astro';
+import header from '@images/header/resources.jpg';
 
 // Sort resources alphabetically by name
 const sortedResources = resources.sort((a, b) =>
@@ -46,9 +49,10 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <Hero title="Resources" image={header} alt="Resources page header" />
+
   <main class="wrapper flow">
     <Breadcrumbs />
-    <h1>Resources</h1>
 
     {
       firstPageData.length > 0 ? (
