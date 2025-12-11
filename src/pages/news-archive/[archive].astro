@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import NewsCard from '@components/cards/News.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/news.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import type { CollectionPage } from '@types';
+import type { GetStaticPaths } from 'astro';
+import { sortByDateDesc } from '@utils/pagination';
+import {
+  BREADCRUMB_LABELS,
+  digitalDundeeOrganization,
+  generateBreadcrumbs,
+} from '@utils/schema';
+import {
+  formatArchiveDate,
+  groupNewsByMonth,
+} from '@utils/newsArchive';
+
+export const getStaticPaths = (async () => {
+  const news = await getCollection('news');
+  const archiveMap = groupNewsByMonth(news);
+
+  return Array.from(archiveMap.entries()).map(([yearMonth, articles]) => ({
+    params: { archive: yearMonth },
+    props: { articles, yearMonth },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  articles: Awaited<ReturnType<typeof getCollection<'news'>>>;
+  yearMonth: string;
+}
+
+const { articles, yearMonth } = Astro.props;
+const sortedArticles = sortByDateDesc(articles);
+const archiveLabel = formatArchiveDate(yearMonth);
+
+const collectionPageSchema: CollectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `News Archive: ${archiveLabel}`,
+  description: `News articles from ${archiveLabel}`,
+  url: `${digitalDundeeOrganization.url}/news-archive/${yearMonth}`,
+  breadcrumb: generateBreadcrumbs(Astro.url.pathname, BREADCRUMB_LABELS),
+};
+
+const meta = {
+  title: `News Archive: ${archiveLabel} | Digital Dundee`,
+  description: `News articles from ${archiveLabel}`,
+  imageOG: 'generic-social-1200x630.png',
+  altOG: `News Archive ${archiveLabel}`,
+  schema: [digitalDundeeOrganization, collectionPageSchema],
+};
+---
+
+<Layout metaData={meta}>
+  <Hero title={`News Archive: ${archiveLabel}`} image={header} alt="News page header" />
+
+  <main class="wrapper flow">
+    <Breadcrumbs
+      customLabels={{
+        'news-archive': 'News Archive',
+        [yearMonth]: archiveLabel,
+      }}
+    />
+
+    <p class="archive-info">
+      Showing {sortedArticles.length} {sortedArticles.length === 1 ? 'article' : 'articles'} from {archiveLabel}
+    </p>
+
+    {
+      sortedArticles.length > 0 ? (
+        <section class="grid" data-layout="thirds">
+          {sortedArticles.map((item) => (
+            <NewsCard
+              title={item.data.title}
+              excerpt={item.data.excerpt}
+              pubDate={item.data.pubDate}
+              imageSrc={item.data.imagePrimary.src}
+              imageAlt={item.data.imagePrimary.alt}
+              href={`/news/${item.id}`}
+            />
+          ))}
+        </section>
+      ) : (
+        <p>No news articles found for this period.</p>
+      )
+    }
+
+    <div class="archive-navigation">
+      <a href="/news-archive" class="btn">View All Archives</a>
+      <a href="/news" class="btn btn-primary">Latest News</a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .archive-info {
+    margin-block-end: var(--space-m);
+    color: var(--color-text-muted, #666);
+    font-style: italic;
+  }
+
+  .archive-navigation {
+    margin-block-start: var(--space-l);
+    display: flex;
+    gap: var(--space-s);
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: var(--space-2xs) var(--space-s);
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid var(--color-border, #ddd);
+    background-color: white;
+    color: var(--color-text, #333);
+  }
+
+  .btn:hover {
+    background-color: var(--color-bg-muted, #f5f5f5);
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary, #0066cc);
+    color: white;
+    border-color: var(--color-primary, #0066cc);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark, #0052a3);
+  }
+</style>

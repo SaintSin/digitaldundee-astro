@@ -1,5 +1,6 @@
 ---
 // @components/page/Footer.astro
+import NewsArchive from '@components/NewsArchive.astro';
 
 const year = new Date().getUTCFullYear();
 ---
@@ -7,6 +8,7 @@ const year = new Date().getUTCFullYear();
 <footer class="footer">
   <div class="wrapper">
     <p>&copy; &nbsp;{year} - And More</p>
+    <NewsArchive limit={8} />
   </div>
 </footer>
 <style>

@@ -117,6 +117,7 @@ function buildPaginationUrl(page: number): string {
                 imageSrc={company.data.logo?.src}
                 imageAlt={company.data.logo?.alt || company.data.title}
                 href={`/meet-companies/${company.id}`}
+                companyId={company.id}
               />
             ))}
           </section>

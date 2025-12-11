@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import { getArchiveEntries } from '@utils/newsArchive';
+
+interface Props {
+  limit?: number;
+  showHeading?: boolean;
+  heading?: string;
+}
+
+const { limit = 8, showHeading = true, heading = 'News Archive' } = Astro.props;
+
+const news = await getCollection('news');
+const archiveEntries = getArchiveEntries(news);
+const displayEntries = archiveEntries.slice(0, limit);
+---
+
+<div class="news-archive">
+  {showHeading && <h2>{heading}</h2>}
+
+  <div class="archive-list">
+    {
+      displayEntries.map((entry) => (
+        <span class="archive-item">
+          <a href={`/news-archive/${entry.yearMonth}`}>{entry.label}</a>
+          <span class="count">({entry.count})</span>
+        </span>
+      ))
+    }
+  </div>
+
+  {archiveEntries.length > limit && (
+    <div class="archive-footer">
+      <a class="btn btn-primary" href="/news-archive">
+        View More
+      </a>
+    </div>
+  )}
+</div>
+
+<style>
+  .news-archive {
+    padding: var(--space-m);
+  }
+
+  h2 {
+    margin-block-end: var(--space-s);
+  }
+
+  .archive-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .archive-item {
+    display: flex;
+    gap: var(--space-3xs);
+  }
+
+  .archive-item a {
+    text-decoration: none;
+  }
+
+  .archive-item a:hover {
+    text-decoration: underline;
+  }
+
+  .count {
+    color: var(--color-text-muted, #666);
+  }
+
+  .archive-footer {
+    margin-block-start: var(--space-s);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: var(--space-2xs) var(--space-s);
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary, #0066cc);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark, #0052a3);
+  }
+</style>

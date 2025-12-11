@@ -99,6 +99,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   'be-dundee': 'Be Dundee',
   tay5g: 'Tay5G',
   news: 'News',
+  'news-archive': 'News Archive',
   events: 'Events',
   resources: 'Resources',
   about: 'About',

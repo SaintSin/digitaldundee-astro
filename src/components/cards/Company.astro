@@ -8,27 +8,36 @@ interface Props {
   imageAlt: string;
   href: string;
   companyUrl: string;
+  companyId: string;
 }
 
-const { name, companyUrl, imageSrc, imageAlt, href } = Astro.props;
+const { name, companyUrl, imageSrc, imageAlt, href, companyId } = Astro.props;
 import '@styles/blocks/card.css';
 ---
 
 <article class="card company">
   <a href={href}>
-    {imageSrc && <Image src={imageSrc} alt={imageAlt} />}
+    {
+      imageSrc && (
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          transition:name={`company-logo-${companyId}`}
+        />
+      )
+    }
     <h3 class="card__title">{name}</h3>
-    {companyUrl && <p class="card__url">{companyUrl}</p>}
   </a>
 </article>
 <style>
   .card {
     background: transparent;
     img {
+      aspect-ratio: 1;
       object-fit: contain;
     }
   }
   * {
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
   }
 </style>

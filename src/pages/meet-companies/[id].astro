@@ -36,7 +36,15 @@ const meta = {
     />
     <article>
       <header>
-        {logo && <Image src={logo.src} alt={logo.alt} />}
+        {
+          logo && (
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              transition:name={`company-logo-${company.id}`}
+            />
+          )
+        }
         <h1>{title}</h1>
         {
           companyUrl && (
