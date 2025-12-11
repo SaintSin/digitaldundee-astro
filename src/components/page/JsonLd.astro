@@ -1,0 +1,21 @@
+---
+// @components/page/JsonLd.astro
+import type { Thing } from '@types';
+
+interface Props {
+  schema?: Thing | Thing[];
+}
+
+const { schema } = Astro.props;
+
+// Only render if schema is provided
+if (!schema) {
+  return null;
+}
+---
+
+{
+  schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )
+}
