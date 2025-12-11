@@ -11,12 +11,15 @@ import '@styles/two_column.css';
 import RecentNews from '@components/RecentNews.astro';
 import UpcomingEvents from '@components/UpcomingEvents.astro';
 import VideoBack from '@components/Video.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
 
 const meta = {
   title: 'Welcome to Digital Dundee and Tay Tech | Digital Dundee',
-  description: 'The metadescription',
+  description:
+    'Digital Dundee is a portal for people and businesses in digital, creative and tech in Dundee and the wider Tay Cities region.',
   imageOG: 'generic-social-1200x630.png',
-  altOG: 'Alt text for OG image',
+  altOG: 'Digital Dundee - Tech Hub',
+  schema: digitalDundeeOrganization,
 };
 ---
 

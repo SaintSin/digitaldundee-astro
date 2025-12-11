@@ -2,6 +2,14 @@
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import Layout from '@layouts/BaseLayout.astro';
+import {
+  digitalDundeeOrganization,
+  generateBreadcrumbs,
+  BREADCRUMB_LABELS,
+  SITE_URL,
+} from '@utils/schema';
+import type { NewsArticle } from '@types';
+
 export async function getStaticPaths() {
   const news = await getCollection('news');
   return news.map((article) => ({
@@ -11,11 +19,25 @@ export async function getStaticPaths() {
 }
 const { article } = Astro.props;
 const { Content } = await render(article);
+
+const newsArticleSchema: NewsArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: article.data.title,
+  description: article.data.seo.description,
+  image: article.data.imagePrimary.src,
+  datePublished: article.data.pubDate.toISOString(),
+  author: digitalDundeeOrganization,
+  publisher: digitalDundeeOrganization,
+  url: `${SITE_URL}/news/${article.id}`,
+};
+
 const meta = {
   title: article.data.seo.title,
   description: article.data.seo.description,
   imageOG: article.data.seo.ogImage || article.data.imagePrimary.src,
   altOG: article.data.imagePrimary.alt,
+  schema: [digitalDundeeOrganization, newsArticleSchema],
 };
 ---
 

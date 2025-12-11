@@ -1,9 +1,5 @@
 // utils/schema.ts
-import type {
-  BreadcrumbList,
-  GovernmentOrganization,
-  ListItem,
-} from '@types';
+import type { BreadcrumbList, GovernmentOrganization, ListItem } from '@types';
 
 /**
  * Base URL for the site

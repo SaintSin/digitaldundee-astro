@@ -8,6 +8,12 @@ import {
   getPaginatedMeta,
   sortByDateDesc,
 } from '@utils/pagination';
+import {
+  digitalDundeeOrganization,
+  generateBreadcrumbs,
+  BREADCRUMB_LABELS,
+} from '@utils/schema';
+import type { CollectionPage } from '@types';
 
 const news = await getCollection('news');
 const sortedNews = sortByDateDesc(news);
@@ -16,13 +22,25 @@ const sortedNews = sortByDateDesc(news);
 const totalPages = Math.ceil(sortedNews.length / DEFAULT_PAGE_SIZE);
 const firstPageData = sortedNews.slice(0, DEFAULT_PAGE_SIZE);
 
-const meta = getPaginatedMeta(
-  'News',
-  'Latest news and updates from Digital Dundee',
-  1,
-  'generic-social-1200x630.png',
-  'Digital Dundee News',
-);
+const collectionPageSchema: CollectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'News',
+  description: 'Latest news and updates from Digital Dundee',
+  url: `${digitalDundeeOrganization.url}/news`,
+  breadcrumb: generateBreadcrumbs(Astro.url.pathname, BREADCRUMB_LABELS),
+};
+
+const meta = {
+  ...getPaginatedMeta(
+    'News',
+    'Latest news and updates from Digital Dundee',
+    1,
+    'generic-social-1200x630.png',
+    'Digital Dundee News',
+  ),
+  schema: [digitalDundeeOrganization, collectionPageSchema],
+};
 ---
 
 <Layout metaData={meta}>

@@ -2,6 +2,13 @@
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import Layout from '@layouts/BaseLayout.astro';
+import {
+  digitalDundeeOrganization,
+  generateBreadcrumbs,
+  BREADCRUMB_LABELS,
+  SITE_URL,
+} from '@utils/schema';
+import type { Event as EventSchema, Place } from '@types';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -34,6 +41,24 @@ const formatDate = (date: Date) => {
   }).format(date);
 };
 
+// Build location schema if we have location data
+const eventLocation: Place | string = location || 'Dundee, Scotland';
+
+const eventSchema: EventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: title,
+  description: event.data.description || `Learn more about ${title}`,
+  startDate: eventDate.toISOString(),
+  endDate: eventEndDate?.toISOString(),
+  location: eventLocation,
+  image: imagePrimary?.src.src,
+  organizer: digitalDundeeOrganization,
+  url: eventUrl || `${SITE_URL}/events/${event.id}`,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+};
+
 const meta = {
   title: title,
   description: event.data.description || `Learn more about ${title}`,
@@ -41,6 +66,7 @@ const meta = {
     ? imagePrimary.src.src
     : 'generic-social-1200x630.png',
   altOG: imagePrimary?.alt || title,
+  schema: [digitalDundeeOrganization, eventSchema],
 };
 
 const { Content } = await render(event);

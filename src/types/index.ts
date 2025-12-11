@@ -26,7 +26,6 @@ export type Thing =
   | Organization
   | NewsArticle
   | Event
-  | WebPage
   | BreadcrumbList
   | CollectionPage;
 
@@ -103,19 +102,6 @@ export interface Event {
   url?: string;
   eventStatus?: string;
   eventAttendanceMode?: string;
-}
-
-/**
- * Schema.org WebPage
- * See: https://schema.org/WebPage
- */
-export interface WebPage {
-  '@context': 'https://schema.org';
-  '@type': 'WebPage';
-  name: string;
-  description?: string;
-  url?: string;
-  breadcrumb?: BreadcrumbList;
 }
 
 /**

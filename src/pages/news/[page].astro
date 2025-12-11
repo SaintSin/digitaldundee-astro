@@ -8,6 +8,12 @@ import {
   getPaginatedMeta,
   sortByDateDesc,
 } from '@utils/pagination';
+import {
+  digitalDundeeOrganization,
+  generateBreadcrumbs,
+  BREADCRUMB_LABELS,
+} from '@utils/schema';
+import type { CollectionPage } from '@types';
 import type { GetStaticPaths, Page } from 'astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -25,13 +31,25 @@ interface Props {
 
 const { page } = Astro.props;
 
-const meta = getPaginatedMeta(
-  'News',
-  'Latest news and updates from Digital Dundee',
-  page.currentPage,
-  'generic-social-1200x630.png',
-  'Digital Dundee News',
-);
+const collectionPageSchema: CollectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'News',
+  description: 'Latest news and updates from Digital Dundee',
+  url: `${digitalDundeeOrganization.url}/news`,
+  breadcrumb: generateBreadcrumbs(Astro.url.pathname, BREADCRUMB_LABELS),
+};
+
+const meta = {
+  ...getPaginatedMeta(
+    'News',
+    'Latest news and updates from Digital Dundee',
+    page.currentPage,
+    'generic-social-1200x630.png',
+    'Digital Dundee News',
+  ),
+  schema: [digitalDundeeOrganization, collectionPageSchema],
+};
 ---
 
 <Layout metaData={meta}>

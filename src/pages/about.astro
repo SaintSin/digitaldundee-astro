@@ -3,12 +3,15 @@ import Breadcrumbs from '@components/Breadcrumbs.astro';
 import Hero from '@components/Hero.astro';
 import header from '@images/header/about.jpg';
 import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
 
 const meta = {
-  title: 'Welcome to Astro',
-  description: 'The metadescription',
+  title: 'About Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Learn about Digital Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
   imageOG: 'generic-social-1200x630.png',
-  altOG: 'Alt text for OG image',
+  altOG: 'About Digital Dundee',
+  schema: digitalDundeeOrganization,
 };
 ---
 

@@ -4,6 +4,12 @@ import EventCard from '@components/cards/Event.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
 import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
+import {
+  digitalDundeeOrganization,
+  generateBreadcrumbs,
+  BREADCRUMB_LABELS,
+} from '@utils/schema';
+import type { CollectionPage } from '@types';
 
 const events = await getCollection('events');
 const now = new Date();
@@ -32,13 +38,25 @@ const firstPagePrevious = firstPageData.filter(
   (event) => new Date(event.data.eventDate) < now,
 );
 
-const meta = getPaginatedMeta(
-  'Events',
-  'Discover upcoming and past events in Digital Dundee',
-  1,
-  'generic-social-1200x630.png',
-  'Digital Dundee Events',
-);
+const collectionPageSchema: CollectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Events',
+  description: 'Discover upcoming and past events in Digital Dundee',
+  url: `${digitalDundeeOrganization.url}/events`,
+  breadcrumb: generateBreadcrumbs(Astro.url.pathname, BREADCRUMB_LABELS),
+};
+
+const meta = {
+  ...getPaginatedMeta(
+    'Events',
+    'Discover upcoming and past events in Digital Dundee',
+    1,
+    'generic-social-1200x630.png',
+    'Digital Dundee Events',
+  ),
+  schema: [digitalDundeeOrganization, collectionPageSchema],
+};
 ---
 
 <Layout metaData={meta}>

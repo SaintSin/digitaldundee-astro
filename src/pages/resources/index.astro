@@ -5,6 +5,12 @@ import ResourceCard from '@components/cards/Resource.astro';
 import Pagination from '@components/Pagination.astro';
 import Layout from '@layouts/BaseLayout.astro';
 import { DEFAULT_PAGE_SIZE, getPaginatedMeta } from '@utils/pagination';
+import {
+  digitalDundeeOrganization,
+  generateBreadcrumbs,
+  BREADCRUMB_LABELS,
+} from '@utils/schema';
+import type { CollectionPage } from '@types';
 
 const resources = await getCollection('resources');
 
@@ -17,13 +23,26 @@ const sortedResources = resources.sort((a, b) =>
 const totalPages = Math.ceil(sortedResources.length / DEFAULT_PAGE_SIZE);
 const firstPageData = sortedResources.slice(0, DEFAULT_PAGE_SIZE);
 
-const meta = getPaginatedMeta(
-  'Resources',
-  'Discover useful resources, organizations, and networks in Digital Dundee',
-  1,
-  'generic-social-1200x630.png',
-  'Digital Dundee Resources',
-);
+const collectionPageSchema: CollectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Resources',
+  description:
+    'Discover useful resources, organizations, and networks in Digital Dundee',
+  url: `${digitalDundeeOrganization.url}/resources`,
+  breadcrumb: generateBreadcrumbs(Astro.url.pathname, BREADCRUMB_LABELS),
+};
+
+const meta = {
+  ...getPaginatedMeta(
+    'Resources',
+    'Discover useful resources, organizations, and networks in Digital Dundee',
+    1,
+    'generic-social-1200x630.png',
+    'Digital Dundee Resources',
+  ),
+  schema: [digitalDundeeOrganization, collectionPageSchema],
+};
 ---
 
 <Layout metaData={meta}>
