@@ -52,7 +52,6 @@ const eventSchema: EventSchema = {
   startDate: eventDate.toISOString(),
   endDate: eventEndDate?.toISOString(),
   location: eventLocation,
-  image: imagePrimary?.src.src,
   organizer: digitalDundeeOrganization,
   url: eventUrl || `${SITE_URL}/events/${event.id}`,
   eventStatus: 'https://schema.org/EventScheduled',

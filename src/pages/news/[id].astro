@@ -25,7 +25,6 @@ const newsArticleSchema: NewsArticle = {
   '@type': 'NewsArticle',
   headline: article.data.title,
   description: article.data.seo.description,
-  image: article.data.imagePrimary.src,
   datePublished: article.data.pubDate.toISOString(),
   author: digitalDundeeOrganization,
   publisher: digitalDundeeOrganization,
