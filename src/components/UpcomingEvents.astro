@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import EventCard from '@components/cards/Event.astro';
+
+interface Props {
+  count?: number;
+  heading?: string;
+  showHeading?: boolean;
+}
+
+const {
+  count = 6,
+  heading = 'Upcoming Events',
+  showHeading = true,
+} = Astro.props;
+
+const events = await getCollection('events');
+const now = new Date();
+
+// Filter to only forthcoming events and sort by date (earliest first)
+const upcomingEvents = events
+  .filter((event) => new Date(event.data.eventDate) >= now)
+  .sort((a, b) => a.data.eventDate.getTime() - b.data.eventDate.getTime())
+  .slice(0, count);
+---
+
+{
+  upcomingEvents.length > 0 ? (
+    <section class="upcoming-events">
+      {showHeading && <h2>{heading}</h2>}
+
+      <div class="grid" data-layout="thirds">
+        {upcomingEvents.map((event) => (
+          <EventCard
+            title={event.data.title}
+            eventDate={event.data.eventDate}
+            eventEndDate={event.data.eventEndDate}
+            eventStartTime={event.data.eventStartTime}
+            eventEndTime={event.data.eventEndTime}
+            location={event.data.location}
+            imageSrc={event.data.imagePrimary?.src}
+            imageAlt={event.data.imagePrimary?.alt || event.data.title}
+            href={`/events/${event.id}`}
+          />
+        ))}
+      </div>
+    </section>
+  ) : (
+    <p>No upcoming events found.</p>
+  )
+}
+
+<style>
+  .upcoming-events {
+    margin-block: var(--space-l);
+  }
+
+  .upcoming-events h2 {
+    margin-block-end: var(--space-m);
+  }
+</style>

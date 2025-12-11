@@ -216,6 +216,7 @@ Uses CUBE CSS methodology:
 4. This ensures scripts work on initial page load AND after view transitions
 
 Example pattern:
+
 ```javascript
 <script>
   function setupMyComponent() {

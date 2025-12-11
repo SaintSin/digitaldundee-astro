@@ -8,6 +8,8 @@ import imagePromoRight from '@images/site/promo-right.jpg';
 import image1 from '@images/site/smartphone.jpg';
 import Layout from '@layouts/BaseLayout.astro';
 import '@styles/two_column.css';
+import RecentNews from '@components/RecentNews.astro';
+import UpcomingEvents from '@components/UpcomingEvents.astro';
 import VideoBack from '@components/Video.astro';
 
 const meta = {
@@ -45,7 +47,8 @@ const meta = {
         src={image1}
         quality={30}
         alt="A hand holding a smartphone with bokeh-like lens flare"
-        layout="full-width"
+        layout="constrained"
+        width={800}
       />
     </div>
   </section>
@@ -88,8 +91,9 @@ const meta = {
     <Image
       src={imagePromoLeft}
       quality={30}
-      alt="Cat lying down staring at camera"
-      layout="full-width"
+      alt="Constrained Image"
+      layout="constrained"
+      width={1200}
     />
     <div class="">
       <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
@@ -106,7 +110,7 @@ const meta = {
     <Image
       src={imagePromoRight}
       quality={30}
-      alt="A cute kitten"
+      alt="Image full-width"
       layout="full-width"
     />
     <div class="secondary">
@@ -123,6 +127,8 @@ const meta = {
       <p>Find Out More</p>
     </div>
   </section>
+  <RecentNews count={6} heading="Latest News" />
+  <UpcomingEvents count={6} heading="Upcoming Events" />
 
   <main class="wrapper flow">
     <div>

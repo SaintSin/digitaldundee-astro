@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import NewsCard from '@components/cards/News.astro';
+import { sortByDateDesc } from '@utils/pagination';
+
+interface Props {
+  count?: number;
+  heading?: string;
+  showHeading?: boolean;
+}
+
+const { count = 6, heading = 'Latest News', showHeading = true } = Astro.props;
+
+const news = await getCollection('news');
+const sortedNews = sortByDateDesc(news);
+const recentNews = sortedNews.slice(0, count);
+---
+
+{
+  recentNews.length > 0 ? (
+    <section class="recent-news">
+      {showHeading && <h2>{heading}</h2>}
+
+      <div class="grid" data-layout="thirds">
+        {recentNews.map((item) => (
+          <NewsCard
+            title={item.data.title}
+            excerpt={item.data.excerpt}
+            pubDate={item.data.pubDate}
+            imageSrc={item.data.imagePrimary.src}
+            imageAlt={item.data.imagePrimary.alt}
+            href={`/news/${item.id}`}
+          />
+        ))}
+      </div>
+    </section>
+  ) : (
+    <p>No news articles found.</p>
+  )
+}
+
+<style>
+  .recent-news {
+    margin-block: var(--space-l);
+  }
+
+  .recent-news h2 {
+    margin-block-end: var(--space-m);
+  }
+</style>
