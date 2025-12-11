@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 
 <div class="hero-wrapper">
   <header class="hero">
-    <Image src={image} alt={alt} />
+    <Image src={image} alt={alt} layout="full-width" quality={30} />
     <h1 class="text-shadow">{title}</h1>
   </header>
 </div>
@@ -19,6 +19,7 @@ import { Image } from 'astro:assets';
       display: grid;
       position: relative;
       grid-template-areas: 'main';
+      background: var(--color-mid-gray);
       isolation: isolate;
       height: 300px;
       overflow: hidden;

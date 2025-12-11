@@ -102,23 +102,24 @@ if (allBreadcrumbs.length > 0) {
   .breadcrumbs__item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: calc(var(--gap) * 0.5);
     font-size: var(--step--1, 0.875rem);
+    text-transform: uppercase;
   }
 
   .breadcrumbs__link {
     transition: color 0.2s;
-    color: var(--color-primary, #007bff);
+    color: var(--color-text-subtle, #007bff);
     text-decoration: none;
   }
 
   .breadcrumbs__link:hover {
-    color: var(--color-primary-dark, #0056b3);
+    color: var(--color-text, #0056b3);
     text-decoration: underline;
   }
 
   .breadcrumbs__current {
-    color: var(--color-text-muted, #666);
+    color: var(--color-text, #666);
     font-weight: 500;
   }
 

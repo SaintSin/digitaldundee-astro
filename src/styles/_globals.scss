@@ -60,11 +60,11 @@
   --color-accent: var(--orange-6);
 
   --color-text: var(--gray-7);
-  --color-text-subtle: var(--gray-7);
+  --color-text-subtle: var(--gray-6);
   --color-bg: oklch(97.913% 0.00011 271.152);
   // rgb(248, 248, 248)
   --color-surface: oklch(87.61% 0.0001 271.152);
-
+  --color-mid-gray: var(--gray-6);
   --color-success: var(--green-6);
   --color-warning: var(--yellow-6);
   --color-error: var(--red-6);
