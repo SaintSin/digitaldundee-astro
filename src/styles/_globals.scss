@@ -69,4 +69,8 @@
   --color-warning: var(--yellow-6);
   --color-error: var(--red-6);
   --color-info: var(--blue-6);
+  --color-dark: oklab(25.615% 0 -0.00003);
+  --color-darker: oklab(23.503% 0 -0.00003);
+  --color-action: oklab(56.386% -0.03034 -0.10116);
+  --color-action-dark: oklab(46.386% -0.03034 -0.10116);
 }

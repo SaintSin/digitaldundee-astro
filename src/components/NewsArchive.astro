@@ -21,7 +21,7 @@ const displayEntries = archiveEntries.slice(0, limit);
   <div class="archive-list">
     {
       displayEntries.map((entry) => (
-        <span class="archive-item">
+        <span class="archive-item pill">
           <a href={`/news-archive/${entry.yearMonth}`}>{entry.label}</a>
           <span class="count">({entry.count})</span>
         </span>
@@ -32,7 +32,7 @@ const displayEntries = archiveEntries.slice(0, limit);
   {
     archiveEntries.length > limit && (
       <div class="archive-footer">
-        <a class="btn btn-primary" href="/news-archive">
+        <a class="btn pill " href="/news-archive">
           View More
         </a>
       </div>
@@ -51,25 +51,26 @@ const displayEntries = archiveEntries.slice(0, limit);
 
   .archive-list {
     display: flex;
-    flex-direction: column;
     gap: var(--space-2xs);
   }
 
   .archive-item {
-    display: flex;
-    gap: var(--space-3xs);
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    outline: 1px solid white;
+    background: transparent;
+  }
+  .archive-item:hover {
+    background: var(--gray-3);
+    color: var(--color-mid-gray);
   }
 
   .archive-item a {
     text-decoration: none;
   }
 
-  .archive-item a:hover {
-    text-decoration: underline;
-  }
-
   .count {
-    color: var(--color-text-muted, #666);
+    color: var(--grey-3);
   }
 
   .archive-footer {
@@ -78,17 +79,19 @@ const displayEntries = archiveEntries.slice(0, limit);
 
   .btn {
     display: inline-block;
+    transition: background-color 0.3s ease-in-out;
     border-radius: 4px;
+    background: var(--color-action);
     padding: var(--space-2xs) var(--space-s);
+    color: white;
     text-decoration: none;
   }
 
-  .btn-primary {
-    background-color: var(--color-primary, #0066cc);
-    color: white;
+  .btn:hover {
+    background: var(--color-action-dark);
   }
-
-  .btn-primary:hover {
-    background-color: var(--color-primary-dark, #0052a3);
+  .pill {
+    border-radius: 55px;
+    padding: var(--space-2xs);
   }
 </style>

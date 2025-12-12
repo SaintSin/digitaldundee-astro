@@ -1,0 +1,56 @@
+---
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/about.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title: 'About Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Learn about Digital Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'About Digital Dundee',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero title="About" image={header} alt="About page header" />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+
+    <h3>What is Tay5G</h3>
+    <p>
+      Tay5G is funding opportunities to try out diverse applications over 5G -
+      fifth generation mobile communications. 5G can be used for diverse sectors
+      from entertainment to manufacturing, healthcare to construction, fashion
+      to automated transport.
+    </p>
+    <p>
+      5G is especially great for enabling advanced communications like virtual
+      reality, automation and the Internet of Things that is a key tool for
+      Smart Cities, places, buildings and business, industrial and welfare
+      operations.
+    </p>
+    <p>
+      To find out more or get involved please contact the Tay5G team - email
+      <a href="mailto:tay5g@dundeecity.gov.uk">tay5g@dundeecity.gov.uk</a> or call
+      +44 (0)1382 432483.
+    </p>
+    <p>
+      For more information and support please take a look at the
+      <a href="https://scotland5gcentre.org/">Scotland 5G Centre</a>.
+    </p>
+    <p>
+      Projects awarded funding under the first Tay5G Challenge Fund have almost
+      completed.
+    </p>
+    <p>
+      We have now launched Tay5G Challenge Fund 2 -
+      <a href="https://www.digitaldundee.com/tay5g/tay5g-challenge-fund-2"
+        >find out more.&nbsp;&nbsp;&nbsp;</a
+      >
+    </p>
+  </main>
+</Layout>

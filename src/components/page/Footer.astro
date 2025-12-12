@@ -6,15 +6,20 @@ const year = new Date().getUTCFullYear();
 ---
 
 <footer class="footer">
-  <div class="wrapper">
-    <p>&copy; &nbsp;{year} - And More</p>
-    <NewsArchive limit={8} />
+  <div><h2>Form</h2></div>
+  <div><NewsArchive limit={8} /></div>
+  <div class="wrapper copyright">
+    <p>&copy; &nbsp;{year} Digital Dundee - All Rights Reserved</p>
   </div>
 </footer>
 <style>
   .footer {
     margin-block-start: var(--size-fluid-5);
-    background: var(--color-surface);
+    background: var(--color-dark);
     padding-block: var(--size-fluid-1);
+    color: var(--gray-1);
+    .copyright {
+      background: var(--color-darker);
+    }
   }
 </style>

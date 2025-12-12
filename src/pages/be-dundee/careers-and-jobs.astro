@@ -1,0 +1,85 @@
+---
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/jobs.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title:
+    'Careers and Jobs in Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Careers and Jobs in  Digital Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Careers and Jobs Digital Dundee',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero
+    title="Careers and Jobs"
+    image={header}
+    alt="Careers and Jobs page header"
+  />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+    <h2>Careers &amp; Jobs Dundee</h2>
+    <p>
+      To find out about companies in Dundee take a look at Meet the Companies.
+    </p>
+    <p>
+      If you are part of the Creative, Digital and Tech communities in Dundee or
+      you are looking to recruit those kinds of skills for any kind of business
+      please let us know so we can promote it through our news and social media
+      channels.
+    </p>
+    <p>
+      Get in touch with Julie Craik &nbsp;- call +44 (0)1382 432483 or email
+      <a href="mailto:jobs@digitaldundee.com">jobs@digitaldundee.com</a>.
+    </p>
+    <p>
+      For jobs in the Biotech sector visit
+      <a href="https://www.biodundee.co.uk/science-city/careers">BioDundee</a>.
+    </p>
+    <h3>University and College jobsites</h3>
+    <p>
+      <a href="https://www.abertay.ac.uk/about/working-at-abertay/jobs/"
+        >Abertay University Job Vacancies</a
+      >
+    </p>
+    <p>
+      <a href="http://dundee.ac.uk/jobs" target="_blank"
+        >University of Dundee Job Vacancies</a
+      >
+    </p>
+    <p>University of St. Andrews</p>
+    <p>Dundee &amp; Angus College</p>
+    <h3>Recruitment Agencies</h3>
+    <p>
+      Examples of recruitment agencies in Scotland that have a focus on
+      creative, digital and tech
+    </p>
+    <ul>
+      <li>Badenoch &amp; Clark</li>
+      <li>Be IT</li>
+      <li>Change Recruitment Group</li>
+      <li>Conrad Consulting</li>
+      <li>Connect Appointments</li>
+      <li>CRG Tec Ltd</li>
+      <li>Denholm</li>
+      <li>Detail2Recruitment</li>
+      <li>Eden Scott</li>
+      <li>Gilchrist Recruitment Partnership</li>
+      <li>HW Select IT Ltd</li>
+      <li>Lorien</li>
+      <li>Net Talent</li>
+      <li>NineTwenty</li>
+      <li>Premier Technical Recruitment</li>
+      <li>Radial recruitment</li>
+      <li>Radical Recruitmenr</li>
+      <li>Stafffinders Limited</li>
+      <li>SteerByte Group</li>
+    </ul>
+  </main>
+</Layout>
