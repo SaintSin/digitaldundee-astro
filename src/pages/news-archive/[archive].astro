@@ -6,17 +6,14 @@ import Hero from '@components/Hero.astro';
 import header from '@images/header/news.jpg';
 import Layout from '@layouts/BaseLayout.astro';
 import type { CollectionPage } from '@types';
-import type { GetStaticPaths } from 'astro';
+import { formatArchiveDate, groupNewsByMonth } from '@utils/newsArchive';
 import { sortByDateDesc } from '@utils/pagination';
 import {
   BREADCRUMB_LABELS,
   digitalDundeeOrganization,
   generateBreadcrumbs,
 } from '@utils/schema';
-import {
-  formatArchiveDate,
-  groupNewsByMonth,
-} from '@utils/newsArchive';
+import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const news = await getCollection('news');
@@ -56,7 +53,11 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
-  <Hero title={`News Archive: ${archiveLabel}`} image={header} alt="News page header" />
+  <Hero
+    title={`News Archive: ${archiveLabel}`}
+    image={header}
+    alt="News page header"
+  />
 
   <main class="wrapper flow">
     <Breadcrumbs
@@ -66,8 +67,9 @@ const meta = {
       }}
     />
 
-    <p class="archive-info">
-      Showing {sortedArticles.length} {sortedArticles.length === 1 ? 'article' : 'articles'} from {archiveLabel}
+    <p>
+      Showing {sortedArticles.length}
+      {sortedArticles.length === 1 ? 'article' : 'articles'} from {archiveLabel}
     </p>
 
     {
@@ -91,33 +93,26 @@ const meta = {
 
     <div class="archive-navigation">
       <a href="/news-archive" class="btn">View All Archives</a>
-      <a href="/news" class="btn btn-primary">Latest News</a>
     </div>
   </main>
 </Layout>
 
 <style>
-  .archive-info {
-    margin-block-end: var(--space-m);
-    color: var(--color-text-muted, #666);
-    font-style: italic;
-  }
-
   .archive-navigation {
-    margin-block-start: var(--space-l);
     display: flex;
-    gap: var(--space-s);
     flex-wrap: wrap;
+    gap: var(--space-s);
+    margin-block-start: var(--space-l);
   }
 
   .btn {
     display: inline-block;
-    padding: var(--space-2xs) var(--space-s);
-    text-decoration: none;
-    border-radius: 4px;
     border: 1px solid var(--color-border, #ddd);
+    border-radius: 4px;
     background-color: white;
+    padding: var(--space-2xs) var(--space-s);
     color: var(--color-text, #333);
+    text-decoration: none;
   }
 
   .btn:hover {
@@ -125,9 +120,9 @@ const meta = {
   }
 
   .btn-primary {
+    border-color: var(--color-primary, #0066cc);
     background-color: var(--color-primary, #0066cc);
     color: white;
-    border-color: var(--color-primary, #0066cc);
   }
 
   .btn-primary:hover {

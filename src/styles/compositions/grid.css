@@ -16,11 +16,10 @@ to change how empty grid tracks are handled */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(
-    var(--grid-placement, auto-fill),
-    minmax(var(--grid-min-item-size, 16rem), 1fr)
-  );
+  grid-template-columns: 1fr;
+  justify-items: start;
   gap: var(--gutter, var(--space-s-l));
+  container-type: inline-size;
 }
 
 /* A split 50/50 layout */
@@ -31,14 +30,42 @@ to change how empty grid tracks are handled */
 
 /* Three column grid layout */
 .grid[data-layout='thirds'] {
-  --grid-placement: auto-fit;
-  --grid-min-item-size: clamp(16rem, 33%, 20rem);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .grid[data-layout='thirds'] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid[data-layout='thirds'] {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* Four column grid layout */
 .grid[data-layout='fourths'] {
-  --grid-placement: auto-fit;
-  --grid-min-item-size: clamp(14rem, 25%, 16rem);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 500px) {
+  .grid[data-layout='fourths'] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid[data-layout='fourths'] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid[data-layout='fourths'] {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Twelve column grid layout */

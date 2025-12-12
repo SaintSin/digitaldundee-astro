@@ -29,13 +29,15 @@ const displayEntries = archiveEntries.slice(0, limit);
     }
   </div>
 
-  {archiveEntries.length > limit && (
-    <div class="archive-footer">
-      <a class="btn btn-primary" href="/news-archive">
-        View More
-      </a>
-    </div>
-  )}
+  {
+    archiveEntries.length > limit && (
+      <div class="archive-footer">
+        <a class="btn btn-primary" href="/news-archive">
+          View More
+        </a>
+      </div>
+    )
+  }
 </div>
 
 <style>
@@ -76,9 +78,9 @@ const displayEntries = archiveEntries.slice(0, limit);
 
   .btn {
     display: inline-block;
+    border-radius: 4px;
     padding: var(--space-2xs) var(--space-s);
     text-decoration: none;
-    border-radius: 4px;
   }
 
   .btn-primary {

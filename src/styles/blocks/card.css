@@ -1,6 +1,7 @@
 .card {
   --padding: var(--space-xs);
   background: white;
+  width: 100%;
   img,
   svg {
     aspect-ratio: 1.8;
