@@ -2,6 +2,99 @@
 
 All notable changes to the Digital Dundee Astro project.
 
+## 2025-12-12
+
+### View Transitions
+
+#### Added
+
+- **Company logo view transitions** (`/src/components/cards/Company.astro`, `/src/pages/meet-companies/[id].astro`)
+  - Smooth morphing animation between company card and detail page
+  - Uses `transition:name` directive with unique company ID
+  - Applied to company logo images
+
+### CSS Grid System Refactor
+
+#### Changed
+
+- **Grid composition class** (`/src/styles/compositions/grid.css`)
+  - Switched from Piccalilli's `auto-fill` approach to traditional `repeat(n, 1fr)` with media queries
+  - Fixed issue where cards would expand to fill available columns
+  - Cards now maintain consistent width regardless of number in row
+  - **Thirds layout breakpoints:**
+    - Mobile: 1 column (default)
+    - ≥600px: 2 columns
+    - ≥900px: 3 columns
+  - **Fourths layout breakpoints:**
+    - Mobile: 1 column (default)
+    - ≥500px: 2 columns
+    - ≥768px: 3 columns
+    - ≥1024px: 4 columns
+  - Added `justify-items: start` to prevent stretching
+
+### News Archive System
+
+#### Added
+
+- **News archive utility functions** (`/src/utils/newsArchive.ts`)
+  - `groupNewsByMonth()` - groups news articles by year-month (e.g., "202507")
+  - `formatArchiveDate()` - formats archive dates for display (e.g., "July 2023")
+  - `getArchiveEntries()` - returns sorted archive entries with article counts
+
+- **NewsArchive component** (`/src/components/NewsArchive.astro`)
+  - Reusable component for displaying news archive links
+  - Configurable limit (default: 8 months)
+  - Shows month/year with article count
+  - "View More" link to full archive
+
+- **News archive pages:**
+  - `/src/pages/news-archive/index.astro` - Main archive listing page showing all months
+  - `/src/pages/news-archive/[archive].astro` - Dynamic monthly archive pages (e.g., /news-archive/202507)
+  - Static generation at build time
+  - CollectionPage schema with breadcrumbs
+
+- **Breadcrumb label** (`/src/utils/schema.ts`)
+  - Added 'news-archive': 'News Archive' to BREADCRUMB_LABELS
+
+### RSS Feed
+
+#### Added
+
+- **RSS feed endpoint** (`/src/pages/rss.xml.ts`)
+  - Combined feed with news, events, and success stories
+  - Category tags for each content type
+  - Sorted by date descending
+  - Image enclosures for RSS readers
+  - Available at `/rss.xml`
+
+- **RSS image generation script** (`/scripts/generate-rss-images.ts`)
+  - Reads MDX files directly from file system (no Astro dependency)
+  - Extracts image paths from frontmatter
+  - Smart image resizing:
+    - Maximum width: 600px
+    - Only resizes images wider than 600px
+    - Preserves original dimensions for smaller images
+  - JPEG optimization at 85% quality
+  - Outputs to `public/rss-images/` with stable filenames
+  - Skips already-generated images for faster builds
+  - Supports all three content types (news, events, success stories)
+
+- **npm scripts** (`package.json`)
+  - `prebuild` - Automatically runs image generation before build
+  - `rss-images` - Manually generate RSS images
+  - Updated `clean` script to remove `public/rss-images/`
+
+- **Git ignore** (`.gitignore`)
+  - Added `public/rss-images/` to ignore generated build artifacts
+
+#### Technical Details
+
+- RSS feed uses `@astrojs/rss` package
+- Image enclosures use stable URLs: `/rss-images/{type}-{id}.jpg`
+- 172 images generated successfully
+- Script uses `tsx` for TypeScript execution
+- Runs with `node --import tsx` (ESM compatible)
+
 ## 2025-12-11
 
 ### JSON-LD Structured Data Implementation
