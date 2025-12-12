@@ -14,6 +14,7 @@ import { Image } from 'astro:assets';
 
 <style>
   .hero-wrapper {
+    --height: 150px;
     padding-block-end: var(--space-2xl);
     header {
       display: grid;
@@ -21,14 +22,14 @@ import { Image } from 'astro:assets';
       grid-template-areas: 'main';
       background: var(--color-mid-gray);
       isolation: isolate;
-      height: 300px;
+      height: var(--height);
       overflow: hidden;
       img {
         display: block;
         grid-area: main;
         z-index: 1;
         width: 100%;
-        max-height: 300px;
+        height: var(--height);
         object-fit: cover;
       }
       h1 {
@@ -41,6 +42,11 @@ import { Image } from 'astro:assets';
         font-size: var(--step-5);
         text-align: center;
       }
+    }
+  }
+  @media (min-width: 600px) {
+    .hero-wrapper {
+      --height: 300px;
     }
   }
 </style>
