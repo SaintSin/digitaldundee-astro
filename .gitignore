@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# generated RSS images
+public/rss-images/
 
 # dependencies
 node_modules/

@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node --import tsx scripts/generate-rss-images.ts",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -11,9 +12,10 @@
     "lint": "biome lint --write .",
     "check": "biome check --write .",
     "prettier": "exec prettier . --write",
-    "clean": "rm -rf dist .astro",
+    "clean": "rm -rf dist .astro public/rss-images",
     "type-check": "astro check",
-    "test": "astro check && biome check ."
+    "test": "astro check && biome check .",
+    "rss-images": "node --import tsx scripts/generate-rss-images.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -39,6 +41,7 @@
     "postcss-jit-props": "^1.0.16",
     "prettier": "3.7.4",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-css-order": "^2.1.2"
+    "prettier-plugin-css-order": "^2.1.2",
+    "tsx": "^4.21.0"
   }
 }
