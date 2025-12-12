@@ -4,6 +4,8 @@ dist/
 .astro/
 # generated RSS images
 public/rss-images/
+# link check reports
+company-links-report.csv
 
 # dependencies
 node_modules/
