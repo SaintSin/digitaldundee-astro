@@ -120,7 +120,7 @@ async function checkCompanyLinks() {
   console.log(`Companies without URLs: ${noUrl}`);
   console.log(`Failed: ${failed}`);
   console.log(
-    `Success rate: ${checked > 0 ? ((checked - failed) / checked * 100).toFixed(1) : 0}%`,
+    `Success rate: ${checked > 0 ? (((checked - failed) / checked) * 100).toFixed(1) : 0}%`,
   );
 
   // List all failed links

@@ -95,6 +95,33 @@ All notable changes to the Digital Dundee Astro project.
 - Script uses `tsx` for TypeScript execution
 - Runs with `node --import tsx` (ESM compatible)
 
+### Link Checking
+
+#### Added
+
+- **Company link checker script** (`/scripts/check-company-links.ts`)
+  - Checks all company website URLs from content collection
+  - Reads MDX files directly (no Astro dependency)
+  - HTTP HEAD requests with 10-second timeout
+  - 100ms delay between requests to avoid rate limiting
+  - Reports HTTP status codes for each URL
+  - Generates CSV report with results
+
+- **npm scripts** (`package.json`)
+  - `check-links` - Check all site links with linkinator (includes social media skip)
+  - `check-links-companies` - Check only company website URLs and generate CSV report
+
+- **Link check report** (`company-links-report.csv`)
+  - CSV format with columns: Company, URL, Status, Result
+  - Automatically generated when running company link check
+  - Added to `.gitignore`
+
+#### Dependencies
+
+- **linkinator** (v7.5.1) - Web crawler for checking broken links
+  - Used for full site link checking
+  - Skips social media platforms (LinkedIn, Twitter, Facebook, YouTube) to avoid false positives
+
 ## 2025-12-11
 
 ### JSON-LD Structured Data Implementation
