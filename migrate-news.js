@@ -295,7 +295,7 @@ async function parseArticle(htmlPath, filename) {
       doc.querySelector('article');
     let content = '';
     let imagePrimary = {
-      src: 'placeholder.jpg',
+      src: 'placeholder.png',
       alt: title,
     };
 

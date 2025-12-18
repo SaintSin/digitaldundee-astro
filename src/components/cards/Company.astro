@@ -13,15 +13,22 @@ interface Props {
 
 const { name, companyUrl, imageSrc, imageAlt, href, companyId } = Astro.props;
 import '@styles/blocks/card.css';
+import LogoPending from '@images/logos/360x200-logo-pending.svg';
 ---
 
 <article class="card company">
   <a href={href}>
     {
-      imageSrc && (
+      imageSrc ? (
         <Image
           src={imageSrc}
           alt={imageAlt}
+          transition:name={`company-logo-${companyId}`}
+        />
+      ) : (
+        <Image
+          src={LogoPending}
+          alt=""
           transition:name={`company-logo-${companyId}`}
         />
       )
@@ -36,8 +43,8 @@ import '@styles/blocks/card.css';
       aspect-ratio: 1;
       object-fit: contain;
     }
-  }
-  * {
-    outline: 1px solid red;
+    .card__title {
+      text-transform: capitalize;
+    }
   }
 </style>

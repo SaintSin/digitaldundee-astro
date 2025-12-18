@@ -26,7 +26,7 @@ const upcomingEvents = events
 
 {
   upcomingEvents.length > 0 ? (
-    <section class="upcoming-events">
+    <section class="wrapper">
       {showHeading && <h2>{heading}</h2>}
 
       <div class="grid" data-layout="thirds">
@@ -49,13 +49,3 @@ const upcomingEvents = events
     <p>No upcoming events found.</p>
   )
 }
-
-<style>
-  .upcoming-events {
-    margin-block: var(--space-l);
-  }
-
-  .upcoming-events h2 {
-    margin-block-end: var(--space-m);
-  }
-</style>

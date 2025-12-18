@@ -18,7 +18,7 @@ const recentNews = sortedNews.slice(0, count);
 
 {
   recentNews.length > 0 ? (
-    <section class="recent-news">
+    <section class="wrapper">
       {showHeading && <h2>{heading}</h2>}
 
       <div class="grid" data-layout="thirds">
@@ -38,13 +38,3 @@ const recentNews = sortedNews.slice(0, count);
     <p>No news articles found.</p>
   )
 }
-
-<style>
-  .recent-news {
-    margin-block: var(--space-l);
-  }
-
-  .recent-news h2 {
-    margin-block-end: var(--space-m);
-  }
-</style>
