@@ -1,0 +1,200 @@
+---
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/connected.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title:
+    'Careers and Jobs in Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Careers and Jobs in  Digital Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Careers and Jobs Digital Dundee',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero
+    title="Connected Dundee"
+    image={header}
+    alt="Connected Dundee page header"
+  />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+
+    <h2>Connected Dundee</h2>
+    <h3>Superfast Fibre</h3>
+    <p>
+      Dundee is a city where broadband access is available to the majority of
+      premises and where connectivity is prioritised so the city can be more
+      competitive, reduce costs and improve quality of life, productivity and
+      opportunities. It means more choice in how to connect to digital services.
+    </p>
+    <p>
+      Dundee is a world leader in superfast connectivity with more than 98.9% of
+      premises covered.
+    </p>
+    <p>
+      Dundee City residents have access to the fastest average download speed
+      (28.7Mbps) in Scotland and the fifth fastest in the UK according to the
+      Which organisations research.
+    </p>
+    <p>
+      Virgin Media are currently providing 92.6% access to ultrafast 100+ Mbps
+      to Dundee. Virgin are investing in Project Lightning the single biggest
+      private investment in the UK and Ireland’s digital infrastructure in more
+      than a decade.
+    </p>
+    <p>
+      Extensive work is underway with private investors delivering fibre to the
+      premise projects.
+    </p>
+    <p>
+      Fibre to premise brings connectivity beyond the telecoms boxes located on
+      every street and directly into premises so boosting connectivity and
+      speed.
+    </p>
+    <h2>TAY 5G</h2>
+    <p>
+      We’re offering great ways to engage with 5G – the latest, fifth generation
+      mobile communications. Tay 5G brings together:
+    </p>
+    <ul>
+      <li>A brand new 5G testbed at Dundee Waterfront</li>
+      <li>
+        The Connected 5G Innovation Hub – a collaboration between the Scotland
+        5G Centre, Abertay University and Dundee City Council
+      </li>
+      <li>
+        Tay Cities Deal 5G opportunities for use case trials to develop
+        applications with commercial potential
+      </li>
+    </ul>
+    <p><br /><a href="/tay5g">Find out more about TAY 5G.</a></p>
+    <div>
+      <div>
+        <div>Image</div>
+        <div>
+          <img
+            loading="lazy"
+            src="/sites/default/files/styles/large/public/tay5g-colour-social.png?itok=P8m3mViN"
+            width="300"
+            height="300"
+            alt="Tay5G logo"
+            title="Tay5G logo"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <div>Image</div>
+        <div>
+          <img
+            loading="lazy"
+            src="/sites/default/files/styles/large/public/2023-06/connected_dundee-2_1.jpg?itok=u7A3s1qM"
+            width="480"
+            height="442"
+            alt="Connected Dundee"
+          />
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li>
+        Connected
+        <ul>
+          <li>
+            Superfast digital connections, 5G programme and easy national and
+            international travel&nbsp;
+          </li>
+        </ul>
+      </li>
+      <li>
+        Thinking digital
+        <ul>
+          <li>
+            With a strong digital industry, digital skills for all citizens from
+            school right through to retirement are essential for the future
+          </li>
+        </ul>
+      </li>
+      <li>
+        Smart City
+        <ul>
+          <li>
+            Dundee is part of the Scottish Cities Alliance and works together
+            with other Scottish cities to deliver Smart City projects,
+            integrating data and digital technologies to improve citizen
+            wellbeing and economic development
+          </li>
+        </ul>
+      </li>
+      <li>
+        Collaborate
+        <ul>
+          <li>
+            Dundee is part of many collaborative working groups focussed on
+            digital service delivery in the most efficient way to maximise
+            benefits
+          </li>
+        </ul>
+      </li>
+      <li>
+        Mobile priority
+        <ul>
+          <li>
+            To best deliver digital services on the move or with private 5G
+            networks
+          </li>
+        </ul>
+      </li>
+      <li>
+        Digital Council
+        <ul>
+          <li>
+            Committed to innovation and changing the way services are
+            re-designed to provide them in the most effective way &nbsp;and
+            maximise use of new technologies
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>
+      We all know that working together can produce results more than the sum of
+      the parts. But finding partners and expertise is a bit like a jigsaw
+      puzzle. Relationships take work and we can absolutely help make
+      conversations happen. &nbsp;
+    </p>
+    <p>
+      We don’t just hand out a list of names. We get involved as much or as
+      little as suits you and break down barriers. Actually in Dundee you won’t
+      find many or even any of those. It’s also about spotting opportunities and
+      ways to bring together different &nbsp;disciplines, cultures to make the
+      most of them.
+    </p>
+    <p>
+      Dundee already has the prized ‘20-minute neighbourhoods’ that is a goal of
+      planners everywhere. In other words, people gravitate towards places where
+      there’s easy access to work and leisure whether on foot or by bike or car.
+    </p>
+    <p>Paul Durrant, CEO of the Dundee headquartered UK Games Fund says:</p>
+    <p>
+      "This makes for really effective networking. And we're doing all that from
+      fantastic facilities and a fantastic location. That’s pretty hard to
+      beat.”
+    </p>
+    <p>
+      We'll be adding more information to help you start your Collaborate Dundee
+      journey.
+    </p>
+    <p>
+      Get in touch so we can find out more about your plans and help you find
+      collaboration in Scotland, Europe and beyond.
+    </p>
+  </main>
+</Layout>

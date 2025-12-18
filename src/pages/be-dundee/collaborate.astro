@@ -1,0 +1,62 @@
+---
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/collaborate.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title:
+    'Careers and Jobs in Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Careers and Jobs in  Digital Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Careers and Jobs Digital Dundee',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero
+    title="Collaborate and Jobs"
+    image={header}
+    alt="Collaborate page header"
+  />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+    <h2>Collaborate Dundee</h2>
+    <p>&nbsp;</p>
+    <p>
+      We all know that working together can produce results more than the sum of
+      the parts. But finding partners and expertise is a bit like a jigsaw
+      puzzle. Relationships take work and we can absolutely help make
+      conversations happen. &nbsp;
+    </p>
+    <p>
+      We don’t just hand out a list of names. We get involved as much or as
+      little as suits you and break down barriers. Actually in Dundee you won’t
+      find many or even any of those. It’s also about spotting opportunities and
+      ways to bring together different &nbsp;disciplines, cultures to make the
+      most of them.
+    </p>
+    <p>
+      Dundee already has the prized ‘20-minute neighbourhoods’ that is a goal of
+      planners everywhere. In other words, people gravitate towards places where
+      there’s easy access to work and leisure whether on foot or by bike or car.
+    </p>
+    <p>Paul Durrant, CEO of the Dundee headquartered UK Games Fund says:</p>
+    <p>
+      "This makes for really effective networking. And we're doing all that from
+      fantastic facilities and a fantastic location. That’s pretty hard to
+      beat.”
+    </p>
+    <p>
+      We'll be adding more information to help you start your Collaborate Dundee
+      journey.
+    </p>
+    <p>
+      Get in touch so we can find out more about your plans and help you find
+      collaboration in Scotland, Europe and beyond.
+    </p>
+  </main>
+</Layout>

@@ -25,6 +25,8 @@ const links = [
     href: '/be-dundee/',
     children: [
       { label: 'Careers And Jobs', href: '/be-dundee/careers-and-jobs' },
+      { label: 'Collaborate', href: '/be-dundee/collaborate' },
+      { label: 'Connected Dundee XX', href: '/be-dundee/connected-dundee' },
     ],
   },
   {
@@ -191,7 +193,7 @@ const links = [
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-s);
+    /* gap: var(--space-s); */
 
     /* Mobile: full screen overlay */
     @container nav (width < 768px) {
@@ -216,7 +218,7 @@ const links = [
       padding: var(--space-2xs);
       color: black;
       font-weight: 500;
-      font-size: var(--step--2);
+      font-size: calc(var(--step--2) * 0.75);
       font-family: var(--font-montserrat);
       letter-spacing: 1px;
       text-decoration: none;
