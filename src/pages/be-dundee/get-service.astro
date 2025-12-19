@@ -1,0 +1,26 @@
+---
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/services.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title: 'Get Serivice in Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Get Serivice in Digital, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Get Serivice Dundee',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero title="Get Serivices" image={header} alt="Collaborate page header" />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+    <h2>Get Services</h2>
+    <p>Coming soon.</p>
+    <p>Get in touch for free help to find and commission services.</p>
+  </main>
+</Layout>

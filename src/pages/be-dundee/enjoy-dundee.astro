@@ -1,0 +1,51 @@
+---
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/enjoy.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title: 'Enjoy Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Enjoy  Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Enjoy Dundee',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero title="Enjoy Dundee" image={header} alt="Collaborate page header" />
+  <main class="wrapper flow">
+    <Breadcrumbs />
+    <h2>Enjoy Dundee</h2>
+    <h3>See Dundee Safely</h3>
+    <p>
+      Non-essential travel is still discouraged but staycations, at least, are
+      beginning to beckon.
+    </p>
+    <p>
+      So when you do find yourself in this coolest of cool small cities, rest
+      assured we will be making you feel right at home.
+    </p>
+    <p>
+      For lots more information on where to go, eat, stay and much more take a
+      look at all this great information.
+    </p>
+    <p>
+      And for travelling and being here safely please see our travel
+      information.
+    </p>
+    <p>We’re absolutely getting ready to say hello.</p>
+    <p>
+      <a href="https://www.dundee.com"><br /> </a>
+    </p>
+    <img
+      loading="lazy"
+      src="/sites/default/files/styles/large/public/visit_dundee_0.png?itok=yeT1Ki8-"
+      width="367"
+      height="358"
+    />
+  </main>
+</Layout>
