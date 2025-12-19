@@ -1,0 +1,48 @@
+---
+// components/ContactForm.astro
+---
+
+<form action="#" method="post" novalidate>
+  <label for="name">Name <span aria-hidden="true">*</span></label>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    required
+    aria-required="true"
+    autocomplete="name"
+  />
+
+  <label for="email">Email Address <span aria-hidden="true">*</span></label>
+  <input
+    type="email"
+    id="email"
+    name="email"
+    required
+    aria-required="true"
+    autocomplete="email"
+  />
+
+  <label for="message">Message <span aria-hidden="true">*</span></label>
+  <textarea id="message" name="message" required aria-required="true" rows="5">
+  </textarea>
+
+  <button type="submit">Submit</button>
+</form>
+<style>
+  label {
+    text-transform: uppercase;
+  }
+  label,
+  input,
+  textarea {
+    display: block;
+  }
+  input,
+  textarea {
+    width: 50ch;
+  }
+  label span {
+    color: var(--color-warning);
+  }
+</style>

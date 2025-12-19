@@ -1,6 +1,7 @@
 ---
 // @components/page/Footer.astro
 import NewsArchive from '@components/NewsArchive.astro';
+import FormFooter from './FormFooter.astro';
 
 const year = new Date().getUTCFullYear();
 ---
@@ -8,7 +9,7 @@ const year = new Date().getUTCFullYear();
 <footer class="footer">
   <section class="full-width-split-screen">
     <div>
-      <h2>Form</h2>
+      <FormFooter />
     </div>
     <div>
       <NewsArchive limit={8} />

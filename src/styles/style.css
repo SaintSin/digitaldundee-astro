@@ -71,7 +71,8 @@ li {
 }
 p,
 a,
-li {
+li,
+label {
   font-size: var(--step--1);
   text-wrap: pretty;
 }
