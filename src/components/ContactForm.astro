@@ -1,5 +1,6 @@
 ---
 // components/ContactForm.astro
+import '@styles/blocks/form.css';
 ---
 
 <form action="#" method="post" novalidate>
@@ -29,20 +30,3 @@
 
   <button type="submit">Submit</button>
 </form>
-<style>
-  label {
-    text-transform: uppercase;
-  }
-  label,
-  input,
-  textarea {
-    display: block;
-  }
-  input,
-  textarea {
-    width: 50ch;
-  }
-  label span {
-    color: var(--color-warning);
-  }
-</style>

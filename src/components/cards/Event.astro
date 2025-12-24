@@ -37,9 +37,9 @@ const formatDate = (date: Date) => {
 import '@styles/blocks/card.css';
 ---
 
-<article class="card">
+<article class="card event">
   <a href={href}>
-    {imageSrc && <Image src={imageSrc} alt={imageAlt} />}
+    {imageSrc && <Image src={imageSrc} alt={imageAlt} quality={30} />}
     <h3>{title}</h3>
     <time datetime={eventDate.toISOString()}>
       {formatDate(eventDate)}

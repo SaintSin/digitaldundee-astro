@@ -36,3 +36,9 @@
 article.resources svg {
   display: block;
 }
+.news img {
+  aspect-ratio: 1.5;
+}
+.event img {
+  aspect-ratio: 1.79;
+}
