@@ -29,7 +29,7 @@
         minmax(0, calc(var(--wrapper-max-width) / 2))
         minmax(0, calc(var(--wrapper-max-width) / 2))
         minmax(var(--wrapper-padding-inline), 1fr);
-      background-color: pink;
+      /* background-color: pink; */
     }
     .full-width-split-screen:not(.overlay) > img:first-child {
       grid-column: 1 / 3;
