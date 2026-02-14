@@ -1,0 +1,5 @@
+.centered {
+  display: block;
+  margin-inline: auto;
+  width: fit-content;
+}

@@ -7,6 +7,11 @@
 @import 'compositions/wrapper.css' layer(components);
 @import 'compositions/grid.css' layer(components);
 
+@import 'blocks/btn.css' layer(components);
+
+@import 'utilities/pill.css' layer(components);
+@import 'utilities/centered.css' layer(components);
+
 @font-face {
   font-style: normal;
   font-weight: 300 800;

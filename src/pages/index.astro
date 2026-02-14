@@ -115,13 +115,21 @@ const meta = {
         easy reach of international airports at Aberdeen, Edinburgh and Glasgow.
       </p>
       <p>
-        A UNESCO City of Design. Dundee is home to the first V&A outside London.
+        A UNESCO City of Design, Dundee is home to the first V&A outside London.
         The city has a unique vibe so whether you are freelance or work with a
         start-up or major company, you can enjoy a high quality of life, unique
         culture and warm welcome.
       </p>
     </div>
   </section>
+  <div
+    data-animate="slide"
+    data-animate-direction="up"
+    data-animate-intensity="subtle"
+    class="pad-bottom-m margin-bottom-m"
+  >
+    <a href="contact-us" class="btn pill centered">Get In Touch</a>
+  </div>
 
   <section class="full-width-split-screen overlay">
     <Image
@@ -131,7 +139,7 @@ const meta = {
       layout="constrained"
       width={1200}
     />
-    <div class="">
+    <div data-animate="fade" data-animate-delay={300} class="">
       <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
       <p>
         Digital Dundee is a portal for people and businesses in digital,
@@ -140,7 +148,7 @@ const meta = {
         about growing the community, the city’s already world class
         connectivity, being a smart city and spotting opportunities.
       </p>
-      <p>Find Out More</p>
+      <a href="/be-dundee" class="btn pill centered">Find Out More</a>
     </div>
 
     <Image
@@ -186,6 +194,15 @@ const meta = {
   }
   .pad-top-0 {
     padding-block-start: 0;
+  }
+  .pad-top-m {
+    padding-block-start: var(--size-m);
+  }
+  .pad-bottom-m {
+    padding-bottom: var(--size-m);
+  }
+  .margin-bottom-m {
+    margin-bottom: var(--size-m);
   }
 </style>
 <script src="@scripts/image-sizes.ts"></script>
