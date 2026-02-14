@@ -12,6 +12,7 @@ import RecentNews from '@components/RecentNews.astro';
 import UpcomingEvents from '@components/UpcomingEvents.astro';
 import VideoBack from '@components/Video.astro';
 import { digitalDundeeOrganization } from '@utils/schema';
+import { Animate } from 'astro-animations';
 
 const meta = {
   title: 'Welcome to Digital Dundee and Tay Tech | Digital Dundee',
@@ -25,11 +26,29 @@ const meta = {
 
 <Layout metaData={meta}>
   <VideoBack />
-  <h2 class="align-center">Welcome to Digital Dundee and Tay Tech</h2>
-  <h3 class="align-center">With you to discover</h3>
+  <h2
+    class="align-center"
+    data-animate="slide"
+    data-animate-direction="up"
+    data-animate-intensity="subtle"
+  >
+    Welcome to Digital Dundee and Tay Tech
+  </h2>
+  <h3
+    class="align-center"
+    data-animate="slide"
+    data-animate-direction="up"
+    data-animate-intensity="subtle"
+  >
+    With you to discover
+  </h3>
 
   <section class="full-width-split-screen contained">
-    <div class="">
+    <div
+      data-animate="slide"
+      data-animate-direction="right"
+      data-animate-intensity="subtle"
+    >
       <p>
         Tech is in the DNA of Dundee and the Tay Cities region. With a strong
         culture of innovation the city and region are a thriving hub for
@@ -45,7 +64,11 @@ const meta = {
         services and find project partners.
       </p>
     </div>
-    <div>
+    <div
+      data-animate="slide"
+      data-animate-direction="left"
+      data-animate-intensity="subtle"
+    >
       <Image
         src={image1}
         quality={30}
@@ -56,7 +79,12 @@ const meta = {
     </div>
   </section>
   <section class="full-width-split-screen">
-    <div class="pad-top-0">
+    <div
+      data-animate="slide"
+      data-animate-direction="right"
+      data-animate-intensity="subtle"
+      class="pad-top-0"
+    >
       <p>
         Landmarks like Grand Theft Auto, thin flat screens for phones and
         devices, and Minecraft have laid the foundations for a city that is
@@ -72,7 +100,12 @@ const meta = {
         sustainable mobility industries.
       </p>
     </div>
-    <div class="pad-top-0 flow">
+    <div
+      data-animate="slide"
+      data-animate-direction="left"
+      data-animate-intensity="subtle"
+      class="pad-top-0 flow"
+    >
       <p>
         The Tay Cities Region offers excellent connectivity. Digital
         connectivity includes 99% access to superfast broadband, accelerating
