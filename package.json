@@ -20,33 +20,34 @@
     "check-links-companies": "node --import tsx scripts/check-company-links.ts"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/netlify": "^6.6.4",
-    "@astrojs/partytown": "^2.1.4",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/netlify": "^7.0.6",
+    "@astrojs/partytown": "^2.1.6",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
     "@felixicaza/astro-capo": "^1.0.1",
     "@iconify-json/ri": "^1.2.10",
-    "astro": "^5.18.0",
-    "astro-animations": "^0.0.5",
+    "astro": "^6.1.5",
+    "astro-animations": "^0.0.6",
     "astro-embed": "^0.12.0",
     "astro-icon": "^1.1.5",
-    "node-html-parser": "^7.0.2",
+    "astro-robots-txt": "^1.0.0",
+    "node-html-parser": "^7.1.0",
     "open-props": "^1.7.23",
-    "sass": "^1.97.3",
+    "sass": "^1.99.0",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@biomejs/biome": "2.4.4",
-    "jsdom": "^28.1.0",
+    "@astrojs/check": "^0.9.8",
+    "@biomejs/biome": "2.4.11",
+    "jsdom": "^29.0.2",
     "linkinator": "^7.6.1",
     "node-gyp": "^12.2.0",
     "postcss-jit-props": "^1.0.16",
-    "prettier": "3.8.1",
+    "prettier": "3.8.2",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-css-order": "^2.2.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   }
 }

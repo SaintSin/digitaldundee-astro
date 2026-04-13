@@ -7,6 +7,8 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import icon from 'astro-icon';
 
+import robotsTxt from 'astro-robots-txt';
+
 // https://astro.build/config
 export default defineConfig({
   prefetch: true,
@@ -18,7 +20,7 @@ export default defineConfig({
     responsiveStyles: true,
   },
 
-  integrations: [sitemap(), icon(), mdx(), partytown()],
+  integrations: [sitemap(), icon(), mdx(), partytown(), robotsTxt()],
   site: 'https://digitaldundee.netlify.app',
   adapter: netlify(),
 });
