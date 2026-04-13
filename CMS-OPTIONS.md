@@ -34,20 +34,20 @@ This document outlines potential CMS solutions for managing content on the Digit
 
 ```yaml
 collections:
-  - name: "news"
-    label: "News"
-    folder: "src/content/news"
+  - name: 'news'
+    label: 'News'
+    folder: 'src/content/news'
     create: true
     fields:
-      - label: "Featured Image"
-        name: "imagePrimary"
-        widget: "image"
+      - label: 'Featured Image'
+        name: 'imagePrimary'
+        widget: 'image'
         media_library:
           config:
             max_file_size: 512000
             image_processing:
               - media_type: image
-                output_filename_template: "{{filename}}-{{width}}x{{height}}.{{extension}}"
+                output_filename_template: '{{filename}}-{{width}}x{{height}}.{{extension}}'
 ```
 
 **Integration Effort:** Low - Works directly with existing file structure

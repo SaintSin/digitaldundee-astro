@@ -96,11 +96,11 @@ Visit `https://localhost:4321` to see your site.
 The following path aliases are configured in `tsconfig.json`:
 
 ```typescript
-import Component from "@components/Component.astro";
-import Layout from "@layouts/BaseLayout.astro";
-import image from "@images/photo.jpg";
-import "@styles/style.css";
-import type { MetaData } from "@types";
+import Component from '@components/Component.astro';
+import Layout from '@layouts/BaseLayout.astro';
+import image from '@images/photo.jpg';
+import '@styles/style.css';
+import type { MetaData } from '@types';
 ```
 
 Available aliases:

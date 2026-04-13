@@ -1,14 +1,14 @@
 {
   "folders": [
     {
-      "path": "."
-    }
+      "path": ".",
+    },
   ],
   "settings": {
     "prettier.documentSelectors": ["**/*.astro"],
     "files.associations": {
-      "*.css": "css"
+      "*.css": "css",
     },
-    "typescript.tsdk": "node_modules/typescript/lib"
-  }
+    "typescript.tsdk": "node_modules/typescript/lib",
+  },
 }
