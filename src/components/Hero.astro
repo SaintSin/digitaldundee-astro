@@ -7,7 +7,14 @@ import { Picture } from 'astro:assets';
 
 <div class="hero-wrapper">
   <header class="hero">
-    <Picture src={image} alt={alt} layout="full-width" priority quality={25} formats={['avif', 'webp']} />
+    <Picture
+      src={image}
+      alt={alt}
+      layout="full-width"
+      priority
+      quality={25}
+      formats={['avif', 'webp']}
+    />
     <h1 class="text-shadow">{title}</h1>
   </header>
 </div>
@@ -24,7 +31,7 @@ import { Picture } from 'astro:assets';
       isolation: isolate;
       height: var(--height);
       overflow: hidden;
-      img {
+      picture {
         display: block;
         grid-area: main;
         z-index: 1;

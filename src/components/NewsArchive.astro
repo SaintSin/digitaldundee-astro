@@ -51,26 +51,35 @@ const displayEntries = archiveEntries.slice(0, limit);
 
   .archive-list {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-2xs);
   }
 
   .archive-item {
-    display: inline-block;
-    transition: all 0.3s ease-in-out;
-    outline: 1px solid white;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    padding-block: var(--space-3xs);
+    transition: background 0.2s ease, color 0.2s ease;
+    outline: 1px solid var(--gray-6);
     background: transparent;
-  }
-  .archive-item:hover {
-    background: var(--gray-3);
-    color: var(--color-mid-gray);
+    color: var(--gray-2);
+
+    &:hover {
+      background: var(--gray-7);
+      outline-color: var(--gray-4);
+      color: var(--gray-1);
+    }
   }
 
   .archive-item a {
     text-decoration: none;
+    color: inherit;
   }
 
   .count {
-    color: var(--grey-3);
+    color: var(--gray-5);
+    font-size: var(--step--2);
   }
 
   .archive-footer {

@@ -2,32 +2,107 @@
 import '@styles/blocks/form.css';
 ---
 
-<form action="#" method="post" novalidate>
-  <label for="email">Email Address <span aria-hidden="true">*</span></label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    required
-    aria-required="true"
-    autocomplete="email"
-  />
+<div class="form-footer">
+  <h2>Digital Dundee Signup</h2>
+  <p class="indicates-required"><span class="asterisk" aria-hidden="true">*</span> indicates required</p>
+  <form action="#" method="post" novalidate>
+    <label for="mce-EMAIL">Email Address <span class="asterisk" aria-hidden="true">*</span></label>
+    <input
+      type="email"
+      id="mce-EMAIL"
+      name="EMAIL"
+      required
+      aria-required="true"
+      autocomplete="email"
+    />
 
-  <label for="first-name">First Name</label>
-  <input
-    type="text"
-    id="first-name"
-    name="first-name"
-    autocomplete="given-name"
-  />
+    <label for="mce-FNAME">First Name</label>
+    <input
+      type="text"
+      id="mce-FNAME"
+      name="FNAME"
+      autocomplete="given-name"
+    />
 
-  <label for="last-name">Last Name</label>
-  <input
-    type="text"
-    id="last-name"
-    name="last-name"
-    autocomplete="family-name"
-  />
+    <label for="mce-LNAME">Last Name</label>
+    <input
+      type="text"
+      id="mce-LNAME"
+      name="LNAME"
+      autocomplete="family-name"
+    />
 
-  <button type="submit">Submit</button>
-</form>
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
+
+<style>
+  .form-footer {
+    /* no extra padding — footer__columns gap handles spacing */
+  }
+
+  h2 {
+    font-size: var(--step-1);
+    margin-block-end: var(--space-3xs);
+    color: var(--gray-1);
+  }
+
+  .indicates-required {
+    font-size: var(--step--2);
+    color: var(--gray-5);
+    margin-block-end: var(--space-s);
+  }
+
+  .asterisk {
+    color: var(--color-warning);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form label {
+    display: block;
+    color: var(--gray-3);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-block-start: var(--space-2xs);
+    margin-block-end: var(--space-3xs);
+  }
+
+  form input {
+    display: block;
+    width: 100%;
+    background: var(--gray-1);
+    border: 1px solid var(--gray-4);
+    color: var(--gray-9);
+    padding: var(--space-3xs) var(--space-2xs);
+    font-size: var(--step-0);
+
+    &:focus {
+      outline: 2px solid var(--gray-5);
+      outline-offset: 0;
+      border-color: var(--gray-5);
+    }
+  }
+
+  form button[type='submit'] {
+    align-self: flex-start;
+    margin-block-start: var(--space-s);
+    padding: var(--space-2xs) var(--space-m);
+    background: var(--color-action, #0066cc);
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--step--1);
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--color-action-dark, #004499);
+    }
+  }
+</style>

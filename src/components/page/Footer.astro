@@ -9,16 +9,19 @@ const year = new Date().getUTCFullYear();
 ---
 
 <footer class="footer">
-  <section class="full-width-split-screen">
-    <div>
+  <div class="wrapper footer__columns">
+    <div class="footer__left">
       <FormFooter />
     </div>
-    <div>
+    <div class="footer__right">
       <NewsArchive limit={8} />
+      <div class="footer__social">
+        <h2>Connect With Us</h2>
+        <SocialLinks />
+      </div>
     </div>
-  </section>
+  </div>
   <div class="wrapper copyright">
-    <SocialLinks />
     <p>&copy; &nbsp;{year} {siteMetadata.name} - All Rights Reserved</p>
   </div>
 </footer>
@@ -26,10 +29,41 @@ const year = new Date().getUTCFullYear();
   .footer {
     margin-block-start: var(--size-fluid-5);
     background: var(--color-dark);
-    padding-block: var(--size-fluid-1);
     color: var(--gray-1);
-    .copyright {
-      background: var(--color-darker);
+  }
+
+  .footer__columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-l);
+    padding-block: var(--space-l);
+  }
+
+  @media (max-width: 600px) {
+    .footer__columns {
+      grid-template-columns: 1fr;
     }
+  }
+
+  .footer__social {
+    padding-block-start: var(--space-m);
+  }
+
+  .footer__social h2 {
+    font-size: var(--step-1);
+    margin-block-end: var(--space-s);
+    color: var(--gray-1);
+  }
+
+  .copyright {
+    background: var(--color-darker);
+    padding-block: var(--space-s);
+  }
+
+  .copyright p {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--gray-4);
+    text-align: center;
   }
 </style>
