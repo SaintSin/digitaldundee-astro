@@ -350,8 +350,8 @@ initSplitScreenHeightMatcher();
 
 // Export for manual use if needed
 export {
-  matchSplitScreenImageHeights,
-  initSplitScreenHeightMatcher,
   cleanup,
   clearCache,
+  initSplitScreenHeightMatcher,
+  matchSplitScreenImageHeights,
 };

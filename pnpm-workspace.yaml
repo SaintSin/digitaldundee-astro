@@ -1,5 +1,10 @@
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
   - sharp
+
 # minimumReleaseAge: 1440   # in minutes

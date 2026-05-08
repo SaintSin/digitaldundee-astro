@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
-import { defineConfig } from 'astro/config';
+import { defineConfig, svgoOptimizer } from 'astro/config';
 import icon from 'astro-icon';
 
 import robotsTxt from 'astro-robots-txt';
@@ -13,7 +13,7 @@ import robotsTxt from 'astro-robots-txt';
 export default defineConfig({
   prefetch: true,
   experimental: {
-    svgo: true,
+    svgOptimizer: svgoOptimizer(),
   },
 
   image: {
