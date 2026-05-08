@@ -1,5 +1,5 @@
 ---
-import { Picture } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
@@ -20,19 +20,22 @@ import LogoPending from '@images/logos/360x200-logo-pending.svg';
   <a href={href}>
     {
       imageSrc ? (
-        <Picture
-          src={imageSrc}
-          alt={imageAlt}
-          transition:name={`company-logo-${companyId}`}
-          formats={['avif', 'webp']}
-        />
+        imageSrc.format === 'svg' ? (
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            transition:name={`company-logo-${companyId}`}
+          />
+        ) : (
+          <Picture
+            src={imageSrc}
+            alt={imageAlt}
+            transition:name={`company-logo-${companyId}`}
+            formats={['avif', 'webp']}
+          />
+        )
       ) : (
-        <Picture
-          src={LogoPending}
-          alt=""
-          transition:name={`company-logo-${companyId}`}
-          formats={['avif', 'webp']}
-        />
+        <LogoPending aria-hidden="true" />
       )
     }
     <h3 class="card__title">{name}</h3>
