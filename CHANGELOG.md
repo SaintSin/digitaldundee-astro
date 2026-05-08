@@ -2,6 +2,97 @@
 
 All notable changes to the Digital Dundee Astro project.
 
+## 2026-05-08
+
+### Image Format Improvements
+
+#### Changed
+
+- **Replaced `Image` with `Picture` component across all templates**
+  - All image components now output `avif` and `webp` `<source>` elements with the original format as fallback
+  - Affected files: `Hero.astro`, `SectionSample.astro`, `cards/Event.astro`, `cards/News.astro`, `cards/Resource.astro`, `cards/Success.astro`, `cards/Company.astro`, `pages/index.astro`, `pages/events/[id].astro`, `pages/resources/[id].astro`, `pages/meet-companies/[id].astro`
+  - Removed unused `Image` import from `pages/success-stories/[id].astro`
+
+- **SVG-aware image rendering** (`cards/Company.astro`, `pages/meet-companies/[id].astro`)
+  - SVG logos are rendered with `Image` (no format conversion) since Astro cannot rasterise SVGs to avif/webp
+  - Raster logos use `Picture` with `formats={['avif', 'webp']}` as before
+  - `LogoPending` SVG fallback in the company card is now rendered as an inline SVG component instead of being passed through `Picture`
+
+#### Fixed
+
+- **GIF logos converted to PNG** — Astro's image pipeline does not support GIF as a source format; five company logos were converted and their MDX references updated:
+  - `broker-insights-limited` → `broker-logo.gif` → `.png`
+  - `game-options-ltd` → `new_gameops1_4x1_0.gif` → `.png`
+  - `imsat` → `logo_0.gif` → `.png`
+  - `pixel-resources-limited` → `customlogo_0_0.gif` → `.png`
+  - `lowtek-games` → `lowtek-logo-2018-black-small3_0.gif` → `.png`
+
+### Astro 6.3.1 Upgrade
+
+#### Changed
+
+- Updated Astro to 6.3.1 and related dependencies
+
+---
+
+## 2026-04-13
+
+### Tooling
+
+#### Added
+
+- **oxfmt** — Added `.oxfmtrc.json` config and `oxfmt` npm script for Astro file formatting
+- **Astro Robots Text** (`@astrojs/robots-txt`) — Auto-generates `robots.txt` at build time; integrated into `astro.config.mjs`
+
+#### Changed
+
+- Updated Biome config and package scripts
+
+---
+
+## 2026-02-27
+
+### Prep for Astro 6
+
+#### Added
+
+- **PostCSS config** (`postcss.config.mjs`) — Added PostCSS pipeline in preparation for Astro 6 upgrade
+
+#### Changed
+
+- Updated dependencies in `package.json` ahead of Astro 6 migration
+
+---
+
+## 2026-02-14
+
+### Animations & Styling
+
+#### Added
+
+- **astro-animations** — Integrated `astro-animations` package; homepage sections now use `data-animate` attributes for scroll-triggered slide/fade animations
+- **Button styles** (`/src/styles/blocks/btn.css`) — New `.btn` block styles
+- **Utility classes:**
+  - `/src/styles/utilities/centered.css` — `.centered` utility
+  - `/src/styles/utilities/pill.css` — `.pill` modifier for rounded buttons
+
+#### Changed
+
+- **Homepage** (`/src/pages/index.astro`) — Replaced `NewsArchive` section with animated `RecentNews` and `UpcomingEvents` sections; applied animation directives to hero text and content sections
+
+---
+
+## 2026-01-30
+
+### Astro 5.17 Upgrade
+
+#### Changed
+
+- Updated Astro to 5.17 and related dependencies (`package.json`)
+- Minor wrapper and two-column layout CSS tweaks
+
+---
+
 ## 2025-12-12
 
 ### View Transitions
