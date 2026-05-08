@@ -28,6 +28,7 @@
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@felixicaza/astro-capo": "^1.0.1",
+    "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/ri": "^1.2.10",
     "astro": "^6.3.1",
     "astro-animations": "^0.0.6",

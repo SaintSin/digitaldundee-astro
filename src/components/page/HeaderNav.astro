@@ -1,8 +1,10 @@
 ---
 // @components/page/HeaderNav.astro
+import { siteMetadata } from '@config/siteMetadata';
 import { Icon } from 'astro-icon/components';
 
 const { pathname } = Astro.url;
+const links = siteMetadata.menu ?? [];
 
 // Helper function to check if link is in current path
 const isInPath = (href: string) => {
@@ -16,37 +18,6 @@ const isInPath = (href: string) => {
   // Check if pathname starts with the href
   return cleanPathname.startsWith(cleanHref);
 };
-
-const links = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about/' },
-  {
-    label: 'Be Dundee',
-    href: '/be-dundee/',
-    children: [
-      { label: 'Careers And Jobs', href: '/be-dundee/careers-and-jobs' },
-      { label: 'Collaborate', href: '/be-dundee/collaborate' },
-      { label: 'Connected Dundee XX', href: '/be-dundee/connected-dundee' },
-      { label: 'Enjoy', href: '/be-dundee/enjoy-dundee' },
-      { label: 'Get Service', href: '/be-dundee/get-service' },
-      { label: 'Invest in Dundee', href: '/be-dundee/invest-dundee' },
-      { label: 'Locate Dundee', href: '/be-dundee/locate-dundee' },
-      { label: 'Talent Amd Skills', href: '/be-dundee/talent-skills' },
-    ],
-  },
-  {
-    label: 'Tay5G',
-    href: '/tay5g/',
-    children: [{ label: 'About', href: '/tay5g/about-tay5g/' }],
-  },
-  { label: 'Resources', href: '/resources/' },
-  { label: 'News', href: '/news/' },
-  { label: 'Contact Us', href: '/contact/' },
-
-  { label: 'Events', href: '/events/' },
-  { label: 'Meet The Companies', href: '/meet-companies/' },
-  { label: 'Success Stories', href: '/success-stories/' },
-];
 ---
 
 <nav class="main-nav">
@@ -56,8 +27,8 @@ const links = [
     aria-label="Toggle menu"
     aria-expanded="false"
   >
-    <Icon name="ri:menu-line" class="icon-open" />
-    <Icon name="ri:close-line" class="icon-close" />
+    <Icon name="mdi:menu" class="icon-open" />
+    <Icon name="mdi:close" class="icon-close" />
   </button>
 
   <div class="nav-links">
@@ -78,7 +49,7 @@ const links = [
                 href={link.href}
               >
                 {link.label}
-                <Icon name="ri:arrow-down-s-line" class="dropdown-icon" />
+                <Icon name="mdi:chevron-down" class="dropdown-icon" />
               </a>
               <div class="dropdown-menu">
                 {link.children.map((child) => (

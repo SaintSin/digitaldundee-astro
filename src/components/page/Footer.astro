@@ -1,7 +1,9 @@
 ---
 // @components/page/Footer.astro
 import NewsArchive from '@components/NewsArchive.astro';
+import { siteMetadata } from '@config/siteMetadata';
 import FormFooter from './FormFooter.astro';
+import SocialLinks from './SocialLinks.astro';
 
 const year = new Date().getUTCFullYear();
 ---
@@ -16,7 +18,8 @@ const year = new Date().getUTCFullYear();
     </div>
   </section>
   <div class="wrapper copyright">
-    <p>&copy; &nbsp;{year} Digital Dundee - All Rights Reserved</p>
+    <SocialLinks />
+    <p>&copy; &nbsp;{year} {siteMetadata.name} - All Rights Reserved</p>
   </div>
 </footer>
 <style>

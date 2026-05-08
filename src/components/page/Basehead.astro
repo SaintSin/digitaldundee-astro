@@ -2,6 +2,7 @@
 // @components/page/Basehead.astro
 import { ClientRouter } from 'astro:transitions';
 import JsonLd from '@components/page/JsonLd.astro';
+import { siteMetadata } from '@config/siteMetadata';
 import { Head } from '@felixicaza/astro-capo';
 import type { MetaData } from '@types';
 
@@ -84,15 +85,16 @@ import '@styles/style.css';
 
   <!-- Google tag (gtag.js) -->
   <script
+    is:inline
     async
-    src="https://www.googletagmanager.com/gtag/js?id=G-SYL7W0VC6S"
+    src={`https://www.googletagmanager.com/gtag/js?id=${siteMetadata.measurementId}`}
     type="text/partytown"></script>
-  <script type="text/partytown">
+  <script is:inline define:vars={{ measurementId: siteMetadata.measurementId }} type="text/partytown">
     window.dataLayer = window.dataLayer || [];
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-    gtag('config', 'G-SYL7W0VC6S');
+    gtag('config', measurementId);
   </script>
 </Head>

@@ -1,0 +1,54 @@
+---
+// @components/page/SocialLinks.astro
+import { getSocialLinksForDisplay } from '@config/siteMetadata';
+import { Icon } from 'astro-icon/components';
+
+const links = getSocialLinksForDisplay();
+---
+
+<div class="social-links">
+  {
+    links.map((link) => (
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={link.name}
+      >
+        <Icon name={link.icon} />
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--gray-4);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--gray-1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--gray-4);
+      outline-offset: 2px;
+      border-radius: var(--radius-2);
+    }
+  }
+
+  [data-icon] {
+    font-size: var(--step-2);
+    margin-inline: var(--space-3xs);
+  }
+</style>

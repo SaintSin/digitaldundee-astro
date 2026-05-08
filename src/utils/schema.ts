@@ -1,36 +1,31 @@
 // utils/schema.ts
+import { getSocialLinksForJsonLd, siteMetadata } from '@config/siteMetadata';
 import type { BreadcrumbList, GovernmentOrganization, ListItem } from '@types';
 
-/**
- * Base URL for the site
- */
-export const SITE_URL = 'https://digitaldundee.netlify.app';
+export const SITE_URL = siteMetadata.siteUrl;
 
-/**
- * Digital Dundee organization schema
- * Used across all pages as the publisher/organizer
- */
 export const digitalDundeeOrganization: GovernmentOrganization = {
   '@context': 'https://schema.org',
   '@type': 'GovernmentOrganization',
   '@id': '468593356',
-  name: 'Digital Dundee',
-  description:
-    'Digital Dundee is a portal for people and businesses in digital, creative and tech in the city and wider region',
+  name: siteMetadata.name,
+  description: siteMetadata.description,
   url: SITE_URL,
-  telephone: '+44 1382 434602',
-  email: 'julie@digitaldundee.com',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '50 North Lindsay Street',
-    addressLocality: 'Dundee',
-    postalCode: 'DD1 1QE',
-    addressCountry: 'GB',
-  },
+  telephone: siteMetadata.phone,
+  email: siteMetadata.contactEmail,
+  address: siteMetadata.address
+    ? {
+        '@type': 'PostalAddress',
+        streetAddress: siteMetadata.address.street,
+        addressLocality: siteMetadata.address.locality,
+        postalCode: siteMetadata.address.postalCode,
+        addressCountry: siteMetadata.address.country,
+      }
+    : undefined,
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+44 1382 432483',
-    email: 'julie@digitaldundee.com',
+    telephone: siteMetadata.phone,
+    email: siteMetadata.contactEmail,
     url: SITE_URL,
     areaServed: {
       '@type': 'City',
@@ -38,6 +33,7 @@ export const digitalDundeeOrganization: GovernmentOrganization = {
       url: 'https://www.dundeecity.gov.uk',
     },
   },
+  sameAs: getSocialLinksForJsonLd(),
 };
 
 /**

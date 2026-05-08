@@ -15,6 +15,7 @@
       "@scripts/*": ["src/scripts/*"],
       "@styles/*": ["src/styles/*"],
       "@types": ["src/types"],
+      "@config/*": ["src/config/*"],
       "@utils/*": ["src/utils/*"]
     }
   }
