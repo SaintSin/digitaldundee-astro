@@ -2,6 +2,29 @@
 
 All notable changes to the Digital Dundee Astro project.
 
+## 2026-05-08 (latest)
+
+### Site Metadata & Social Links
+
+#### Added
+
+- **`siteMetadata` config** (`src/config/siteMetadata.ts`) — Single source of truth for all site-wide data: name, description, URL, contact details, Google Analytics measurement ID, address, navigation menu, and social links
+  - Typed interfaces: `SiteMetadata`, `MenuItem`, `SocialLink`, `SiteAddress`
+  - `getSocialLinksForDisplay()` — filters social links flagged for UI rendering
+  - `getSocialLinksForJsonLd()` — filters social links for Schema.org `sameAs`
+  - Social links configured: Twitter/X, Facebook, RSS feed
+- **`SocialLinks` component** (`src/components/page/SocialLinks.astro`) — Renders social icon links in the footer using `astro-icon`; icons sized with `--step-2`, hover transition on colour
+- **`@config/*` path alias** (`tsconfig.json`) — Maps `@config/*` → `src/config/*`
+
+#### Changed
+
+- **`HeaderNav.astro`** — Navigation `links` array moved out of the component into `siteMetadata.menu`; icon names migrated from `ri:*` to `mdi:*` (`mdi:menu`, `mdi:close`, `mdi:chevron-down`)
+- **`Footer.astro`** — `SocialLinks` component added above copyright; site name now sourced from `siteMetadata.name` instead of being hardcoded
+- **`Basehead.astro`** — Google Analytics `measurement ID` sourced from `siteMetadata.measurementId`; both `<script>` tags now use `is:inline` with `define:vars` to pass the ID at build time
+- **`schema.ts`** — `SITE_URL`, organisation name, description, phone, email, address, and `sameAs` social URLs all sourced from `siteMetadata`; removes duplicated hardcoded values
+
+---
+
 ## 2026-05-08
 
 ### Image Format Improvements
