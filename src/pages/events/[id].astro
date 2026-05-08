@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import Hero from '@components/Hero.astro';
@@ -83,7 +83,7 @@ const { Content } = await render(event);
       <header>
         {
           imagePrimary && (
-            <Image src={imagePrimary.src} alt={imagePrimary.alt} />
+            <Picture src={imagePrimary.src} alt={imagePrimary.alt} formats={['avif', 'webp']} />
           )
         }
 

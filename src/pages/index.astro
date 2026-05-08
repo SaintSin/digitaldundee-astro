@@ -1,7 +1,7 @@
 ---
 // pages/index.astro
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import TwoColumnCTA from '@components/SectionSample.astro';
 import imagePromoLeft from '@images/site/promo-left.jpg';
 import imagePromoRight from '@images/site/promo-right.jpg';
@@ -69,12 +69,13 @@ const meta = {
       data-animate-direction="left"
       data-animate-intensity="subtle"
     >
-      <Image
+      <Picture
         src={image1}
         quality={30}
         alt="A hand holding a smartphone with bokeh-like lens flare"
         layout="constrained"
         width={800}
+        formats={['avif', 'webp']}
       />
     </div>
   </section>
@@ -132,12 +133,13 @@ const meta = {
   </div>
 
   <section class="full-width-split-screen overlay">
-    <Image
+    <Picture
       src={imagePromoLeft}
       quality={30}
       alt="Constrained Image"
       layout="constrained"
       width={1200}
+      formats={['avif', 'webp']}
     />
     <div data-animate="fade" data-animate-delay={300} class="">
       <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
@@ -151,11 +153,12 @@ const meta = {
       <a href="/be-dundee" class="btn pill centered">Find Out More</a>
     </div>
 
-    <Image
+    <Picture
       src={imagePromoRight}
       quality={30}
       alt="Image full-width"
       layout="full-width"
+      formats={['avif', 'webp']}
     />
     <div class="secondary">
       <h2>MAKING THINGS HAPPEN FOR DIGITAL USERS</h2>

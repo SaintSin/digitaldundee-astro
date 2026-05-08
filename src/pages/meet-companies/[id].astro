@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import Hero from '@components/Hero.astro';
@@ -38,10 +38,11 @@ const meta = {
       <header>
         {
           logo && (
-            <Image
+            <Picture
               src={logo.src}
               alt={logo.alt}
               transition:name={`company-logo-${company.id}`}
+              formats={['avif', 'webp']}
             />
           )
         }

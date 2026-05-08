@@ -1,17 +1,18 @@
 ---
 // SectionSample.astro
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import imagePromoLeft from '@images/site/promo-left.jpg';
 import imagePromoRight from '@images/site/promo-right.jpg';
 import '@styles/two_column.css';
 ---
 
 <section class="full-width-split-screen overlay">
-  <Image
+  <Picture
     src={imagePromoLeft}
     quality={40}
     alt="Cat lying down staring at camera"
     layout="full-width"
+    formats={['avif', 'webp']}
   />
   <div class="">
     <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
@@ -25,12 +26,13 @@ import '@styles/two_column.css';
     <p>Find Out More</p>
   </div>
 
-  <Image
+  <Picture
     src={imagePromoRight}
     quality={40}
     alt="A cute kitten"
     loading={'eager'}
     layout="full-width"
+    formats={['avif', 'webp']}
   />
   <div class="secondary">
     <h2>MAKING THINGS HAPPEN FOR DIGITAL USERS</h2>

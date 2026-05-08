@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
@@ -39,7 +39,7 @@ import '@styles/blocks/card.css';
 
 <article class="card event">
   <a href={href}>
-    {imageSrc && <Image src={imageSrc} alt={imageAlt} quality={30} />}
+    {imageSrc && <Picture src={imageSrc} alt={imageAlt} quality={30} formats={['avif', 'webp']} />}
     <h3>{title}</h3>
     <time datetime={eventDate.toISOString()}>
       {formatDate(eventDate)}

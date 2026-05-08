@@ -2,12 +2,12 @@
 // components/Hero.astro
 const { title, image, alt } = Astro.props;
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 ---
 
 <div class="hero-wrapper">
   <header class="hero">
-    <Image src={image} alt={alt} layout="full-width" priority quality={25} />
+    <Picture src={image} alt={alt} layout="full-width" priority quality={25} formats={['avif', 'webp']} />
     <h1 class="text-shadow">{title}</h1>
   </header>
 </div>
