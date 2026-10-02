@@ -76,7 +76,7 @@ const { Content } = await render(event);
 <Layout metaData={meta}>
   <Hero title={title} image={header} alt="About page header" />
 
-  <main class="wrapper flow">
+  <div class="wrapper flow">
     <Breadcrumbs />
 
     <article>
@@ -106,5 +106,5 @@ const { Content } = await render(event);
 
       <Content />
     </article>
-  </main>
+  </div>
 </Layout>

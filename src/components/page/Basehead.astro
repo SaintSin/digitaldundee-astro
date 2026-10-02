@@ -75,18 +75,45 @@ import '@styles/style.css';
   <!-- JSON-LD Structured Data -->
   <JsonLd schema={schema} />
 
-  <!-- Google tag (gtag.js) -->
-  <script
-    is:inline
-    defer
-    src={`https://www.googletagmanager.com/gtag/js?id=${siteMetadata.measurementId}`}
-  ></script>
+  <!-- Google Analytics: gtag.js is only loaded after the visitor accepts (see ConsentBanner) -->
   <script is:inline define:vars={{ measurementId: siteMetadata.measurementId }}>
     window.dataLayer = window.dataLayer || [];
     function gtag() {
       dataLayer.push(arguments);
     }
+    // Analytics denied until the visitor accepts
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
     gtag('js', new Date());
-    gtag('config', measurementId);
+    gtag('config', measurementId, { send_page_view: false });
+
+    window.grantConsent = function () {
+      if (window.__gtagLoaded) {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        return;
+      }
+      window.__gtagLoaded = true;
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+      s.defer = true;
+      // page_view only after gtag.js has processed the consent update,
+      // otherwise it is evaluated while storage is still denied and dropped
+      s.onload = function () {
+        gtag('event', 'page_view', {
+          page_location: window.location.href,
+          page_title: document.title,
+        });
+      };
+      document.head.appendChild(s);
+    };
+
+    window.revokeConsent = function () {
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    };
   </script>
 </Head>

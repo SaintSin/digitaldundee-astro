@@ -1,0 +1,102 @@
+---
+// pages/privacy-policy.astro
+import Layout from '@layouts/BaseLayout.astro';
+import { siteMetadata } from '@config/siteMetadata';
+
+const meta = {
+  title: 'Privacy Policy | Digital Dundee',
+  description:
+    'How Digital Dundee uses analytics cookies and handles your data, and your rights.',
+};
+const email = siteMetadata.contactEmail;
+---
+
+<Layout metaData={meta}>
+  <div class="wrapper flow">
+    <h1>Privacy Policy</h1>
+    <p><em>Last updated: October 2026</em></p>
+
+    <h2>Who we are</h2>
+    <p>
+      This website is operated by {siteMetadata.name}. If you have any
+      questions about this policy, contact us at
+      <a href={`mailto:${email}`}>{email}</a>.
+    </p>
+
+    <h2>What data we collect and why</h2>
+    <h3>Analytics</h3>
+    <p>
+      With your consent, we use Google Analytics 4 (GA4) to collect
+      information about how visitors use the site, such as pages visited, time
+      on page and general location (country or region). We use it to improve
+      the site.
+    </p>
+    <p>
+      Analytics cookies are not set, and Google's analytics script is not
+      loaded, until you choose <strong>Accept analytics</strong> in the cookie
+      banner. If you reject, nothing is sent to Google Analytics. You can
+      change your choice at any time:
+      <button type="button" data-consent-settings>Cookie settings</button>.
+    </p>
+    <p>Legal basis: <strong>Consent</strong> (UK GDPR Art. 6(1)(a)).</p>
+
+    <h3>Contact</h3>
+    <p>
+      If you contact us, we keep your details and message only for as long as
+      needed to respond.
+    </p>
+    <p>
+      Legal basis: <strong>Legitimate interests</strong> (UK GDPR Art. 6(1)(f)).
+    </p>
+
+    <h2>Third-party services</h2>
+    <ul>
+      <li>
+        <strong>Google Analytics 4</strong>: data is processed by Google. See
+        <a
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer">Google's Privacy Policy</a
+        >.
+      </li>
+      <li>
+        <strong>Netlify</strong>: our hosting provider. Server logs (IP
+        address, user agent) are retained for a limited time. See
+        <a
+          href="https://www.netlify.com/privacy/"
+          target="_blank"
+          rel="noopener noreferrer">Netlify's Privacy Policy</a
+        >.
+      </li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>Under UK GDPR you have the right to:</p>
+    <ul>
+      <li>Access the personal data we hold about you</li>
+      <li>Request correction or deletion of your data</li>
+      <li>Object to or restrict processing</li>
+      <li>Withdraw consent at any time</li>
+      <li>
+        Complain to the Information Commissioner's Office (<a
+          href="https://ico.org.uk"
+          target="_blank"
+          rel="noopener noreferrer">ico.org.uk</a
+        >)
+      </li>
+    </ul>
+    <p>To use any of these rights, contact <a href={`mailto:${email}`}>{email}</a>.</p>
+
+    <h2>Data retention</h2>
+    <p>
+      Analytics data is kept for 14 months in Google Analytics, then deleted
+      automatically.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      We may update this policy from time to time. The "last updated" date
+      above shows when it last changed.
+    </p>
+  </div>
+</Layout>

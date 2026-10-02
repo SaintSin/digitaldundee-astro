@@ -1,0 +1,187 @@
+---
+// @components/page/ConsentBanner.astro
+// Pairs with the consent-gated GA snippet in Basehead.astro (window.grantConsent / revokeConsent)
+---
+
+<div
+  id="consent-banner"
+  class="consent-banner"
+  role="region"
+  aria-label="Cookie consent"
+  inert
+>
+  <div class="consent-content">
+    <p>
+      We use analytics cookies to understand how visitors use this site. See our
+      <a href="/privacy-policy/">privacy policy</a>.
+    </p>
+    <div class="consent-buttons">
+      <button type="button" id="consent-accept">Accept analytics</button>
+      <button type="button" id="consent-reject" class="secondary">Reject</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'analytics-consent';
+  type ConsentWindow = Window & {
+    grantConsent?: () => void;
+    revokeConsent?: () => void;
+  };
+  const consent = window as ConsentWindow;
+
+  // localStorage can throw (private windows, blocked site data)
+  const read = () => {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  };
+  const write = (value: string | null) => {
+    try {
+      if (value === null) localStorage.removeItem(STORAGE_KEY);
+      else localStorage.setItem(STORAGE_KEY, value);
+    } catch {}
+  };
+
+  const banner = document.getElementById('consent-banner');
+  const accept = document.getElementById('consent-accept');
+
+  function show() {
+    banner?.classList.add('is-visible');
+    banner?.removeAttribute('inert');
+  }
+  function hide() {
+    banner?.classList.remove('is-visible');
+    banner?.setAttribute('inert', '');
+  }
+
+  if (banner) {
+    const status = read();
+    if (status === 'true') consent.grantConsent?.();
+    else if (status !== 'false') show();
+
+    accept?.addEventListener('click', () => {
+      write('true');
+      consent.grantConsent?.();
+      hide();
+    });
+
+    document.getElementById('consent-reject')?.addEventListener('click', () => {
+      write('false');
+      consent.revokeConsent?.();
+      hide();
+    });
+
+    // Any [data-consent-settings] control lets visitors change their mind
+    document.addEventListener('click', (event) => {
+      if (!(event.target as Element).closest('[data-consent-settings]')) return;
+      write(null);
+      consent.revokeConsent?.();
+      show();
+      accept?.focus();
+    });
+  }
+</script>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 1100;
+    transform: translateY(100%);
+    transition: transform 0.4s ease-out;
+    box-shadow: 0 -2px 12px oklch(0% 0 0 / 40%);
+    background: var(--color-dark);
+    padding: var(--space-s);
+    pointer-events: none;
+    color: var(--gray-1);
+  }
+
+  .consent-banner.is-visible {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .consent-banner {
+      transition: none;
+    }
+  }
+
+  /* Separated from the page by background and shadow only, which forced-colors strips */
+  @media (forced-colors: active) {
+    .consent-banner {
+      border-block-start: 1px solid CanvasText;
+    }
+  }
+
+  .consent-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-m);
+    margin: 0 auto;
+    max-width: var(--wrapper-max-width);
+  }
+
+  .consent-content p {
+    flex: 1;
+    margin: 0;
+    font-size: var(--step--1);
+    line-height: 1.5;
+  }
+
+  .consent-content a {
+    color: inherit;
+  }
+
+  .consent-buttons {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--space-xs);
+  }
+
+  button {
+    cursor: pointer;
+    border: 1px solid var(--color-action);
+    border-radius: 4px;
+    background: var(--color-action);
+    padding: var(--space-2xs) var(--space-s);
+    color: white;
+    font-weight: 500;
+    font-size: var(--step--1);
+    white-space: nowrap;
+  }
+
+  button:hover {
+    background: var(--color-action-dark);
+  }
+
+  button.secondary {
+    border-color: var(--gray-5);
+    background: transparent;
+    color: var(--gray-1);
+  }
+
+  button.secondary:hover {
+    border-color: var(--gray-1);
+  }
+
+  @media (max-width: 48rem) {
+    .consent-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-s);
+    }
+
+    .consent-buttons {
+      width: 100%;
+    }
+
+    button {
+      flex: 1;
+    }
+  }
+</style>

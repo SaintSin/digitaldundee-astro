@@ -23,6 +23,10 @@ const year = new Date().getUTCFullYear();
   </div>
   <div class="wrapper copyright">
     <p>&copy; &nbsp;{year} {siteMetadata.name} - All Rights Reserved</p>
+    <p>
+      <a href="/privacy-policy/">Privacy policy</a>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </p>
   </div>
 </footer>
 <style>
@@ -56,8 +60,29 @@ const year = new Date().getUTCFullYear();
   }
 
   .copyright {
+    display: flex;
     background: var(--color-darker);
     padding-block: var(--space-s);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2xs) var(--space-m);
+  }
+
+  .copyright a,
+  .copyright button {
+    margin-inline-start: var(--space-s);
+    cursor: pointer;
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--gray-3);
+    font: inherit;
+    font-size: var(--step--1);
+    text-decoration: underline;
+  }
+
+  .copyright a:first-child {
+    margin-inline-start: 0;
   }
 
   .copyright p {
