@@ -16,9 +16,20 @@ const fadeWords = ['Create', 'Locate', 'Generate', 'Produce', 'Innovate'];
   </div>
   <div class="video-overlay"></div>
 
-  <video autoplay muted loop playsinline preload="auto">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster="/videos/background-poster.jpg"
+    aria-hidden="true"
+  >
     <source src="/videos/background.mp4" type="video/mp4" />
   </video>
+  <button type="button" class="motion-toggle" aria-pressed="false">
+    Pause background motion
+  </button>
 </div>
 
 <script define:vars={{ fadeWords }}>
@@ -32,20 +43,43 @@ const fadeWords = ['Create', 'Locate', 'Generate', 'Produce', 'Innovate'];
     }
   }, 500);
 
-  // Fade text animation
-  let currentIndex = 0;
+  const video = document.querySelector('.background-video-container video');
+  const toggle = document.querySelector('.motion-toggle');
   const fadeWordElement = document.getElementById('fadeWord');
 
-  setInterval(() => {
-    if (fadeWordElement) {
-      fadeWordElement.classList.add('fade-out');
+  // Start static for users who prefer reduced motion; the button lets anyone change it
+  let paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % fadeWords.length;
-        fadeWordElement.textContent = fadeWords[currentIndex];
-        fadeWordElement.classList.remove('fade-out');
-      }, 1000); // Wait for fade out before changing text
+  function applyMotion() {
+    if (video) {
+      if (paused) video.pause();
+      else video.play().catch(() => {});
     }
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.textContent = paused
+        ? 'Play background motion'
+        : 'Pause background motion';
+    }
+  }
+
+  toggle?.addEventListener('click', () => {
+    paused = !paused;
+    applyMotion();
+  });
+  applyMotion();
+
+  // Fade text animation (stops while paused)
+  let currentIndex = 0;
+  setInterval(() => {
+    if (paused || !fadeWordElement) return;
+    fadeWordElement.classList.add('fade-out');
+
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % fadeWords.length;
+      fadeWordElement.textContent = fadeWords[currentIndex];
+      fadeWordElement.classList.remove('fade-out');
+    }, 1000); // Wait for fade out before changing text
   }, 3000); // Change word every 3 seconds
 </script>
 <style>
@@ -121,5 +155,22 @@ const fadeWords = ['Create', 'Locate', 'Generate', 'Produce', 'Innovate'];
   }
   .video-overlay.fade-out {
     opacity: 0;
+  }
+
+  .motion-toggle {
+    position: absolute;
+    inset-block-end: var(--space-s);
+    inset-inline-end: var(--space-s);
+    z-index: 3;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 50vh;
+    background: rgba(0, 0, 0, 0.6);
+    padding: var(--space-3xs) var(--space-s);
+    color: white;
+    font-size: var(--step--1);
+  }
+  .motion-toggle:hover {
+    background: rgba(0, 0, 0, 0.85);
   }
 </style>

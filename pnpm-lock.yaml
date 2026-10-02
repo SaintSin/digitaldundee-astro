@@ -172,9 +172,6 @@ importers:
       '@astrojs/netlify':
         specifier: ^8.2.6
         version: 8.2.6(@parcel/watcher@2.6.0)(@types/node@26.6.4)(astro@7.3.5(@netlify/blobs@10.7.13(supports-color@7.2.0))(@types/node@26.6.4)(jiti@2.7.0)(sass@1.105.1)(tsx@4.23.15)(yaml@2.9.1))(jiti@2.7.0)(rollup@4.63.6)(sass@1.105.1)(supports-color@7.2.0)(tsx@4.23.15)(yaml@2.9.1)
-      '@astrojs/partytown':
-        specifier: ^2.1.8
-        version: 2.1.8
       '@astrojs/rss':
         specifier: ^4.0.19
         version: 4.0.19
@@ -479,9 +476,6 @@ packages:
     resolution: {integrity: sha512-lTFtkrqgBTsAt3VnNsYZ8K3IZAd743+WS86WO72lSlZn6OMvBQZwYEPfZLm/H6gXEo6PTPz8+21ADbMCDkF1ZQ==}
     peerDependencies:
       astro: ^7.0.0
-
-  '@astrojs/partytown@2.1.8':
-    resolution: {integrity: sha512-iCRNNPqvdQEORyAYC8jN8nTCN2wW66WS+Pft2fhqq52cj3GcWvzlAZlyfjtpCeiEYI0op6u5OtWqqItiS7INDA==}
 
   '@astrojs/prism@4.0.2':
     resolution: {integrity: sha512-KTivpmnz6lDsC6o9H4+DNm2SrE/GHzw8cNAvEJwAvUT+eoaEnn/4NtbDNfRRaxaJHdp15gf+tfHAWiXR4wB3BA==}
@@ -1897,11 +1891,6 @@ packages:
 
   '@prettier/parse-srcset@3.1.0':
     resolution: {integrity: sha512-FIRv2rZotO9NP/r66taYqD1zICpPiBbrECqjKV/xqNotqDxF7fLzzUeK+1RSRx9Tenk0DajR/GcRmTJ2qtHaKQ==}
-
-  '@qwik.dev/partytown@0.14.4':
-    resolution: {integrity: sha512-XGBgDuxgG7CsAs4PZ32GUmbD029nAeCR4VGyJRJnNp3r3uVjbZt8Dkxe8cw+f8xY6Dh8VI5cb3ygEZCqSftwtA==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
 
   '@rolldown/binding-android-arm-eabi@1.2.12':
     resolution: {integrity: sha512-dB/a1214qKfHMXCpgqR4OZT+jS4kTyEXbQGJPqzobt5EwH5rX080pxE37alt3RzvR1bf1Yz/yGqRfrYAxuPw0A==}
@@ -5584,11 +5573,6 @@ snapshots:
       - uploadthing
       - yaml
 
-  '@astrojs/partytown@2.1.8':
-    dependencies:
-      '@qwik.dev/partytown': 0.14.4
-      mrmime: 2.0.1
-
   '@astrojs/prism@4.0.2':
     dependencies:
       prismjs: 1.30.0
@@ -6855,8 +6839,6 @@ snapshots:
       parse5: 8.0.1
 
   '@prettier/parse-srcset@3.1.0': {}
-
-  '@qwik.dev/partytown@0.14.4': {}
 
   '@rolldown/binding-android-arm-eabi@1.2.12':
     optional: true

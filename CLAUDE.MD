@@ -17,7 +17,6 @@ DigitalDundee.com is a website for promoting and showcasing the digital technolo
 - **Open Props** - CSS design tokens
 - **TypeScript** - Type safety
 - **Biome** - Fast linting and formatting
-- **Partytown** - Web worker for analytics
 - **Motion** - Animation library
 
 ## Project Structure
@@ -125,8 +124,7 @@ All content is managed through Astro's content collections using MDX files:
 
 ### Analytics
 
-- Google Analytics with Partytown integration
-- Partytown runs analytics in a web worker for better performance
+- Google Analytics (gtag.js) loaded with `defer` in the head; no web-worker offloading
 
 ### SVGO
 
@@ -271,13 +269,13 @@ Page navigation uses native cross-document view transitions (`@view-transition` 
 - Pagination is handled automatically by Astro
 - Images should always use Astro's Image component
 - Content collections don't require a config.ts file (using default inference)
-- The site emphasizes performance with Partytown and SVGO
+- The site emphasizes performance with deferred third-party scripts and SVGO
 - Biome is preferred for TS/JS/JSON, Prettier for Astro/CSS
 - This is a git worktree - changes are isolated from main repo
 
 ## Recent Changes
 
-- Added Google Analytics with Partytown
+- Added Google Analytics (deferred gtag.js)
 - Success stories content work
 - Sanitized success stories
 - Experimental SVGO enabled

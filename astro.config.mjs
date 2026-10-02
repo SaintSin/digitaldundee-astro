@@ -2,7 +2,6 @@
 
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
-import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, svgoOptimizer } from 'astro/config';
 import icon from 'astro-icon';
@@ -20,7 +19,7 @@ export default defineConfig({
     responsiveStyles: true,
   },
 
-  integrations: [sitemap(), icon(), mdx(), partytown(), robotsTxt()],
+  integrations: [sitemap(), icon(), mdx(), robotsTxt()],
   site: 'https://digitaldundee.netlify.app',
   adapter: netlify(),
 });

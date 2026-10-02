@@ -20,7 +20,7 @@ const isInPath = (href: string) => {
 };
 ---
 
-<nav class="main-nav">
+<nav class="main-nav" aria-label="Main">
   <button
     type="button"
     class="menu-toggle"
@@ -360,8 +360,12 @@ const isInPath = (href: string) => {
 
         &:hover,
         &:focus {
-          outline: none;
           background: var(--gray-1);
+        }
+
+        &:focus-visible {
+          outline: 2px solid currentColor;
+          outline-offset: -2px;
         }
 
         &.active--exact {

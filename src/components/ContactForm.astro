@@ -10,7 +10,6 @@ import '@styles/blocks/form.css';
     id="name"
     name="name"
     required
-    aria-required="true"
     autocomplete="name"
   />
 
@@ -20,12 +19,11 @@ import '@styles/blocks/form.css';
     id="email"
     name="email"
     required
-    aria-required="true"
     autocomplete="email"
   />
 
   <label for="message">Message <span aria-hidden="true">*</span></label>
-  <textarea id="message" name="message" required aria-required="true" rows="5">
+  <textarea id="message" name="message" required rows="5">
   </textarea>
 
   <button type="submit">Submit</button>
