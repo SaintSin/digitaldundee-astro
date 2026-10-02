@@ -121,9 +121,6 @@ const isInPath = (href: string) => {
 
   // Run on initial load
   document.addEventListener('DOMContentLoaded', setupMobileMenu);
-
-  // Run after view transitions
-  document.addEventListener('astro:after-swap', setupMobileMenu);
 </script>
 
 <style>

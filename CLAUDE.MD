@@ -13,7 +13,7 @@ DigitalDundee.com is a website for promoting and showcasing the digital technolo
 - **Astro 5.16.0** - Static site generator with SSG/SSR support
 - **MDX** - Markdown with JSX for content pages
 - **Netlify** - Hosting and deployment platform
-- **SCSS/Sass** - CSS preprocessor
+- **Modern CSS** - Native nesting, cascade layers, custom properties (no preprocessor)
 - **Open Props** - CSS design tokens
 - **TypeScript** - Type safety
 - **Biome** - Fast linting and formatting
@@ -51,8 +51,8 @@ DigitalDundee.com is a website for promoting and showcasing the digital technolo
 │   │   └── success-stories/ # Success stories pages
 │   ├── styles/
 │   │   ├── compositions/ # CUBE CSS utilities
-│   │   ├── _globals.scss
-│   │   ├── _layout.scss
+│   │   ├── _tokens.css
+│   │   ├── _layout.css
 │   │   └── style.css
 │   └── types/
 │       └── index.ts
@@ -173,8 +173,8 @@ Uses CUBE CSS methodology:
 
 - **Open Props** for consistent design tokens
 - **Utopia.fyi scales** for fluid typography and spacing
-- All spacing and sizing tokens defined in `src/styles/_globals.scss`
-- **ALWAYS use Utopia tokens** from `_globals.scss` - never hardcode values:
+- All spacing and sizing tokens defined in `src/styles/_tokens.css`
+- **ALWAYS use Utopia tokens** from `_tokens.css` - never hardcode values:
   - Spacing: `var(--space-3xs)` through `var(--space-3xl)` and pairs like `var(--space-s-m)`
   - Typography: `var(--step--2)` through `var(--step-6)`
   - Use these consistently across all components and styles
@@ -199,23 +199,16 @@ Uses CUBE CSS methodology:
 
 1. Follow CUBE CSS methodology
 2. Use composition classes for layout
-3. Add component-specific styles in component file or separate SCSS
+3. Add component-specific styles in the component's `<style>` block or a plain `.css` file (native nesting is fine)
 4. Leverage Open Props tokens
 
 ### When Writing JavaScript/Scripts in Components
 
-**IMPORTANT**: Always handle Astro view transitions properly!
+Page navigation uses native cross-document view transitions (`@view-transition` in `style.css`), not `ClientRouter`. Every navigation is a full page load, so there are no `astro:after-swap` / `astro:page-load` events: scripts run normally on each page.
 
-1. Wrap initialization code in a named function (e.g., `setupMyComponent()`)
-2. Listen to **both** events:
-   ```javascript
-   document.addEventListener('DOMContentLoaded', setupMyComponent);
-   document.addEventListener('astro:after-swap', setupMyComponent);
-   ```
-3. Add guard clauses to check if elements exist before attaching listeners
-4. This ensures scripts work on initial page load AND after view transitions
-
-Example pattern:
+1. Wrap initialization in a named function (e.g., `setupMyComponent()`)
+2. Add guard clauses to check that elements exist before attaching listeners
+3. To animate an element between pages, give it a matching `view-transition-name` (inline `style`) on both pages
 
 ```javascript
 <script>
@@ -228,8 +221,7 @@ Example pattern:
     });
   }
 
-  document.addEventListener('DOMContentLoaded', setupMyComponent);
-  document.addEventListener('astro:after-swap', setupMyComponent);
+  setupMyComponent();
 </script>
 ```
 

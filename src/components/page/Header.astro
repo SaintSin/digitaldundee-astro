@@ -6,6 +6,7 @@ import Nav from '@components/page/HeaderNav.astro';
 
 <header class="header">
   <div class="wrapper">
+    <a href="#content" class="skip-link visually-hidden">Skip to main content</a>
     <a href="/" class="brand">Digital <strong>DUNDEE</strong></a>
     <Nav />
   </div>
@@ -19,6 +20,15 @@ import Nav from '@components/page/HeaderNav.astro';
     /* border-bottom: rgb(118, 118, 118); */
     background: var(--color-bg);
     padding-block: var(--size-4);
+  }
+  .skip-link {
+    position: absolute;
+    inset-block-start: var(--space-3xs);
+    inset-inline-start: var(--space-3xs);
+    z-index: 1;
+    background: white;
+    padding: var(--space-2xs) var(--space-s);
+    color: black;
   }
   .brand {
     display: inline-block;

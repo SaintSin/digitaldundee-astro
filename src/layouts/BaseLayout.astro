@@ -21,9 +21,9 @@ const { metaData } = Astro.props;
     <Header />
     <AstroAnimations />
 
-    <div class="content">
+    <main class="content" id="content" tabindex="-1">
       <slot />
-    </div>
+    </main>
     <Footer />
   </body>
 </html>

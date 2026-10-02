@@ -42,13 +42,13 @@ const meta = {
               <Image
                 src={logo.src}
                 alt={logo.alt}
-                transition:name={`company-logo-${company.id}`}
+                style={`view-transition-name: company-logo-${company.id}`}
               />
             ) : (
               <Picture
                 src={logo.src}
                 alt={logo.alt}
-                transition:name={`company-logo-${company.id}`}
+                style={`view-transition-name: company-logo-${company.id}`}
                 formats={['avif', 'webp']}
               />
             )

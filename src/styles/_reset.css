@@ -1,5 +1,5 @@
-// 2023 Modern reset
-// https://andy-bell.co.uk/a-more-modern-css-reset/
+/* 2023 Modern reset */
+/* https://andy-bell.co.uk/a-more-modern-css-reset/ */
 
 /* Box sizing rules */
 *,
@@ -93,17 +93,9 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
-/* Remove all animations and transitions for people that prefer not to see them */
+/* Reduced motion: only stop smooth scrolling; avoid the 0.01ms animation clamp */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

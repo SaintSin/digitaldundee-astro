@@ -1,7 +1,8 @@
-@import '_reset.scss' layer(components);
+@layer reset, base, theme, components, utilities;
 
-@import '_globals.scss' layer(components);
-@import '_layout.scss' layer(components);
+@import '_reset.css' layer(reset);
+@import '_layout.css' layer(base);
+@import '_tokens.css' layer(theme);
 
 @import 'compositions/flow.css' layer(components);
 @import 'compositions/wrapper.css' layer(components);
@@ -11,6 +12,7 @@
 
 @import 'utilities/pill.css' layer(components);
 @import 'utilities/centered.css' layer(components);
+@import 'utilities/visually-hidden.css' layer(utilities);
 
 @font-face {
   font-style: normal;
@@ -46,6 +48,16 @@
     format('woff2-variations');
   font-family: 'Montserrat Variable';
   font-display: swap;
+}
+
+/* Native cross-document view transitions (replaces ClientRouter) */
+@view-transition {
+  navigation: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
 }
 
 body {
@@ -89,4 +101,14 @@ h3 {
 }
 .text-shadow {
   text-shadow: 2px 2px 4px oklab(0% 0 0 / 0.7);
+}
+
+/* Header/footer are separated from the page by background colour alone */
+@media (forced-colors: active) {
+  .header {
+    border-block-end: 1px solid CanvasText;
+  }
+  .footer {
+    border-block-start: 1px solid CanvasText;
+  }
 }

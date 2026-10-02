@@ -1,6 +1,5 @@
 ---
 // @components/page/Basehead.astro
-import { ClientRouter } from 'astro:transitions';
 import JsonLd from '@components/page/JsonLd.astro';
 import { siteMetadata } from '@config/siteMetadata';
 import { Head } from '@felixicaza/astro-capo';
@@ -78,7 +77,7 @@ import '@styles/style.css';
     crossorigin
   />
 
-  <ClientRouter />
+  <link rel="expect" href="#content" blocking="render" />
 
   <!-- JSON-LD Structured Data -->
   <JsonLd schema={schema} />

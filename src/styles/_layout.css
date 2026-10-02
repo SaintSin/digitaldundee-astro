@@ -12,9 +12,14 @@ body {
   height: 100%;
 }
 
-// * {
-//     outline: solid 1px red;
-// }
+/* Skip-link target only; no focus ring */
+main:focus-visible {
+  outline: none;
+}
+
+/* * { */
+/*     outline: solid 1px red; */
+/* } */
 .align-center {
   text-align: center;
 }
