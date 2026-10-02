@@ -25,6 +25,8 @@ export default defineConfig({
     icon(),
     mdx(),
     llmsTxt({
+      // llms-full.txt would be ~600KB; llms.txt plus per-page .md is enough
+      generateLlmsFullTxt: false,
       name: 'Digital Dundee',
       description:
         'Digital Dundee is a portal for people and businesses in digital, creative and tech in Dundee and the wider Tay Cities region.',
@@ -37,7 +39,28 @@ export default defineConfig({
         'meet-companies/[0-9]*/**',
       ],
     }),
-    robotsTxt(),
+    robotsTxt({
+      policy: [
+        { userAgent: '*', allow: '/' },
+        // AI search and assistant crawlers are welcome: they send referrals
+        { userAgent: 'GPTBot', allow: '/' },
+        { userAgent: 'ChatGPT-User', allow: '/' },
+        { userAgent: 'OAI-SearchBot', allow: '/' },
+        { userAgent: 'ClaudeBot', allow: '/' },
+        { userAgent: 'Claude-User', allow: '/' },
+        { userAgent: 'Claude-SearchBot', allow: '/' },
+        { userAgent: 'anthropic-ai', allow: '/' }, // deprecated, kept for backward compatibility
+        { userAgent: 'Google-Extended', allow: '/' },
+        { userAgent: 'PerplexityBot', allow: '/' },
+        { userAgent: 'Applebot-Extended', allow: '/' },
+        { userAgent: 'meta-externalagent', allow: '/' },
+        { userAgent: 'Amazonbot', allow: '/' },
+        { userAgent: 'DuckAssistBot', allow: '/' },
+        { userAgent: 'MistralAI-User', allow: '/' },
+        { userAgent: 'Cohere-AI', allow: '/' },
+        { userAgent: 'Bytespider', disallow: '/' },
+      ],
+    }),
   ],
   site: 'https://digitaldundee.netlify.app',
   adapter: netlify(),

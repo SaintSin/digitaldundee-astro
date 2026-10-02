@@ -3,3 +3,5 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=300
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+  Link: </llms.txt>; rel="llms-txt", </sitemap-index.xml>; rel="sitemap"; type="application/xml", </rss.xml>; rel="alternate"; type="application/rss+xml"; title="Digital Dundee Feed"
