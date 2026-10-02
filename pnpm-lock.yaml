@@ -199,6 +199,9 @@ importers:
       astro-icon:
         specifier: ^1.2.0
         version: 1.2.0
+      astro-llms-md:
+        specifier: ^3.0.2
+        version: 3.0.2(astro@7.3.5(@netlify/blobs@10.7.13(supports-color@7.2.0))(@types/node@26.6.4)(jiti@2.7.0)(sass@1.105.1)(tsx@4.23.15)(yaml@2.9.1))
       astro-robots-txt:
         specifier: ^1.0.0
         version: 1.0.0
@@ -1450,6 +1453,9 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
+  '@mixmark-io/domino@2.2.0':
+    resolution: {integrity: sha512-Y28PR25bHXUg88kCV7nivXrP2Nj2RueZ3/l/jdx6J9f8J4nsEGcgX0Qe6lt7Pa+J79+kPiJU3LguR6O/6zrLOw==}
+
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
     engines: {node: ^22.20 || ^24.12 || >=25}
@@ -2459,6 +2465,12 @@ packages:
   astro-icon@1.2.0:
     resolution: {integrity: sha512-0848V2WZuTPhqGSqLeZimLJZ5wmamMtWYzvA2kvg8s2DrUPZ3/nrTcHJWN0eJHt62jy7uvNxgTNiUJGIr7JNxg==}
     engines: {node: '>=22.12.0'}
+
+  astro-llms-md@3.0.2:
+    resolution: {integrity: sha512-oosMnk1z+AOAe/lTfchUlv/mH1tCCWWSB0zKa4ZPi7xrXpPvZ40Fnk7ifSVKN9ZljbwAtDAKJ6gIn1Pu4Xc3Dw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      astro: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
   astro-robots-txt@1.0.0:
     resolution: {integrity: sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA==}
@@ -4748,6 +4760,10 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
+  turndown@7.2.4:
+    resolution: {integrity: sha512-I8yFsfRzmzK0WV1pNNOA4A7y4RDfFxPRxb3t+e3ui14qSGOxGtiSP6GjeX+Y6CHb7HYaFj7ECUD7VE5kQMZWGQ==}
+    engines: {node: '>=18', npm: '>=9'}
+
   type-fest@4.41.0:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
     engines: {node: '>=16'}
@@ -6263,6 +6279,8 @@ snapshots:
       - encoding
       - supports-color
 
+  '@mixmark-io/domino@2.2.0': {}
+
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
 
@@ -7392,6 +7410,14 @@ snapshots:
       '@iconify/tools': 5.0.14
       '@iconify/types': 2.0.0
       '@iconify/utils': 3.1.7
+
+  astro-llms-md@3.0.2(astro@7.3.5(@netlify/blobs@10.7.13(supports-color@7.2.0))(@types/node@26.6.4)(jiti@2.7.0)(sass@1.105.1)(tsx@4.23.15)(yaml@2.9.1)):
+    dependencies:
+      astro: 7.3.5(@netlify/blobs@10.7.13(supports-color@7.2.0))(@types/node@26.6.4)(jiti@2.7.0)(sass@1.105.1)(tsx@4.23.15)(yaml@2.9.1)
+      glob: 13.0.6
+      minimatch: 10.2.6
+      node-html-parser: 9.0.4
+      turndown: 7.2.4
 
   astro-robots-txt@1.0.0:
     dependencies:
@@ -10002,6 +10028,10 @@ snapshots:
       esbuild: 0.28.2
     optionalDependencies:
       fsevents: 2.3.3
+
+  turndown@7.2.4:
+    dependencies:
+      '@mixmark-io/domino': 2.2.0
 
   type-fest@4.41.0: {}
 

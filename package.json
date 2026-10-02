@@ -33,6 +33,7 @@
     "astro-animations": "^0.0.6",
     "astro-embed": "^0.14.0",
     "astro-icon": "^1.2.0",
+    "astro-llms-md": "^3.0.2",
     "astro-robots-txt": "^1.0.0",
     "node-html-parser": "^9.0.4",
     "open-props": "^1.7.23",
