@@ -88,6 +88,52 @@ const isInPath = (href: string) => {
   </div>
 </nav>
 
+<!-- Inline on purpose: it runs before the first paint, so a narrow screen never
+     flashes the full link row. Collapses to the hamburger when the links, laid
+     out on one line, don't fit beside the brand. -->
+<script is:inline>
+  (() => {
+    const nav = document.currentScript.previousElementSibling;
+    const row = nav.parentElement;
+    const links = nav.querySelector('.nav-links');
+    const brand = row.querySelector('.brand');
+    let lastWidth = -1;
+
+    function update() {
+      // Measure the links on one line, with the row in its expanded state
+      nav.removeAttribute('data-collapsed');
+      links.style.flexWrap = 'nowrap';
+      const needed = links.scrollWidth;
+      links.style.flexWrap = '';
+
+      const cs = getComputedStyle(row);
+      const available =
+        row.clientWidth -
+        parseFloat(cs.paddingLeft) -
+        parseFloat(cs.paddingRight) -
+        (brand ? brand.offsetWidth : 0) -
+        parseFloat(cs.columnGap || 0);
+
+      if (needed > available) {
+        nav.setAttribute('data-collapsed', '');
+        nav.classList.remove('mobile-menu-open');
+      }
+    }
+
+    function onResize() {
+      if (row.clientWidth === lastWidth) return;
+      lastWidth = row.clientWidth;
+      update();
+    }
+
+    update();
+    new ResizeObserver(onResize).observe(row);
+    // Web fonts change the links' width after first paint
+    document.fonts?.ready.then(update);
+    document.fonts?.addEventListener('loadingdone', update);
+  })();
+</script>
+
 <script>
   function setupMobileMenu() {
     const toggle = document.querySelector('.menu-toggle');
@@ -126,8 +172,14 @@ const isInPath = (href: string) => {
 <style>
   .main-nav {
     position: relative;
-    container-name: nav;
-    container-type: inline-size;
+    flex: 1 1 auto;
+  }
+
+  /* Collapsed: only the hamburger is left, so push it to the right edge */
+  .main-nav[data-collapsed] {
+    position: static; /* the panel hangs off the header row, not the hamburger */
+    flex: 0 0 auto;
+    margin-inline-start: auto;
   }
 
   /* Menu toggle button - hidden on desktop */
@@ -142,7 +194,7 @@ const isInPath = (href: string) => {
     color: black;
     font-size: var(--step-2);
 
-    @container nav (width < 768px) {
+    .main-nav[data-collapsed] & {
       display: block;
     }
 
@@ -168,17 +220,20 @@ const isInPath = (href: string) => {
     align-items: center;
     /* gap: var(--space-s); */
 
-    /* Mobile: full screen overlay */
-    @container nav (width < 768px) {
+    /* Collapsed: a panel under the header, brand stays visible */
+    .main-nav[data-collapsed] & {
       display: none;
-      position: fixed;
+      position: absolute;
+      inset-inline: 0;
+      inset-block-start: 100%;
       flex-direction: column;
       align-items: stretch;
       gap: 0;
       z-index: 100;
-      inset: 0;
-      background: white;
-      padding: var(--space-3xl) var(--space-s) var(--space-s);
+      box-shadow: var(--shadow-3);
+      background: var(--color-bg);
+      padding: var(--space-xs);
+      max-block-size: calc(100dvh - 100%);
       overflow-y: auto;
 
       .mobile-menu-open & {
@@ -191,7 +246,7 @@ const isInPath = (href: string) => {
       padding: var(--space-2xs);
       color: black;
       font-weight: 500;
-      font-size: calc(var(--step--2) * 0.75);
+      font-size: var(--step--2);
       font-family: var(--font-montserrat);
       letter-spacing: 1px;
       text-decoration: none;
@@ -204,41 +259,20 @@ const isInPath = (href: string) => {
         text-underline-offset: var(--space-3xs);
       }
 
-      /* Mobile: larger, block-level links */
-      @container nav (width < 768px) {
-        border-bottom: 1px solid var(--gray-2);
-        padding: var(--space-s);
-        font-size: var(--step-0);
-        white-space: normal;
-
-        &:hover {
-          background: var(--gray-1);
-          text-decoration: none;
-        }
+      /* Collapsed: same small caps, stacked; no borders or fills */
+      .main-nav[data-collapsed] & {
+        padding: var(--space-3xs) 0;
       }
     }
 
-    .active--exact {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: var(--space-3xs);
-
-      @container nav (width < 768px) {
-        background: var(--gray-2);
-        font-weight: 600;
-        text-decoration: none;
-      }
-    }
-
+    .active--exact,
     .active--path {
       text-decoration: underline;
       text-decoration-thickness: 2px;
       text-underline-offset: var(--space-3xs);
-
-      @container nav (width < 768px) {
-        font-weight: 600;
-        text-decoration: none;
-      }
+    }
+    .active--exact {
+      font-weight: 700;
     }
   }
 
@@ -248,17 +282,10 @@ const isInPath = (href: string) => {
     position: relative;
     align-items: center;
 
-    /* Mobile: full width blocks */
-    @container nav (width < 768px) {
+    /* Collapsed: stacked, left aligned */
+    .main-nav[data-collapsed] & {
       flex-direction: column;
-      align-items: stretch;
-      border-bottom: 2px solid var(--gray-3);
-
-      > a {
-        border-bottom: 1px solid var(--gray-3);
-        background: var(--gray-1);
-        font-weight: 600;
-      }
+      align-items: flex-start;
     }
   }
 
@@ -276,15 +303,11 @@ const isInPath = (href: string) => {
     /* Desktop: rotate on hover */
     .nav-item.has-dropdown:hover &,
     .nav-item.has-dropdown:focus-within & {
-      @container nav (width >= 768px) {
+      .main-nav:not([data-collapsed]) & {
         transform: rotate(180deg);
       }
     }
 
-    /* Mobile: hide icon */
-    @container nav (width < 768px) {
-      display: none;
-    }
   }
 
   /* Dropdown menu */
@@ -295,7 +318,7 @@ const isInPath = (href: string) => {
     padding: 0;
 
     /* Desktop: positioned dropdown */
-    @container nav (width >= 768px) {
+    .main-nav:not([data-collapsed]) & {
       position: absolute;
       top: 100%;
       left: 0;
@@ -325,14 +348,15 @@ const isInPath = (href: string) => {
       }
     }
 
-    /* Mobile: always visible, stacked */
-    @container nav (width < 768px) {
+    /* Collapsed: always visible, stacked and indented under the parent */
+    .main-nav[data-collapsed] & {
       position: static;
       transform: none;
       visibility: visible;
       opacity: 1;
       box-shadow: none;
       border: none;
+      padding-inline-start: var(--space-s);
     }
 
     a {
@@ -346,7 +370,7 @@ const isInPath = (href: string) => {
       white-space: nowrap;
 
       /* Desktop: dropdown styling */
-      @container nav (width >= 768px) {
+      .main-nav:not([data-collapsed]) & {
         border-bottom: 1px solid var(--gray-2);
 
         &:first-child {
@@ -374,19 +398,20 @@ const isInPath = (href: string) => {
         }
       }
 
-      /* Mobile: indented sub-links */
-      @container nav (width < 768px) {
-        border-bottom: 1px solid var(--gray-2);
-        padding: var(--space-s) var(--space-s) var(--space-s) var(--space-l);
+      /* Collapsed: same small caps as the top level */
+      .main-nav[data-collapsed] & {
+        padding: var(--space-2xs) 0;
+        font-size: var(--step--2);
+        letter-spacing: 1px;
         text-transform: uppercase;
 
         &:hover {
-          background: var(--gray-1);
+          text-decoration: underline;
+          text-underline-offset: var(--space-3xs);
         }
 
         &.active--exact {
-          background: var(--gray-2);
-          font-weight: 600;
+          font-weight: 700;
         }
       }
     }

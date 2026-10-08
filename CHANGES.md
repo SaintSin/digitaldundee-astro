@@ -22,6 +22,14 @@ All notable changes to the Digital Dundee Astro project.
 - **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
 - **Event cards** — Bottom padding after the date
 
+### Header and navigation
+
+#### Changed
+
+- **Full-width header** (`Header.astro`) — The header row is no longer capped at the 1170px container. Brand and nav share one row, with `--space-s-l` side padding; brand is `--step-2` (was `--step-1`) and nav links `--step--2` (they were `calc(var(--step--2) * 0.75)`, about 9.6px)
+- **Content-measured hamburger** (`HeaderNav.astro`) — The nav collapses when its links, laid out on one line, don't fit beside the brand, instead of at a fixed 768px container query. A small inline script (so there is no flash of the full row on narrow screens) measures the links and sets `data-collapsed` on `.main-nav`; it re-measures on resize and when web fonts load. All `@container nav` blocks became `.main-nav[data-collapsed]` selectors, and the nav's size containment was removed. With the current menu this collapses below about 1436px; shrink the links (padding, letter-spacing, font size) to move it
+- **Hamburger panel** — Restyled to match the original: a light panel under the header (the brand stays visible) instead of a full-screen white overlay; small tracked uppercase links with no borders or fills, a chevron on dropdown parents, child links indented and always visible, active page underlined; the panel scrolls if taller than the screen
+
 ### Content: missing images and sanitising
 
 #### Fixed

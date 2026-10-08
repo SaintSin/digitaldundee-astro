@@ -33,7 +33,7 @@ import Nav from '@components/page/HeaderNav.astro';
   .brand {
     display: inline-block;
     color: rgb(35, 35, 35);
-    font-size: var(--step-1);
+    font-size: var(--step-2);
     font-family: var(--font-opensans);
     text-decoration: none;
     strong {
@@ -46,7 +46,16 @@ import Nav from '@components/page/HeaderNav.astro';
       font-weight: 400;
     }
   }
+  /* Full-width bar like the original: brand and nav share a row and wrap
+     (nav under brand) when there isn't room, instead of a capped container */
   .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--space-m);
+    margin-inline: 0;
+    padding-inline: var(--space-s-l);
+    max-width: none;
     width: 100%;
   }
 </style>
