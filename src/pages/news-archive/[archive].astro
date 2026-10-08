@@ -74,6 +74,7 @@ const meta = {
 
     {
       sortedArticles.length > 0 ? (
+        <h2 class="visually-hidden">News from {archiveLabel}</h2>
         <section class="grid" data-layout="thirds">
           {sortedArticles.map((item) => (
             <NewsCard

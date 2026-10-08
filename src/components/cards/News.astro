@@ -23,6 +23,6 @@ const { title, excerpt, pubDate, imageSrc, imageAlt, href } = Astro.props;
     <time datetime={pubDate.toISOString()}>
       {pubDate.toLocaleDateString('en-GB')}
     </time>
-    <p>{excerpt}</p>
+    {excerpt && <p>{excerpt}</p>}
   </a>
 </article>

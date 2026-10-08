@@ -29,6 +29,26 @@ All notable changes to the Digital Dundee Astro project.
 
 - **Backtick used as an opening quote** — Three news articles (`dundee-computing-student-turns-teacher`, `dundee-researcher...images-impact`, `it's-not-one-thing...aphasia`) had a backtick before quoted titles such as `Computer Science for Everyone', which markdown treats as the start of inline code and broke the formatting. All 20 are now curly opening quotes (`‘`), including one in a title and image alt text
 
+### Content: rendering clean-up across all pages
+
+A scan of all 706 rendered pages found the problems below; each is fixed.
+
+#### Fixed
+
+- **Leaked bold markers** — `**` showed literally on 24 pages because of a space just inside a marker (`**Essential note: **`) or a marker glued to a word. Spacing around the markers was normalised in 22 content files, and one line (Abertay cyberQuarter, "Councillor Mark Flynn says") was corrected by hand. The `**` on the tourism-surge article is an intentional footnote marker and was left
+- **Heading structure** — 109 listing pages jumped from the hero `h1` straight to card titles (`h3`). The listing templates now have a visually hidden `h2` ("Events, page 2", "News from May 2014", ...), and the duplicate in-body `<h1>` on Meet The Companies and Success Stories became an `h2`. In 22 content files, headings are now never more than one level below the previous one, starting from `h2`, and bold inside headings was removed
+- **Empty elements** — `<p>&nbsp;</p>` on Collaborate; an empty link on Enjoy Dundee (the Visit Dundee image now links to dundee.com, with alt "Visit Dundee"); an empty image link in the InGAME article; zero-width-character paragraphs in the Digital Energy Summit event; empty list items (`- -`) in the Japan student article; and empty card excerpts rendering `<p></p>`
+- **Stray "Image" labels** — 8 on the 5G Guide and Tay5G News pages (from the page generator)
+- **Backticks** — the two on Talent & Skills (`world-leading’`) are now curly quotes
+- **Absolute links to the old domain** — 16 links to `digitaldundee.com/...` are now relative; two used old paths (`/success-story/...`, `/event/...`) and were mapped to their pages here
+- **Image alt text** — 22 content files had a filename (`Perth Tech Mornings.jpg`) or "Success story image" as alt text; it is now the item's title. Two inline images got real alt text (John Thornewill, Waracle)
+
+### Content: merged paragraphs
+
+#### Fixed
+
+- **Paragraphs rendered as one block** — The migration wrote one paragraph per line with no blank line between, which markdown joins into a single paragraph (the "Dundee - computing student turns teacher" article was one block). Blank lines were added to 23 articles and checked against the live pages: every live paragraph now appears as its own paragraph here, and one deliberate line-break block (`realising-creative-concept`) is kept as a single paragraph with hard breaks. Left for review: the Phase 25 conference schedule (24 slot lines) and one event made of short schedule lines (`create-converges-animation-day`)
+
 ### Social sharing card
 
 #### Fixed

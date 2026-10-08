@@ -66,6 +66,7 @@ const meta = {
     {
       page.data.length > 0 ? (
         <>
+          <h2 class="visually-hidden">Resources, page {page.currentPage}</h2>
           <section class="grid" data-layout="thirds">
             {page.data.map((resource) => (
               <ResourceCard
