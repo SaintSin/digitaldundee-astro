@@ -47,7 +47,8 @@
       display: grid;
       align-content: start;
     }
-    .full-width-split-screen:not(.overlay) > :not(img):not(picture):first-child {
+    .full-width-split-screen:not(.overlay)
+      > :not(img):not(picture):first-child {
       grid-column: 2 / 3;
     }
     .full-width-split-screen:not(.overlay) > :not(img):not(picture):last-child {
@@ -59,10 +60,12 @@
       background: inherit;
       content: ' ';
     }
-    .full-width-split-screen:not(.overlay) > :not(img):not(picture):first-child::before {
+    .full-width-split-screen:not(.overlay)
+      > :not(img):not(picture):first-child::before {
       grid-column: 1 / 2;
     }
-    .full-width-split-screen:not(.overlay) > :not(img):not(picture):last-child::before {
+    .full-width-split-screen:not(.overlay)
+      > :not(img):not(picture):last-child::before {
       grid-column: 4 / 5;
     }
   }
