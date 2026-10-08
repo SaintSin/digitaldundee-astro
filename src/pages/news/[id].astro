@@ -47,10 +47,9 @@ const meta = {
 <Layout metaData={meta}>
   <Hero title={article.data.title} image={header} alt="News page header" />
 
-  <Breadcrumbs />
-
-  <h2>{article.data.title}</h2>
   <div class="wrapper flow">
+    <Breadcrumbs />
+    <h2>{article.data.title}</h2>
     <Content />
   </div>
 </Layout>

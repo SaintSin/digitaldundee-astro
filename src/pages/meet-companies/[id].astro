@@ -34,8 +34,8 @@ const meta = {
         'meet-companies': 'Meet The Companies',
       }}
     />
-    <article>
-      <header>
+    <article class="flow">
+      <header class="flow">
         {
           logo && (
             logo.src.format === 'svg' ? (
@@ -94,3 +94,11 @@ const meta = {
     </article>
   </div>
 </Layout>
+
+<style>
+  /* Inline links ignore the flow's margin-block-start */
+  header > a {
+    display: block;
+    width: fit-content;
+  }
+</style>

@@ -22,6 +22,15 @@ All notable changes to the Digital Dundee Astro project.
 - **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
 - **Event cards** — Bottom padding after the date
 
+### Spacing: detail and listing pages
+
+#### Fixed
+
+- **Body line-height** (`style.css`) — An unlayered `body { line-height: 150% }` overrode the 1.625 set in `_layout.css`, so every page except the home page (which set its own) was 24px instead of 26px. Now 1.625 in one place; the home page's own `p` line-height is removed
+- **Event, resource and company detail pages** — `article` and `header` are now `.flow`, so images, paragraphs, headings and lists get the 26px rhythm instead of being stacked with no gaps. Date, location and website link on events stay together at `--space-3xs`; inline links use `display: block; width: fit-content` so the flow margin applies
+- **News article page** — Breadcrumb and title `h2` moved inside `.wrapper.flow` (they sat outside the page wrapper)
+- **Events index** — Forthcoming/Previous sections are `.flow`, so the heading no longer touches its card grid
+
 ### Footer and signup form
 
 #### Changed

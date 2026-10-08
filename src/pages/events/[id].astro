@@ -79,8 +79,8 @@ const { Content } = await render(event);
   <div class="wrapper flow">
     <Breadcrumbs />
 
-    <article>
-      <header>
+    <article class="flow">
+      <header class="flow">
         {
           imagePrimary && (
             <Picture src={imagePrimary.src} alt={imagePrimary.alt} formats={['avif', 'webp']} />
@@ -108,3 +108,18 @@ const { Content } = await render(event);
     </article>
   </div>
 </Layout>
+
+<style>
+  /* Inline elements ignore the flow's margin-block-start */
+  header > time {
+    display: block;
+  }
+  header > a {
+    display: block;
+    width: fit-content;
+  }
+  /* Date, location and website link read as one block */
+  header > :is(time + p, p + a, time + a) {
+    --flow-space: var(--space-3xs);
+  }
+</style>
