@@ -26,10 +26,10 @@ const upcomingEvents = events
 
 {
   upcomingEvents.length > 0 ? (
-    <section class="wrapper">
-      {showHeading && <h2>{heading}</h2>}
+    <>
+      {showHeading && <h2 class="wrapper">{heading}</h2>}
 
-      <div class="grid" data-layout="thirds">
+      <div class="wrapper grid" data-layout="thirds">
         {upcomingEvents.map((event) => (
           <EventCard
             title={event.data.title}
@@ -44,8 +44,8 @@ const upcomingEvents = events
           />
         ))}
       </div>
-    </section>
+    </>
   ) : (
-    <p>No upcoming events found.</p>
+    <p class="wrapper">No upcoming events found.</p>
   )
 }

@@ -6,6 +6,7 @@
   svg {
     aspect-ratio: 1.8;
     min-width: 100%;
+    object-fit: cover; /* crop to the ratio instead of stretching */
   }
   h3 {
     padding-inline: var(--padding);
@@ -19,14 +20,22 @@
   }
   p {
     display: -webkit-box;
-    padding-block-end: var(--padding);
+    /* margin, not padding: overflow:hidden clips at the padding edge, so
+       bottom padding let the start of a 4th line show */
+    margin-block-end: var(--padding);
     -webkit-line-clamp: 3; /* number of lines */
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-height: 1.5;
   }
   time {
     font-style: italic;
+  }
+  /* Cards with no excerpt (events) end on the date, so give it bottom space */
+  time:last-child {
+    display: block;
+    padding-block-end: var(--padding);
   }
 }
 .card a {
@@ -35,10 +44,4 @@
 
 article.resources svg {
   display: block;
-}
-.news img {
-  aspect-ratio: 1.5;
-}
-.event img {
-  aspect-ratio: 1.79;
 }

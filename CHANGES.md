@@ -4,6 +4,28 @@ All notable changes to the Digital Dundee Astro project.
 
 ## 2026-10-08 (latest)
 
+### Spacing: home page aligned with the original site
+
+#### Changed
+
+- **Flow composition** (`compositions/flow.css`) — Rewritten around `--flow-space` as in [My favourite 3 lines of CSS](https://bell.bz/my-favourite-3-lines-of-css/): each `.flow` defaults to one line of text (26px), and an element following a heading stays close to it. The gap above any single element is overridden on that element, with no extra wrappers. This also changes paragraph spacing on the pages that already use `.wrapper flow` (about 19px to 26px)
+- **Home page** (`index.astro`) — One `.home.flow` container with flat children: 48px between sections, 32px between the intro rows and the button, 26px after headings. `RecentNews` and `UpcomingEvents` now output their heading and grid as siblings instead of a nested section; the "Get In Touch" wrapper div is gone
+- **Base text** — 16px / 1.625 line height (was 17.6px / 1.5), matching the original
+- **Container** — `--wrapper-max-width: 1170px` with a 15px gutter; grid gutter 30px (`--space-m`)
+- **Page bottom** — `.content` has 48px bottom padding on every page, replacing the footer's top margin
+- **Promo panels** — Vertical padding `--space-2xl`; white text now has a dark-grey text shadow
+
+#### Fixed
+
+- **Hero horizontal scroll** — The background video was positioned against the page, not its container, which added 80px of horizontal overflow; the container is now `position: relative`
+- **Card excerpts** — The 3-line clamp had bottom padding, so the start of a 4th line showed; it is now margin
+- **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
+- **Event cards** — Bottom padding after the date
+
+---
+
+## 2026-10-08
+
 ### Astro 7.3.7
 
 #### Changed

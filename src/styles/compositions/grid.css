@@ -18,7 +18,7 @@ to change how empty grid tracks are handled */
   display: grid;
   grid-template-columns: 1fr;
   justify-items: start;
-  gap: var(--gutter, var(--space-s-l));
+  gap: var(--gutter, var(--space-m));
   container-type: inline-size;
 }
 

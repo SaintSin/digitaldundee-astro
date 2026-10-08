@@ -26,8 +26,9 @@ const meta = {
 
 <Layout metaData={meta}>
   <VideoBack />
+  <div class="home flow">
   <h2
-    class="align-center"
+    class="wrapper align-center"
     data-animate="slide"
     data-animate-direction="up"
     data-animate-intensity="subtle"
@@ -35,7 +36,7 @@ const meta = {
     Welcome to Digital Dundee and Tay Tech
   </h2>
   <h3
-    class="align-center"
+    class="wrapper align-center"
     data-animate="slide"
     data-animate-direction="up"
     data-animate-intensity="subtle"
@@ -84,7 +85,7 @@ const meta = {
       data-animate="slide"
       data-animate-direction="right"
       data-animate-intensity="subtle"
-      class="pad-top-0"
+      class=""
     >
       <p>
         Landmarks like Grand Theft Auto, thin flat screens for phones and
@@ -105,7 +106,7 @@ const meta = {
       data-animate="slide"
       data-animate-direction="left"
       data-animate-intensity="subtle"
-      class="pad-top-0 flow"
+      class="flow"
     >
       <p>
         The Tay Cities Region offers excellent connectivity. Digital
@@ -123,14 +124,14 @@ const meta = {
       </p>
     </div>
   </section>
-  <div
+  <a
+    href="contact-us"
+    class="btn pill centered"
     data-animate="slide"
     data-animate-direction="up"
-    data-animate-intensity="subtle"
-    class="pad-bottom-m margin-bottom-m"
+    data-animate-intensity="subtle">Get In Touch</a
   >
-    <a href="contact-us" class="btn pill centered">Get In Touch</a>
-  </div>
+
 
   <section class="full-width-split-screen overlay">
     <Picture
@@ -141,7 +142,7 @@ const meta = {
       width={1200}
       formats={['avif', 'webp']}
     />
-    <div data-animate="fade" data-animate-delay={300} class="">
+    <div data-animate="fade" data-animate-delay={300} class="flow">
       <h2>OPENING DOORS FOR DIGITAL DO-ERS</h2>
       <p>
         Digital Dundee is a portal for people and businesses in digital,
@@ -160,7 +161,7 @@ const meta = {
       layout="full-width"
       formats={['avif', 'webp']}
     />
-    <div class="secondary">
+    <div class="secondary flow">
       <h2>MAKING THINGS HAPPEN FOR DIGITAL USERS</h2>
       <p>
         The Tay Cities Region offers a unique and warm welcome with fast and
@@ -176,6 +177,7 @@ const meta = {
   </section>
   <RecentNews count={6} heading="Latest News" />
   <UpcomingEvents count={6} heading="Upcoming Events" />
+  </div>
 </Layout>
 <style>
   p {
@@ -186,6 +188,7 @@ const meta = {
     p,
     h2 {
       color: white;
+      text-shadow: 2px 2px 4px var(--gray-9);
     }
     p {
       font-weight: 700;
@@ -195,17 +198,22 @@ const meta = {
       font-size: var(--step-2);
     }
   }
-  .pad-top-0 {
-    padding-block-start: 0;
+  .home {
+    --flow-space: var(--size-fluid-4); /* gap between page sections */
+    padding-block-start: var(--size-fluid-4);
   }
-  .pad-top-m {
-    padding-block-start: var(--size-m);
+  /* Tighter gaps inside the intro: rows, then the button */
+  .home > .full-width-split-screen + .full-width-split-screen,
+  .home > .btn {
+    --flow-space: var(--size-fluid-3);
   }
-  .pad-bottom-m {
-    padding-bottom: var(--size-m);
+  /* Rows are spaced by flow, so drop the split-screen's own block padding */
+  .full-width-split-screen:not(.overlay) > div {
+    padding-block: 0;
   }
-  .margin-bottom-m {
-    margin-bottom: var(--size-m);
+  /* Promo panels: breathing room above and below the text */
+  .overlay > div {
+    padding-block: var(--space-2xl);
   }
 </style>
 <script src="@scripts/image-sizes.ts"></script>

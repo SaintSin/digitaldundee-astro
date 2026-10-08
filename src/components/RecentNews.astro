@@ -18,10 +18,10 @@ const recentNews = sortedNews.slice(0, count);
 
 {
   recentNews.length > 0 ? (
-    <section class="wrapper">
-      {showHeading && <h2>{heading}</h2>}
+    <>
+      {showHeading && <h2 class="wrapper">{heading}</h2>}
 
-      <div class="grid" data-layout="thirds">
+      <div class="wrapper grid" data-layout="thirds">
         {recentNews.map((item) => (
           <NewsCard
             title={item.data.title}
@@ -33,8 +33,8 @@ const recentNews = sortedNews.slice(0, count);
           />
         ))}
       </div>
-    </section>
+    </>
   ) : (
-    <p>No news articles found.</p>
+    <p class="wrapper">No news articles found.</p>
   )
 }

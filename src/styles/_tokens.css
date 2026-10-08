@@ -3,8 +3,6 @@
   --max-content-width: 80rem;
   --gap: var(--space-s);
 
-  --flow-space: var(--space-s);
-
   /* Font families */
   --font-opensans: 'Open Sans Variable', system-ui, sans-serif;
   --font-montserrat: 'Montserrat Variable', system-ui, sans-serif;

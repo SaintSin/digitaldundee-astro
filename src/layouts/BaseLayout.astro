@@ -31,10 +31,14 @@ const { metaData } = Astro.props;
 </html>
 <style>
   :root {
-    --wrapper-padding-inline: var(--size-fluid-4);
-    --wrapper-max-width: 120ch;
+    --wrapper-padding-inline: var(--space-xs);
+    --wrapper-max-width: 1170px;
     --section-padding-block: var(--size-fluid-4);
     --paragraph-max-width: 55ch;
+  }
+  /* Space between page content and the footer, on every page */
+  .content {
+    padding-block-end: var(--size-fluid-4);
   }
   body {
     font-family: var(--font-opensans);

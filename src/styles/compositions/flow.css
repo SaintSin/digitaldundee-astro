@@ -1,8 +1,19 @@
-/* 
-FLOW COMPOSITION 
-Like the Every Layout stack: https://every-layout.dev/layouts/stack/
-Info about this implementation: https://piccalil.li/quick-tip/flow-utility/ 
+/*
+FLOW COMPOSITION
+https://bell.bz/my-favourite-3-lines-of-css/
+
+Spacing comes from --flow-space, which is read by each child, so it can be
+overridden on any single element (or any context) without extra wrappers.
+Each .flow resets its own value to one line of text (26px) so nested flows
+don't inherit an outer container's larger gap.
 */
+.flow {
+  --flow-space: 1.625rem;
+}
 .flow > * + * {
   margin-block-start: var(--flow-space, 1em);
+}
+/* Whatever follows a heading stays close to it */
+.flow > :is(h1, h2, h3, h4) + * {
+  --flow-space: 1.625rem;
 }
