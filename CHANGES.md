@@ -40,6 +40,7 @@ All notable changes to the Digital Dundee Astro project.
 
 - **Wrong page text** — Talent & Skills, Invest In Dundee and Locate Dundee held the Enjoy Dundee text, Connected Dundee held pasted Collaborate text, and the Tay5G landing page was a placeholder; all replaced with the live text
 - **Broken images and links** — Connected Dundee and Enjoy Dundee images pointed at old Drupal paths; the home page "Get In Touch" linked to a 404 (`contact-us`)
+- **Email typo** — `tay5g@dundeecity.gv.uk` on Tay5G Challenge Fund 2 is now `tay5g@dundeecity.gov.uk` (logged in `ISSUES.md`)
 
 ### Header and navigation
 
