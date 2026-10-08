@@ -22,6 +22,19 @@ All notable changes to the Digital Dundee Astro project.
 - **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
 - **Event cards** — Bottom padding after the date
 
+### Footer and signup form
+
+#### Changed
+
+- **Footer** (`Footer.astro`, `NewsArchive.astro`, `FormFooter.astro`) — Two columns that wrap without a media query (`auto-fit`), built from flat flow children instead of wrapper divs. 48px before "Connect With Us"; headings sit 15px from their content via a new `--flow-heading-space` hook in `flow.css`; all footer `h2`s share one size and weight
+- **Signup form** — Pill-shaped inputs and button, placeholders ("Email Address", "First Name", "Last Name") at body paragraph size, visible labels dropped in favour of `aria-label`. A placeholder can't be partly coloured, so required, empty fields draw an orange asterisk at the right edge as a background image; placeholder colour is `--gray-7` (above 4.5:1). Still a demo: it is not wired to a mailing list
+
+### News
+
+#### Added
+
+- **News item** — "Tay Cities Region Innovation Opportunities - Cross Sector" (`news/tay-cities-region-innovation-opportunities-cross-sector.mdx`), dated 21 May 2026 from the live news listing, with its banner image
+
 ---
 
 ## 2026-10-08

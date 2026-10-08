@@ -2,83 +2,77 @@
 import '@styles/blocks/form.css';
 ---
 
-<div class="form-footer">
+<section class="flow">
   <h2>Digital Dundee Signup</h2>
   <p class="indicates-required"><span class="asterisk" aria-hidden="true">*</span> indicates required</p>
-  <form action="#" method="post" novalidate>
-    <label for="mce-EMAIL">Email Address <span class="asterisk" aria-hidden="true">*</span></label>
+  <form action="#" method="post" novalidate class="flow">
     <input
       type="email"
       id="mce-EMAIL"
       name="EMAIL"
+      aria-label="Email Address"
+      placeholder="Email Address"
       required
       autocomplete="email"
     />
-
-    <label for="mce-FNAME">First Name</label>
     <input
       type="text"
       id="mce-FNAME"
       name="FNAME"
+      aria-label="First Name"
+      placeholder="First Name"
       autocomplete="given-name"
     />
-
-    <label for="mce-LNAME">Last Name</label>
     <input
       type="text"
       id="mce-LNAME"
       name="LNAME"
+      aria-label="Last Name"
+      placeholder="Last Name"
       autocomplete="family-name"
     />
 
     <button type="submit">Subscribe</button>
   </form>
-</div>
+</section>
 
 <style>
-  .form-footer {
-    /* no extra padding — footer__columns gap handles spacing */
-  }
-
-  h2 {
-    font-size: var(--step-1);
-    margin-block-end: var(--space-3xs);
-    color: var(--gray-1);
-  }
-
   .indicates-required {
-    font-size: var(--step--2);
     color: var(--gray-5);
-    margin-block-end: var(--space-s);
+    font-size: var(--step--2);
   }
 
   .asterisk {
     color: var(--color-warning);
   }
 
+  /* Fields are flow items: one gap between each */
   form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  form label {
-    display: block;
-    color: var(--gray-3);
-    font-size: var(--step--1);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-block-start: var(--space-2xs);
-    margin-block-end: var(--space-3xs);
+    --flow-space: var(--space-xs);
   }
 
   form input {
     display: block;
-    width: 100%;
+    border: 1px solid var(--gray-5);
+    border-radius: 50vh;
     background: var(--gray-1);
-    border: 1px solid var(--gray-4);
+    padding: var(--space-2xs) var(--space-s);
+    width: 100%;
     color: var(--gray-9);
-    padding: var(--space-3xs) var(--space-2xs);
-    font-size: var(--step-0);
+    font-size: var(--step--1); /* same as body paragraphs */
+
+    /* A placeholder can't be partly coloured, so required fields draw an orange
+       asterisk at the right edge while empty (#cc6600 = --color-warning's
+       original value; custom properties don't work inside a data URI) */
+    &:required:placeholder-shown {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 1v10M1.5 3.5l9 5M1.5 8.5l9-5' stroke='%23cc6600' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-position: right var(--space-s) center;
+      background-repeat: no-repeat;
+    }
+
+    &::placeholder {
+      color: var(--gray-7); /* 4.5:1+ on the light input */
+    }
 
     &:focus {
       outline: 2px solid var(--gray-5);
@@ -88,17 +82,17 @@ import '@styles/blocks/form.css';
   }
 
   form button[type='submit'] {
-    align-self: flex-start;
-    margin-block-start: var(--space-s);
-    padding: var(--space-2xs) var(--space-m);
-    background: var(--color-action, #0066cc);
-    border: none;
-    color: white;
+    --flow-space: var(--space-s);
+    transition: background 0.2s ease;
     cursor: pointer;
-    text-transform: uppercase;
+    border: none;
+    border-radius: 50vh;
+    background: var(--color-action, #0066cc);
+    padding: var(--space-2xs) var(--space-m);
+    color: white;
     letter-spacing: 0.08em;
     font-size: var(--step--1);
-    transition: background 0.2s ease;
+    text-transform: uppercase;
 
     &:hover {
       background: var(--color-action-dark, #004499);

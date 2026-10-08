@@ -15,54 +15,48 @@ const archiveEntries = getArchiveEntries(news);
 const displayEntries = archiveEntries.slice(0, limit);
 ---
 
-<div class="news-archive">
-  {showHeading && <h2>{heading}</h2>}
+{showHeading && <h2>{heading}</h2>}
 
-  <div class="archive-list">
-    {
-      displayEntries.map((entry) => (
-        <span class="archive-item pill">
-          <a href={`/news-archive/${entry.yearMonth}`}>{entry.label}</a>
-          <span class="count">({entry.count})</span>
-        </span>
-      ))
-    }
-  </div>
-
+<div class="archive-list">
   {
-    archiveEntries.length > limit && (
-      <div class="archive-footer">
-        <a class="btn pill " href="/news-archive">
-          View More
-        </a>
-      </div>
-    )
+    displayEntries.map((entry) => (
+      <span class="archive-item pill">
+        <a href={`/news-archive/${entry.yearMonth}`}>{entry.label}</a>
+        <span class="count">({entry.count})</span>
+      </span>
+    ))
   }
 </div>
 
+{
+  archiveEntries.length > limit && (
+    <a class="btn pill" href="/news-archive">
+      View More News Archives
+    </a>
+  )
+}
+
 <style>
-  .news-archive {
-    padding: var(--space-m);
-  }
-
-  h2 {
-    margin-block-end: var(--space-s);
-  }
-
   .archive-list {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2xs);
   }
 
+  .archive-list + .btn {
+    --flow-space: var(--space-xs);
+  }
+
   .archive-item {
     display: inline-flex;
     align-items: center;
     gap: var(--space-3xs);
-    padding-block: var(--space-3xs);
-    transition: background 0.2s ease, color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
     outline: 1px solid var(--gray-6);
     background: transparent;
+    padding-block: var(--space-3xs);
     color: var(--gray-2);
 
     &:hover {
@@ -73,17 +67,12 @@ const displayEntries = archiveEntries.slice(0, limit);
   }
 
   .archive-item a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
   }
 
   .count {
     color: var(--gray-5);
     font-size: var(--step--2);
   }
-
-  .archive-footer {
-    margin-block-start: var(--space-s);
-  }
-
 </style>

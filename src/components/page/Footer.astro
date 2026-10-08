@@ -9,17 +9,13 @@ const year = new Date().getUTCFullYear();
 ---
 
 <footer class="footer">
-  <div class="wrapper footer__columns">
-    <div class="footer__left">
-      <FormFooter />
-    </div>
-    <div class="footer__right">
+  <div class="wrapper columns">
+    <FormFooter />
+    <section class="flow">
       <NewsArchive limit={8} />
-      <div class="footer__social">
-        <h2>Connect With Us</h2>
-        <SocialLinks />
-      </div>
-    </div>
+      <h2 class="connect">Connect With Us</h2>
+      <SocialLinks />
+    </section>
   </div>
   <div class="wrapper copyright">
     <p>&copy; &nbsp;{year} {siteMetadata.name} - All Rights Reserved</p>
@@ -31,32 +27,29 @@ const year = new Date().getUTCFullYear();
 </footer>
 <style>
   .footer {
+    --flow-heading-space: var(--space-xs); /* headings sit close to their content */
     margin-block-start: 0;
     background: var(--color-dark);
     color: var(--gray-1);
   }
 
-  .footer__columns {
+  .columns {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-l);
-    padding-block: var(--space-l);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--space-m);
+    padding-block: var(--space-2xl);
   }
 
-  @media (max-width: 600px) {
-    .footer__columns {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .footer__social {
-    padding-block-start: var(--space-m);
-  }
-
-  .footer__social h2 {
-    font-size: var(--step-1);
-    margin-block-end: var(--space-s);
+  /* One heading style for every footer block (the blocks live in child components) */
+  .footer :global(h2) {
     color: var(--gray-1);
+    font-weight: 600;
+    font-size: var(--step-1);
+  }
+
+  /* Gap between the news archive block and "Connect With Us" */
+  .connect {
+    --flow-space: var(--size-fluid-4);
   }
 
   .copyright {

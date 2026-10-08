@@ -15,5 +15,5 @@ don't inherit an outer container's larger gap.
 }
 /* Whatever follows a heading stays close to it */
 .flow > :is(h1, h2, h3, h4) + * {
-  --flow-space: 1.625rem;
+  --flow-space: var(--flow-heading-space, 1.625rem);
 }
