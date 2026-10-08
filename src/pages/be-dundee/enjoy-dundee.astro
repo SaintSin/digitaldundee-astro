@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+import pageImg1 from '@images/pages/visit_dundee_0.png';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import Hero from '@components/Hero.astro';
 import header from '@images/header/enjoy.jpg';
@@ -41,11 +43,6 @@ const meta = {
     <p>
       <a href="https://www.dundee.com"><br /> </a>
     </p>
-    <img
-      loading="lazy"
-      src="/sites/default/files/styles/large/public/visit_dundee_0.png?itok=yeT1Ki8-"
-      width="367"
-      height="358"
-    />
+    <Picture src={pageImg1} alt="" formats={['avif', 'webp']} />
   </div>
 </Layout>

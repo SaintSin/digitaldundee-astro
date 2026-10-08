@@ -22,6 +22,25 @@ All notable changes to the Digital Dundee Astro project.
 - **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
 - **Event cards** — Bottom padding after the date
 
+### Content replicated from the live site, menu and contact
+
+#### Added
+
+- **Pages** — 5G Guide, Why do 5G Trials?, Tay5G Challenge Fund, Challenge Fund 2 and Tay5G News under `/tay5g/`, rebuilt from the live pages in our own layout (their 5G styling is not copied); images saved locally and the "5G Effect" PDF hosted at `/documents/`. Also one event (Techscaler x ScotlandIS webinar) and one success story (life sciences awards) that were missing
+- **`ISSUES.md`** — A record of problems found on the live site and of every content correction made, so changes against the live copy are tracked
+
+#### Changed
+
+- **Menu** (`siteMetadata.ts`, `HeaderNav.astro`) — Labels now match the live site ("Locate", "Innovate", "Enjoy Dundee", "Get Services", "Talent & Skills", ...), with a third level under "5G Guide" (rendered as indented links in the same dropdown and in the hamburger panel)
+- **URLs** — `/be-dundee/get-service` is `/be-dundee/get-services`; redirects (in `astro.config.mjs`) for `/be-dundee/get-service`, `/innovate/about-tay5g`, `/innovate/tay5g-news`, `/contact-us` and `/privacy`
+- **Contact page** — Restyled form (pill inputs, footer button style); the phone number's stray `0` is fixed; plain-text emails and phone numbers across pages are now `mailto:` and `tel:` links
+- **Privacy policy** — The drafted text is replaced with the live Digital Dundee privacy statement (version 12 May 2021)
+
+#### Fixed
+
+- **Wrong page text** — Talent & Skills, Invest In Dundee and Locate Dundee held the Enjoy Dundee text, Connected Dundee held pasted Collaborate text, and the Tay5G landing page was a placeholder; all replaced with the live text
+- **Broken images and links** — Connected Dundee and Enjoy Dundee images pointed at old Drupal paths; the home page "Get In Touch" linked to a 404 (`contact-us`)
+
 ### Header and navigation
 
 #### Changed

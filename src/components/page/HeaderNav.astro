@@ -52,20 +52,29 @@ const isInPath = (href: string) => {
                 <Icon name="mdi:chevron-down" class="dropdown-icon" />
               </a>
               <div class="dropdown-menu">
-                {link.children.map((child) => (
-                  <a
-                    href={child.href}
-                    class:list={[
-                      { 'active--exact': pathname === child.href },
-                      {
-                        'active--path':
-                          isInPath(child.href) && pathname !== child.href,
-                      },
-                    ]}
-                  >
-                    {child.label}
-                  </a>
-                ))}
+                {link.children.flatMap((child) =>
+                  [
+                    { item: child, sub: false },
+                    ...(child.children ?? []).map((item) => ({
+                      item,
+                      sub: true,
+                    })),
+                  ].map(({ item, sub }) => (
+                    <a
+                      href={item.href}
+                      class:list={[
+                        { sub },
+                        { 'active--exact': pathname === item.href },
+                        {
+                          'active--path':
+                            isInPath(item.href) && pathname !== item.href,
+                        },
+                      ]}
+                    >
+                      {item.label}
+                    </a>
+                  )),
+                )}
               </div>
             </div>
           );
@@ -357,6 +366,14 @@ const isInPath = (href: string) => {
       box-shadow: none;
       border: none;
       padding-inline-start: var(--space-s);
+    }
+
+    a.sub {
+      padding-inline-start: var(--space-l);
+
+      .main-nav[data-collapsed] & {
+        padding-inline-start: var(--space-s);
+      }
     }
 
     a {

@@ -12,6 +12,15 @@ import robotsTxt from 'astro-robots-txt';
 // https://astro.build/config
 export default defineConfig({
   prefetch: true,
+
+  // Live-site URLs that moved or were renamed here
+  redirects: {
+    '/innovate/about-tay5g': '/tay5g/about-tay5g',
+    '/innovate/tay5g-news': '/tay5g/tay5g-news',
+    '/be-dundee/get-service': '/be-dundee/get-services',
+    '/contact-us': '/contact',
+    '/privacy': '/privacy-policy',
+  },
   experimental: {
     svgOptimizer: svgoOptimizer(),
   },

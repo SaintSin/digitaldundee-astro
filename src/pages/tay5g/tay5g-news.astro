@@ -1,0 +1,93 @@
+---
+import { Picture } from 'astro:assets';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/tay5g.png';
+import img1 from '@images/pages/QTV.png';
+import img2 from '@images/pages/Hidden-Floors.png';
+import img3 from '@images/pages/Abertay-lab-1a.jpg';
+import img4 from '@images/pages/SEL4-2021-(2).jpg';
+import img5 from '@images/pages/600k-Tay5G-CF2-Social.png';
+import img6 from '@images/pages/450k-Tay5G-Social-1.png';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title: 'Tay5G News | Digital Dundee',
+  description: 'See more news.',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Tay5G News',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero title="Tay5G News" image={header} alt="Tay5G News page header" />
+  <div class="wrapper flow">
+    <Breadcrumbs customLabels={{"tay5g": "Tay5G", "tay5g-news": "Tay5G News"}} />
+    <p><a href="/news">See more news.</a></p>
+    <details>
+    <summary><strong>Neutral Wireless &amp; QTV - Successful Tay5G Broadcasting Trials</strong> <span>April 2024</span></summary>
+    <p>Tay5G Broadcast is led by Scottish multi-award winning 5G radio/telecommunications company, <a href="https://www.neutralwireless.com/" target="_blank" rel="noopener noreferrer">Neutral Wireless</a>, and is delivered alongside outside broadcast and remote production partner, <a href="https://qtv.media/" target="_blank" rel="noopener noreferrer">QTV</a> who also hold the contract with the Scottish Premiership to run centralised VAR (virtual assistant referee) systems.</p>
+    <p>Image</p>
+    <Picture src={img1} alt="Tay5G Broadcasting-Neutral Wireless-QTV" formats={['avif', 'webp']} />
+    <p><a href="/news/neutral-wireless-qtv-successful-tay5g-broadcasting-trials"><strong>Read the story.</strong></a></p>
+    </details>
+    <details>
+    <summary><strong>5G &amp; Fashion: Scottish Fashion Festival 2023 Opening Night Gala</strong> <span>21st November 2023</span></summary>
+    <p>As one of four winning projects of the Tay5G Challenge Fund, Scotland Re:Design’s project ‘Hidden Floors’, introduced Dundee-based fashion and textile businesses to the capabilities of 5G technology.</p>
+    <p>Image</p>
+    <Picture src={img2} alt="Scotland Re:Design Tay5G Fashion Hidden Floors" formats={['avif', 'webp']} />
+    <p><a href="As one of four winning projects of the Tay5G Challenge Fund, Scotland Re:Design’s project ‘Hidden Floors’, introduced Dundee-based fashion and textile businesses to the capabilities of 5G technology.">Get the full story.</a></p>
+    </details>
+    <details>
+    <summary><strong>5G Testing at James Hutton Institute. Perthshire, Scotland</strong></summary>
+    <p>November 2023<br />Interview with Andrew Christie, Agri-tech specialist.<br />Take a look</p>
+    </details>
+    <details>
+    <summary><strong>5G virtual production breakthrough for UK movie industry as real-time scenes shot 280 miles apart</strong></summary>
+    <p><strong>21st July 2023</strong></p>
+    <p>Image</p>
+    <Picture src={img3} alt="Virtual Production 5G" formats={['avif', 'webp']} />
+    <p><a href="/success-stories/5g-virtual-production-breakthrough-uk-movie-industry">Get the full story and see the video.</a></p>
+    </details>
+    <details>
+    <summary><strong>Game-Changing Esports Event to Spark Revolution of Sports Spectating In Scotland as Gifted Gamers Competed in Futuristic 5G Environment</strong></summary>
+    <p><strong>21st November 2021</strong></p>
+    <p>Image</p>
+    <Picture src={img4} alt="Scottish Esports League 4 2021" formats={['avif', 'webp']} />
+    <p><a href="/news/game-changing-esports-event-powered-5g">Read the full story.</a></p>
+    </details>
+    <details>
+    <summary><strong>Tay5G Challenge Fund 2 - up to £600,000 - Funding competition launched for innovative solutions using 5G</strong></summary>
+    <p>Image</p>
+    <Picture src={img5} alt="Tay5G Challenge Fund 2 graphic" formats={['avif', 'webp']} />
+    <p><a href="/tay5g/tay5g-challenge-fund-2">Find out more</a></p>
+    </details>
+    <details>
+    <summary><strong>Tay5G Challenge Fund Announces Winners for Promising Innovations in Scotland</strong></summary>
+    <p><strong>11th September 2023</strong><br /><strong>The winners of the challenge are Digiflec, Neutral Wireless working with QTV, James Hutton Ltd and Scotland Re:Design.</strong></p>
+    <p>Image</p>
+    <Picture src={img6} alt="Tay5G Challenge Fund 1" formats={['avif', 'webp']} />
+    <p><a href="/news/tay5g-challenge-fund-announces-winners-promising-innovations-scotland">Find out more.</a></p>
+    </details>
+  </div>
+</Layout>
+
+<style>
+  details {
+    border-block-end: 1px solid var(--gray-4);
+    padding-block: var(--space-xs);
+  }
+  summary {
+    cursor: pointer;
+  }
+  summary span {
+    display: block;
+    color: var(--color-text-subtle);
+    font-size: var(--step--1);
+  }
+  details[open] > summary {
+    margin-block-end: var(--space-s);
+  }
+</style>

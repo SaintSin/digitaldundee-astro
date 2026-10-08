@@ -1,56 +1,59 @@
 ---
+import { Picture } from 'astro:assets';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import Hero from '@components/Hero.astro';
-import header from '@images/header/about.jpg';
+import header from '@images/header/tay5g.png';
+import img1 from '@images/pages/Tay5G-Inclusive-Growth.png';
+import img2 from '@images/pages/tcd_logo_0.jpg';
+import img3 from '@images/pages/sg_logo_0.jpg';
+import img4 from '@images/pages/ukg_logo_0.png';
+import img5 from '@images/pages/Tay5G-Inclusive-Growth.png';
 import Layout from '@layouts/BaseLayout.astro';
 import { digitalDundeeOrganization } from '@utils/schema';
 
 const meta = {
-  title: 'About Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  title: 'About Tay5G | Digital Dundee',
   description:
-    'Learn about Digital Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+    'Delivery is now complete with business and university partners of the £2 million Tay5G programme of 12 projects of diverse innovative applications...',
   imageOG: 'generic-social-1200x630.png',
-  altOG: 'About Digital Dundee',
+  altOG: 'About Tay5G',
   schema: digitalDundeeOrganization,
 };
 ---
 
 <Layout metaData={meta}>
-  <Hero title="About" image={header} alt="About page header" />
+  <Hero title="About Tay5G" image={header} alt="About Tay5G page header" />
   <div class="wrapper flow">
-    <Breadcrumbs />
-
-    <h3>What is Tay5G</h3>
-    <p>
-      Tay5G is funding opportunities to try out diverse applications over 5G -
-      fifth generation mobile communications. 5G can be used for diverse sectors
-      from entertainment to manufacturing, healthcare to construction, fashion
-      to automated transport.
-    </p>
-    <p>
-      5G is especially great for enabling advanced communications like virtual
-      reality, automation and the Internet of Things that is a key tool for
-      Smart Cities, places, buildings and business, industrial and welfare
-      operations.
-    </p>
-    <p>
-      To find out more or get involved please contact the Tay5G team - email
-      <a href="mailto:tay5g@dundeecity.gov.uk">tay5g@dundeecity.gov.uk</a> or call
-      +44 (0)1382 432483.
-    </p>
-    <p>
-      For more information and support please take a look at the
-      <a href="https://scotland5gcentre.org/">Scotland 5G Centre</a>.
-    </p>
-    <p>
-      Projects awarded funding under the first Tay5G Challenge Fund have almost
-      completed.
-    </p>
-    <p>
-      We have now launched Tay5G Challenge Fund 2 -
-      <a href="https://www.digitaldundee.com/tay5g/tay5g-challenge-fund-2"
-        >find out more.&nbsp;&nbsp;&nbsp;</a
-      >
-    </p>
+    <Breadcrumbs customLabels={{"tay5g": "Tay5G", "about-tay5g": "About Tay5G"}} />
+    <h2>Tay Cities Deal Tay5G Programme</h2>
+    <p>Delivery is now complete with business and university partners of the £2 million Tay5G programme of 12 projects of diverse innovative applications supported by 5G mobile communications. 5G is relevant to virtually every sector from entertainment to manufacturing, healthcare to construction, fashion to automated transport. It is especially great for enabling advanced communications, tools and experiences like immersive (VR, AR and XR), virtual production, automation and the Internet of Things that is a key tool for Smart Cities, places, buildings and business, industrial and welfare operations.</p>
+    <p>To find out more please get in touch. Email <a href="mailto:tay5g@dundeecity.gov.uk">tay5g@dundeecity.gov.uk</a> or call <a href="tel:+441382432483">+44 (0)1382 432483</a>.</p>
+    <Picture src={img1} alt="Tay5G Inclusive Growth" formats={['avif', 'webp']} />
+    <h2>Tay Cities Region Deal</h2>
+    <p>The project is part of Tay Cities Region Deal that is a partnership of the Councils of Angus, Dundee, Fife and Perth &amp; Kinross. It is funded by the Scottish and UK Governments and supported projects for verticals that also reflect regional strengths and priorities.</p>
+    <p>The programme delivered on the concept that by encouraging and supporting engagement with 5G, it's easier to understand what it offers. In turn, this helps to generate demand. So that telecoms companies respond with faster commercial roll-out.</p>
+    <p>We worked with partners and stakeholders including the Scottish Futures Trust and regional Councils, Universities – Abertay, Dundee and St. Andrews and colleges – Dundee &amp; Angus, Fife and Perth UHI. We also worked closely with the <a href="https://scotland5gcentre.org/" target="_blank" rel="noopener noreferrer">Scotland 5G Centre</a> and <a href="https://www.folkconsulting.co.uk/" target="_blank" rel="noopener noreferrer">Folk Consulting</a>.</p>
+    <Picture src={img2} alt="Tay Cities Deal logo" formats={['avif', 'webp']} />
+    <Picture src={img3} alt="Scottish Government logo" formats={['avif', 'webp']} />
+    <Picture src={img4} alt="UK Government logo" formats={['avif', 'webp']} />
+    <h2>Outcomes &amp; Benefits Realisation</h2>
+    <p>The project has delivered outcomes including:</p>
+    <ul>
+    <li>Use of Tay Cities Deal investment to lever business relationships of great value to regional strategic aims, reputation and inward investment.</li>
+    <li>Working with key regional stakeholders to develop use case trials to deliver new products, processes or services, showcasing the benefits of 5G.</li>
+    <li>Early stimulation towards job creation of jobs attributable to 5G and the wider creative, digital, technology ecosystem exploiting 5G. (According to a Deloitte report, 5G will help to generate between 60,000 and 160,000 across Scotland).</li>
+    <li>Sustainable business growth through companies developing, testing and accelerating delivery of products, applications and innovation.</li>
+    <li>Growth of talent pool through attraction of skills and engagement with skills development to respond to the opportunities arising from 5G, 5G supply chain and 5G enabled sectors and evidence to support skills development facilities (such as at MSIP).</li>
+    </ul>
+    <h2>Inclusive Growth - The 5G Effect: Jobs, Skills, Business<br />Diverse &amp; Inclusive</h2>
+    <p>Inclusive Growth is a key focus across jobs, skills and business for individuals and SMEs. We welcome collaboration and discussion with a wide range of organisations across Scotland and the UK to raise awareness of opportunities and benefits for diverse client groups and networks.</p>
+    <p>Innovative applications are adding to the growing need for skills and services across telecoms, creative, digital and technology and diverse sectors like fashion, energy, entertainment, construction, connected communities, agriculture and healthcare. These also offer significant scope for public and private sectors to embrace diversity, inclusivity and equality.</p>
+    <p>5G connectivity and applications for many sectors need diverse skills and services to support service delivery, training, marketing, R&amp;D, manufacturing, media production and more.</p>
+    <p>The emergence of fifth-generation and now also sixth-generation mobile communications technology, is revolutionising industrial, public service and commercial landscapes, presenting signficant opportunities. As deployment progresses, the potential for a faster, high-capacity, and low-latency wireless connection opens the door to transformative applications for service delivery, marketing, training, manufacturing and media production.</p>
+    <p>This is generating growing need for skills and services across telecoms, creative, digital and technology and diverse sectors like fashion, energy, entertainment, construction, connected communities, agriculture and healthcare. These offer significant scope for public and private sectors to embrace diversity, inclusivity and equality.</p>
+    <p>We invite you to take a look at more about 5G and just some of the jobs, skills and business opportunities. Going forward we will highlight findings on approaches to development including collaboration by SMEs.</p>
+    <Picture src={img5} alt="Tay5G Inclusive Growth" formats={['avif', 'webp']} />
+    <p>Document</p>
+    <p><a href="/documents/The-5G-Effect-Jobs-Skills-Business-Diverse-and-Inclusive.pdf">The 5G Effect-Jobs Skills Business-Diverse and Inclusive_compressed.pdf</a>2.12 MB</p>
   </div>
 </Layout>

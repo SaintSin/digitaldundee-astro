@@ -1,30 +1,109 @@
 ---
-// components/ContactForm.astro
 import '@styles/blocks/form.css';
 ---
 
-<form action="#" method="post" novalidate>
-  <label for="name">Name <span aria-hidden="true">*</span></label>
-  <input
-    type="text"
-    id="name"
-    name="name"
-    required
-    autocomplete="name"
-  />
+<form action="#" method="post" novalidate class="flow">
+  <p class="indicates-required">
+    <span class="asterisk" aria-hidden="true">*</span> indicates required
+  </p>
 
-  <label for="email">Email Address <span aria-hidden="true">*</span></label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    required
-    autocomplete="email"
-  />
+  <div class="field flow">
+    <label for="name">Name <span aria-hidden="true">*</span></label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      autocomplete="name"
+    />
+  </div>
 
-  <label for="message">Message <span aria-hidden="true">*</span></label>
-  <textarea id="message" name="message" required rows="5">
-  </textarea>
+  <div class="field flow">
+    <label for="email">Email Address <span aria-hidden="true">*</span></label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+    />
+  </div>
 
-  <button type="submit">Submit</button>
+  <div class="field flow">
+    <label for="message">Message <span aria-hidden="true">*</span></label>
+    <textarea id="message" name="message" required rows="6"></textarea>
+  </div>
+
+  <button type="submit">Send message</button>
 </form>
+
+<style>
+  form {
+    max-width: 40rem;
+  }
+
+  .indicates-required {
+    color: var(--color-text-subtle);
+    font-size: var(--step--2);
+  }
+
+  /* Label sits just above its field */
+  .field {
+    --flow-space: var(--space-3xs);
+  }
+
+  label {
+    color: var(--color-text);
+    font-size: var(--step--1);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  label span,
+  .asterisk {
+    color: var(--color-warning);
+  }
+
+  input,
+  textarea {
+    display: block;
+    border: 1px solid var(--gray-5);
+    background: white;
+    padding: var(--space-2xs) var(--space-s);
+    width: 100%;
+    max-width: none;
+    color: var(--gray-9);
+    font-size: var(--step--1);
+
+    &:focus {
+      outline: 2px solid var(--gray-6);
+      outline-offset: 0;
+    }
+  }
+
+  input {
+    border-radius: 50vh;
+  }
+
+  textarea {
+    border-radius: var(--space-s);
+    resize: vertical;
+  }
+
+  button[type='submit'] {
+    transition: background 0.2s ease;
+    cursor: pointer;
+    border: none;
+    border-radius: 50vh;
+    background: var(--color-action);
+    padding: var(--space-2xs) var(--space-m);
+    color: white;
+    letter-spacing: 0.08em;
+    font-size: var(--step--1);
+    text-transform: uppercase;
+
+    &:hover {
+      background: var(--color-action-dark);
+    }
+  }
+</style>

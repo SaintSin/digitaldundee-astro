@@ -1,51 +1,41 @@
 ---
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import Hero from '@components/Hero.astro';
-import header from '@images/header/enjoy.jpg';
+import header from '@images/header/invest.jpg';
 import Layout from '@layouts/BaseLayout.astro';
 import { digitalDundeeOrganization } from '@utils/schema';
 
 const meta = {
-  title: 'Enjoy Dundee, Tay Tech and Tay5G | Digital Dundee',
+  title: 'Invest In Dundee | Digital Dundee',
   description:
-    'Enjoy  Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+    'Digital Dundee works closely with the Invest in Dundee team, both being part of Dundee City Council’s City Development Department. Together we promote the...',
   imageOG: 'generic-social-1200x630.png',
-  altOG: 'Enjoy Dundee',
+  altOG: 'Invest In Dundee',
   schema: digitalDundeeOrganization,
 };
 ---
 
 <Layout metaData={meta}>
-  <Hero title="Enjoy Dundee" image={header} alt="Collaborate page header" />
+  <Hero title="Invest In Dundee" image={header} alt="Invest In Dundee page header" />
   <div class="wrapper flow">
     <Breadcrumbs />
-    <h2>Enjoy Dundee</h2>
-    <h3>See Dundee Safely</h3>
-    <p>
-      Non-essential travel is still discouraged but staycations, at least, are
-      beginning to beckon.
-    </p>
-    <p>
-      So when you do find yourself in this coolest of cool small cities, rest
-      assured we will be making you feel right at home.
-    </p>
-    <p>
-      For lots more information on where to go, eat, stay and much more take a
-      look at all this great information.
-    </p>
-    <p>
-      And for travelling and being here safely please see our travel
-      information.
-    </p>
-    <p>We’re absolutely getting ready to say hello.</p>
-    <p>
-      <a href="https://www.dundee.com"><br /> </a>
-    </p>
-    <img
-      loading="lazy"
-      src="/sites/default/files/styles/large/public/visit_dundee_0.png?itok=yeT1Ki8-"
-      width="367"
-      height="358"
-    />
+    <h2>Invest In Dundee</h2>
+    <p>Digital Dundee works closely with the Invest in Dundee team, both being part of Dundee City Council’s City Development Department. Together we promote the city to secure new investment for the city:region and create and safeguard jobs.</p>
+    <p>Business development and global marketing of Dundee’s key sectors are accompanied by provision of an extensive package of free advice and support for potential investors and location consultants.</p>
+    <p>The team has helped many businesses to relocate to or grow in Dundee.</p>
+    <h3>HERE TO HELP</h3>
+    <p>Digital Dundee and Invest in Dundee offer a free and confidential service package customised to the needs of individual companies. They are a fast-track to information and support and save work, time and money.</p>
+    <p>Making sure you get straight to expertise and local intelligence and networks, we help make your plans a reality towards de-risking and achieving return on your investment.</p>
+    <p>We support businesses of all sizes taking a look at Dundee as a location or for collaboration with services including:</p>
+    <ul>
+    <li>Developing business and investment proposals</li>
+    <li>Sourcing space and property solutions</li>
+    <li>Skills. Talent and recruitment advice</li>
+    <li>Identifying market, funding and other opportunities</li>
+    <li>Making introductions to suppliers and networks</li>
+    <li>Sourcing business support</li>
+    </ul>
+    <p>The Invest in Dundee team is here to help businesses find out more about Dundee to inform potential projects and development. For example, we help source research, property and space, digital connectivity, contacts and networks and funding. We are part of Dundee City Council’s City Development Department and work in collaboration with a wide network of industry partners in Scotland, the UK and internationally and with public sector partners like Scottish Enterprise, Scottish Development International, Scottish Cities Alliance, Creative Scotland and Screen Scotland. City Development also manages delivery of the Business Gateway service in the city through Elevator.</p>
+    <p>Get more information about Investing in Dundee and contact the team. Start by going to <a href="http://www.investindundee.com" target="_blank" rel="noopener noreferrer">www.investindundee.com</a></p>
   </div>
 </Layout>

@@ -1,102 +1,107 @@
 ---
-// pages/privacy-policy.astro
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/about.jpg';
 import Layout from '@layouts/BaseLayout.astro';
-import { siteMetadata } from '@config/siteMetadata';
+import { digitalDundeeOrganization } from '@utils/schema';
 
 const meta = {
   title: 'Privacy Policy | Digital Dundee',
   description:
-    'How Digital Dundee uses analytics cookies and handles your data, and your rights.',
+    'Digital Dundee respects your privacy and is committed to protecting your personal data. This Privacy Statement will inform you as to how we look after and...',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Privacy Policy',
+  schema: digitalDundeeOrganization,
 };
-const email = siteMetadata.contactEmail;
 ---
 
 <Layout metaData={meta}>
+  <Hero title="Privacy Policy" image={header} alt="Privacy Policy page header" />
   <div class="wrapper flow">
-    <h1>Privacy Policy</h1>
-    <p><em>Last updated: October 2026</em></p>
-
-    <h2>Who we are</h2>
-    <p>
-      This website is operated by {siteMetadata.name}. If you have any
-      questions about this policy, contact us at
-      <a href={`mailto:${email}`}>{email}</a>.
-    </p>
-
-    <h2>What data we collect and why</h2>
-    <h3>Analytics</h3>
-    <p>
-      With your consent, we use Google Analytics 4 (GA4) to collect
-      information about how visitors use the site, such as pages visited, time
-      on page and general location (country or region). We use it to improve
-      the site.
-    </p>
-    <p>
-      Analytics cookies are not set, and Google's analytics script is not
-      loaded, until you choose <strong>Accept analytics</strong> in the cookie
-      banner. If you reject, nothing is sent to Google Analytics. You can
-      change your choice at any time:
-      <button type="button" data-consent-settings>Cookie settings</button>.
-    </p>
-    <p>Legal basis: <strong>Consent</strong> (UK GDPR Art. 6(1)(a)).</p>
-
-    <h3>Contact</h3>
-    <p>
-      If you contact us, we keep your details and message only for as long as
-      needed to respond.
-    </p>
-    <p>
-      Legal basis: <strong>Legitimate interests</strong> (UK GDPR Art. 6(1)(f)).
-    </p>
-
-    <h2>Third-party services</h2>
+    <Breadcrumbs />
+    <p><strong>Privacy Statement</strong><br /><strong>Version: 12th May 2021</strong></p>
+    <p>Digital Dundee respects your privacy and is committed to protecting your personal data. This Privacy Statement will inform you as to how we look after and deal with your personal data and tell you about your privacy rights and how the law protects you.</p>
+    <h2>Purpose of this Privacy Statement</h2>
+    <p>This Privacy Statement aims to give you information on how Digital Dundee collects and processes your personal data including through your use of this website and any data you may provide through this website or that you add to our Directory (Meet the Companies).</p>
+    <p>This website is not intended for children and we do not knowingly collect data relating to children.</p>
+    <p>It is important that you read this Privacy Statement so that you are fully aware of how and why we are using your data. This Privacy Statement supplements any other Privacy Statement or fair processing notice we may provide on specific occasions when we are collecting or processing personal data about you and is not intended to override them.</p>
+    <p><strong>1. Who we are</strong><br /><strong>2. Our objectives<br />3. What do we collect and what do we do with it?</strong><br /><strong>4. Legal basis for using your information</strong><br /><strong>5. How is your personal data collected?<br />6. Who do we share your information with?<br />7. International transfers<br />8. How long do we keep your information for?<br />9. Your rights under data protection law<br />10. Objecting to how we may use your information<br />11. Restricting how we may use your information<br />12. Information you have given us about other people<br />13. Complaints<br />14. More information<br />15. Changes to the Privacy Statement and informing us of changes<br />16. Cookie Policy<br />17. Third Party Links</strong></p>
+    <h2>1. Who we are</h2>
+    <p>Digital Dundee is an office of Dundee City Council working across the creative, digital and technology sectors. Dundee city Council is a Scottish Local Authority established under the Local Government etc. (Scotland) Act 1994.</p>
+    <p><a href="/">www.digitaldundee.com</a> is a site operated by Dundee City Council.</p>
+    <p>The office can be contacted as follows:</p>
+    <p>By Post: Dundee House, 50 North Lindsay Street, Dundee, Scotland, DD1 1QE.<br />By Email: <a href="mailto:info@digitaldundee.com">info@digitaldundee.com</a><br />By Telephone: <a href="tel:+441382432483">+44 (0)1382 432483</a></p>
+    <p>Our Data Protection Officer is at Dundee City Council and can be contacted as follows:</p>
+    <p>By Post: City Square, Dundee, Scotland, DD1 3BY<br />By Email: <a href="mailto:infogov@dundeecity.gov.uk">infogov@dundeecity.gov.uk</a><br />By Telephone: <a href="tel:+441382434206">+44 (0)1382 434206</a></p>
+    <h2>2. Our objectives</h2>
+    <p>Our objectives are to support and contribute to development of the digital, technology and creative sectors and develop collaboration. The office provides free support for this purpose. We use various ways to achieve our objectives. We believe that people who share our values would love to know how to engage with us. We will process personal information to conduct and manage our services and enable us to give you the most appropriate marketing, information and services and provide the best and most secure experience.</p>
+    <h2>3. What do we collect and what do we do with it?</h2>
+    <p>We collect various personal information such as name, business/company name, postal address, telephone number and email address. Your information allows us to communicate with you about information concerning and related to the screen, creative and digital media industries including potential or proceeding production and projects. We also use your information to verify your identity where required, contact you by post, email or telephone and to maintain our records.</p>
+    <p>Personal data, or personal information, means any information about an individual from which that person can be identified. It does not include data where the identity has been removed (anonymous data).</p>
+    <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together follows:</p>
+    <p>Identity Data includes name and title.<br />Contact Data includes address, email address and telephone numbers.<br /><br />Technical Data includes internet protocol (IP) address, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform and other technology on the devices you use to access this website.</p>
+    <p>Usage Data includes information about how you use our website and services.<br /><br /><strong>Special Categories of Data</strong></p>
+    <p>We do not collect any Special Categories of Personal Data about you. This includes details about your race or ethnicity, religious or philosophical beliefs, sex life, sexual orientation, political opinions, trade union membership, information about your health and genetic and biometric data. Nor do we collect any information about criminal convictions and offences.</p>
+    <h2>4. Legal basis for using your information</h2>
+    <p>We provide these services to you as part of our function as a business development office and portal for the digital, technology and creative sectors in Dundee and the wider Fife Tay region of Scotland. You can find more details of our role on our website at <a href="/about">https://www.digitaldundee.com/about</a>.</p>
+    <p>The lawful bases for processing your data under GDPR are as follows and at least one of these will apply whenever we process your personal data. Processing your personal information is on the basis of:</p>
+    <p>Consent;</p>
+    <p>Legitimate interests - the processing is necessary for our legitimate interests or those of a third party.</p>
+    <h2>5. How is your personal data collected?</h2>
+    <p>We use different methods to collect data from and about you including through:</p>
+    <p>Direct interactions - you may give us your identity and contact data by filling in forms or by corresponding with us by post, phone, email or otherwise.</p>
+    <p>This includes personal data you provide when we are in contact about your business.</p>
+    <p><strong>Automated technologies or interactions</strong><br />As you interact with our website, we may automatically collect technical data about your equipment, browsing actions and patterns. We collect this personal data by using:</p>
+    <p>Cookies, and other similar technologies. (Please see our cookie policy below for further details); and<br />Technical Data from analytics providers.</p>
+    <h2>6. Who do we share your information with?</h2>
+    <p>We will never sell or rent your personal information to other organisations. We only disclose information:</p>
+    <p>When obliged to by law to government agencies;</p>
+    <p>If you have agreed that we may do so;</p>
+    <p>When we use other companies to provide services on our behalf, e.g. processing, sending mail and emails, analysing/profiling data or when using auditors/advisors;</p>
+    <p>To subsidiaries; that is entities owned or managed by Dundee City Council.</p>
+    <p>Your information is analysed internally to help us improve our services. This data sharing is in accordance with this Privacy Statement and the Terms and Conditions as shown on our website. It also forms part of our requirements in line with our Records Management Plan approved in terms of the Public Records (Scotland) Act 2011.</p>
+    <p>Digital Dundee may share your information with third party service providers in order to deliver our services and uses the following third party service suppliers to provide and support our services, such as delivering newsletters and organising events:</p>
+    <p>Constant Contact</p>
+    <p>Eventbrite</p>
+    <p>Google Analytics</p>
+    <h2>7. International transfers</h2>
+    <p>Although Constant Contact is an American organisation, it has <a href="https://knowledgebase.constantcontact.com/guides/KnowledgeBase/21905-General-Data-Protection-Regulation-GDPR?lang=en_US" target="_blank" rel="noopener noreferrer">EU/US Privacy Shield Certification</a>, which provides appropriate safeguards to individuals’ personal data.</p>
+    <h2>8. How long do we keep your information for?</h2>
+    <p>We only keep your personal information for the minimum period amount of time necessary. Sometimes this time period is set out in the law, but in most cases it is based on the business need.</p>
+    <p>We keep your information for the following purposes and periods:</p>
+    <p>Regional services - until you ask us to remove your information and checked every 3 years</p>
+    <p>Direct Marketing - until you ask us to remove your information and checked every 3 years</p>
+    <h2>9. Your rights under data protection law</h2>
+    <p><strong>Access to your information</strong><br />You have the right to request a copy of the personal information that we hold about you.</p>
+    <p><strong>Correcting your information</strong><br />We want to make sure that your personal information is accurate, complete and up to date. Therefore you may ask us to correct any personal information about you that you believe does not meet these standards.</p>
+    <h2>Deletion of your information</h2>
+    <p>You have the right to ask us to delete personal information about you where:</p>
     <ul>
-      <li>
-        <strong>Google Analytics 4</strong>: data is processed by Google. See
-        <a
-          href="https://policies.google.com/privacy"
-          target="_blank"
-          rel="noopener noreferrer">Google's Privacy Policy</a
-        >.
-      </li>
-      <li>
-        <strong>Netlify</strong>: our hosting provider. Server logs (IP
-        address, user agent) are retained for a limited time. See
-        <a
-          href="https://www.netlify.com/privacy/"
-          target="_blank"
-          rel="noopener noreferrer">Netlify's Privacy Policy</a
-        >.
-      </li>
+    <li>you think that we no longer need to hold the information for the purposes for which it was originally obtained;</li>
+    <li>we are using that information with your consent and you have withdrawn your consent – please see below at 11. Restricting how we may use your information or ithdrawing consent;</li>
+    <li>you have a genuine objection to our use of your personal information – please see below at 10. Objecting to how we may use your information;</li>
+    <li>our use of your personal information is contrary to law or our other legal obligations.</li>
     </ul>
-
-    <h2>Your rights</h2>
-    <p>Under UK GDPR you have the right to:</p>
-    <ul>
-      <li>Access the personal data we hold about you</li>
-      <li>Request correction or deletion of your data</li>
-      <li>Object to or restrict processing</li>
-      <li>Withdraw consent at any time</li>
-      <li>
-        Complain to the Information Commissioner's Office (<a
-          href="https://ico.org.uk"
-          target="_blank"
-          rel="noopener noreferrer">ico.org.uk</a
-        >)
-      </li>
-    </ul>
-    <p>To use any of these rights, contact <a href={`mailto:${email}`}>{email}</a>.</p>
-
-    <h2>Data retention</h2>
-    <p>
-      Analytics data is kept for 14 months in Google Analytics, then deleted
-      automatically.
-    </p>
-
-    <h2>Changes to this policy</h2>
-    <p>
-      We may update this policy from time to time. The "last updated" date
-      above shows when it last changed.
-    </p>
+    <p><strong>10. Objecting to how we may use your information</strong><br />You have the right at any time to tell us to stop using your personal information for direct marketing purposes.</p>
+    <h2>11. Restricting how we may use your information or withdrawing consent</h2>
+    <p>In some cases, you may ask us to restrict how we use your personal information. This right might apply, for example, where we are checking the accuracy of personal information that we hold about you or we are assessing the objection you have made to our use of your information. This right might also apply if we no longer have a basis for using your personal information but you don't want us to delete the data. Where this right is realistically applied will mean that we may only use the relevant personal information with your consent, for legal claims or where there are other public interest grounds to do so.</p>
+    <h2>Withdrawing consent to use your information</h2>
+    <p>Where we use your personal information with your consent you may withdraw that consent at any time and we will stop using your personal information for the purpose(s) for which consent was given.</p>
+    <p>Please contact us as stated above if you wish to exercise any of these rights.</p>
+    <h2>12. Information you have given us about other people</h2>
+    <p>If you provide anyone else’s details to us, please make sure that you tell them that you have given their information to Digital Dundee. If they want any more information on how we will use their information they can visit our website or contact us as above.</p>
+    <h2>13. Complaints</h2>
+    <p>We aim to resolve directly all complaints about how we handle personal information. However, you also have the right to lodge a complaint with the Information Commissioner's Office, who can be contacted by post at: Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF. By phone on <a href="tel:+443031231113">0303 123 1113</a> (local rate) or <a href="tel:+441625545745">01625 545 745</a>. Visit their website for more information at- <a href="https://ico.org.uk/concerns" target="_blank" rel="noopener noreferrer">https://ico.org.uk/concerns</a></p>
+    <h2>14. More information</h2>
+    <p>If you do not have access to the internet you can contact us via telephone or post to request hard copies of our documents.</p>
+    <h2>15. Changes to the Privacy Statement and informing us of changes</h2>
+    <p>We may update this Privacy Statement from time to time. Please review this Privacy Statement periodically for changes.</p>
+    <p>It is important that the personal data we hold about you is accurate and current. Please keep us informed if your personal data changes during your relationship with us.</p>
+    <p><strong>16. Cookie Policy</strong><br />This website uses cookies to distinguish you from other users of our website.</p>
+    <p>A cookie is a small data file that we store on your browser or your device when you access our website. Cookies contain information that is transferred to your computer’s hard drive.</p>
+    <p>Cookies enhance our website performance in a number of ways, including providing a secure way for us to verify your identity during your visit to our website and personalising your experience on our website, making it more convenient for you.</p>
+    <p>This site may use Google Analytics Tracking or other analytics services. This is software that uses analytical cookies to track information about how visitors come to the website, which pages they visit, and other actions that visitors make whilst on the website. This data is then used in order to improve the user experience of the website. All user data collected in this manner is anonymous.</p>
+    <p>Should you wish to do so, you can refuse cookies by disabling them in your web browser’s settings. You do not need to have cookies turned on to successfully use our website. Most browsers are defaulted to accept and maintain cookies and you can set your browser to notify you when you receive a cookie, giving you the chance to decide whether to accept it or not. Please consult the support documentation for your web browser, which can be found online, for more information.</p>
+    <p><strong>17. Third Party Links</strong><br />This website may include links to third party websites, plug-ins and applications. Clicking on those links or enabling those connections may allow third parties to collect or share data about you. We do not control these third party websites, plug-ins and applications and we are not responsible for their privacy statements. When you leave our website, we encourage you to read the Privacy Statement of every website you visit.</p>
   </div>
 </Layout>
