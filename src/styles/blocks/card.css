@@ -4,7 +4,7 @@
   width: 100%;
   img,
   svg {
-    aspect-ratio: 1.8;
+    aspect-ratio: 1.5; /* most news and story photos are 3:2 */
     min-width: 100%;
     object-fit: cover; /* crop to the ratio instead of stretching */
   }
@@ -38,10 +38,20 @@
     padding-block-end: var(--padding);
   }
 }
-/* Wide logos/banners and portrait posters are shown whole, not cropped */
+/* Event images are mostly 2:1 promo graphics with text near the edges */
+.card.event img {
+  aspect-ratio: 2;
+}
+
+/* Squares, wide logos/banners and portraits are shown whole, not cropped */
 .card[data-fit='contain'] img {
   background: var(--gray-1);
   object-fit: contain;
+}
+
+/* ...and if they are narrower than the card, not enlarged either */
+.card[data-fit='contain'][data-size='small'] img {
+  object-fit: scale-down;
 }
 
 .card a {

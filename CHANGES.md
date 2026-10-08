@@ -14,6 +14,7 @@ All notable changes to the Digital Dundee Astro project.
 - **Container** — `--wrapper-max-width: 1170px` with a 15px gutter; grid gutter 30px (`--space-m`)
 - **Page bottom** — `.content` has 48px bottom padding on every page, replacing the footer's top margin
 - **Promo panels** — Vertical padding `--space-2xl`; white text now has a dark-grey text shadow
+- **Home animation** — The second promo panel ("Making things happen") now fades in like the first (`data-animate="fade"`)
 
 #### Fixed
 
@@ -26,7 +27,8 @@ All notable changes to the Digital Dundee Astro project.
 
 #### Fixed
 
-- **Wide and portrait card images** — Cards crop images to a fixed box (`object-fit: cover`), which magnified wide logos and banners and cut off most of their content (the 343x52 Tayside Tech Fest banner was the worst case). New `src/utils/imageFit.ts` flags images wider than 2.6:1 or portrait (below 0.9:1); the news, event, success-story and resource cards set `data-fit="contain"` for them, and `card.css` shows them whole on a light background. Other images still fill the box. The underlying low-resolution and inconsistent source images are logged in `ISSUES.md`
+- **Cropped and magnified card images** — Cards cropped every image to one 1.8:1 box (`object-fit: cover`), which cut text off the sides of 2:1 promo graphics (Perth Tech Mornings, MedTech IP) and magnified small or wide images (the 343x52 Tayside Tech Fest banner). Card image boxes are now 3:2, and 2:1 for events, matching the shapes most images already have
+- **Conditional image styling** — New `src/utils/imageFit.ts` reads each image's real dimensions at build time and sets data attributes on the card: `data-fit="contain"` for squares (under 1.2:1), portraits and very wide banners (over 2.6:1), which are shown whole instead of cropped, and `data-size="small"` for images narrower than a card (360px), which are not scaled up past their own size (`object-fit: scale-down`). Everything else is still cropped to the box. The low-resolution and inconsistent source images are logged in `ISSUES.md`
 
 ### Content replicated from the live site, menu and contact
 
