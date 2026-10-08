@@ -22,6 +22,17 @@ All notable changes to the Digital Dundee Astro project.
 - **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
 - **Event cards** — Bottom padding after the date
 
+### Content: missing images and sanitising
+
+#### Fixed
+
+- **Missing body images** — The migration had dropped inline images from 14 news articles and 8 events (some left a stray "Image" line). Compared every article against the live site and embedded the images in their original positions as markdown images, with the original alt text. 9 new image files were downloaded (a GIF was converted to PNG). Not restored: two images in the InGAME speakers article, which are hotlinked from beyondconference.org and return 404 on the original site too
+- **Word markup** — Removed `<o:p></o:p>` from 5 news articles (45 lines)
+- **Meta descriptions** — 60 files had a `description` holding the whole article body with `\n`, `###`, `**` and HTML tags; it is now plain text, capped at 160 characters
+- **HTML in bodies** — `<h1>`/`<h5>` headings in 9 events converted to markdown headings (body headings start at `##`, since the hero is the page title); layout `<table>` wrappers removed from 2 events; `<u>` removed; two empty `<a>` tags (NLAE concept video, Tay5G flyer PDF) now show as visible links
+- **Garbled emphasis** — About 15 lines with broken bold/italic markers (`\***`, `**\*…\*\***`) cleaned up; footnote asterisks left alone
+- **Stray "Image" lines** — Removed from 6 events, replaced by the real images
+
 ### Spacing: detail and listing pages
 
 #### Fixed
