@@ -3,19 +3,72 @@
      1200x630 browser window with the dev server running, screenshot, then
      delete the copy. Fonts load from /fonts. -->
 <!doctype html>
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <style>
-  @font-face { font-family: 'OS'; font-weight: 300 800; src: url('/fonts/OpenSans-VariableFont_wdthwght.woff2') format('woff2-variations'); }
-  @font-face { font-family: 'MS'; font-weight: 100 900; src: url('/fonts/Montserrat-VariableFont_wght.woff2') format('woff2-variations'); }
-  * { margin: 0; box-sizing: border-box; }
-  html, body { width: 1200px; height: 630px; overflow: hidden; }
-  body { display: grid; place-content: center; justify-items: center; gap: 40px; background: #f8f8f8; }
-  .brand { display: flex; align-items: baseline; gap: 20px; color: #232323; font: 400 124px/1 'OS', sans-serif; letter-spacing: -1.5px; }
-  .brand .pipe { color: #ff00ff; font-weight: 400; transform: translateY(-4px); }
-  .brand strong { font-weight: 600; letter-spacing: 0; }
-  .rule { width: 96px; height: 6px; background: #ff00ff; }
-  .tag { color: #767676; font: 500 24px/1 'MS', sans-serif; letter-spacing: 5px; text-transform: uppercase; }
+  @font-face {
+    font-family: 'OS';
+    font-weight: 300 800;
+    src: url('/fonts/OpenSans-VariableFont_wdthwght.woff2')
+      format('woff2-variations');
+  }
+  @font-face {
+    font-family: 'MS';
+    font-weight: 100 900;
+    src: url('/fonts/Montserrat-VariableFont_wght.woff2')
+      format('woff2-variations');
+  }
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+  }
+  body {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 40px;
+    background: #f8f8f8;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    color: #232323;
+    font:
+      400 124px/1 'OS',
+      sans-serif;
+    letter-spacing: -1.5px;
+  }
+  .brand .pipe {
+    color: #ff00ff;
+    font-weight: 400;
+    transform: translateY(-4px);
+  }
+  .brand strong {
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  .rule {
+    width: 96px;
+    height: 6px;
+    background: #ff00ff;
+  }
+  .tag {
+    color: #767676;
+    font:
+      500 24px/1 'MS',
+      sans-serif;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
 </style>
-<div class="brand"><span>Digital</span><span class="pipe">|</span><strong>DUNDEE</strong></div>
+<div class="brand">
+  <span>Digital</span><span class="pipe">|</span><strong>DUNDEE</strong>
+</div>
 <div class="rule"></div>
 <div class="tag">Creative &middot; Digital &middot; Tech</div>

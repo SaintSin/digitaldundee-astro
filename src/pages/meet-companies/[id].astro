@@ -18,6 +18,12 @@ export const getStaticPaths = (async () => {
 const { company } = Astro.props;
 const { title, companyUrl, logo, sector, serviceArea } = company.data;
 
+// show the site's host name as the link text; the full URL is the link
+let companyHost = companyUrl;
+try {
+  companyHost = new URL(companyUrl ?? '').hostname.replace(/^www\./, '');
+} catch {}
+
 const meta = {
   title: title,
   description: `Learn more about ${title}, a Digital Dundee company`,
@@ -58,7 +64,7 @@ const meta = {
         {
           companyUrl && (
             <a href={companyUrl} target="_blank" rel="noopener noreferrer">
-              {companyUrl}
+              {companyHost}
             </a>
           )
         }

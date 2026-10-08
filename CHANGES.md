@@ -29,6 +29,16 @@ All notable changes to the Digital Dundee Astro project.
 
 - **Backtick used as an opening quote** — Three news articles (`dundee-computing-student-turns-teacher`, `dundee-researcher...images-impact`, `it's-not-one-thing...aphasia`) had a backtick before quoted titles such as `Computer Science for Everyone', which markdown treats as the start of inline code and broke the formatting. All 20 are now curly opening quotes (`‘`), including one in a title and image alt text
 
+### Content: open issues worked through
+
+#### Fixed
+
+- **Security-rewritten links** — 17 links in 7 files (Check Point, Microsoft Safe Links, Mimecast) now go to their real destinations
+- **Link text** — "Click here...", "here" and "Read more." made descriptive; 14 raw-URL link texts show the host name, as do company website links (`meet-companies/[id].astro`)
+- **Broken or placeholder content** — the Challenge Fund 2 repeated paragraphs; the `/file/...` links to a video that never existed (now the YouTube URL the live page embeds); the Jet Connectivity success story (malformed link, no text); card excerpts of `In Se`, `...` and empty on five items; the 1,869-character Fox Wot I Drew paragraph (split into seven); an em-dash line (now a rule)
+- **Metadata** — Be Dundee had the starter's "Welcome to Astro" title and placeholder description; Collaborate had Careers and Jobs' title and description and a "Collaborate and Jobs" hero; Enjoy Dundee's hero alt text named another page
+- **Spacing typos** — missing spaces after full stops and stray spaces before commas and full stops in eight articles and pages
+
 ### Content: rendering clean-up across all pages
 
 A scan of all 706 rendered pages found the problems below; each is fixed.
