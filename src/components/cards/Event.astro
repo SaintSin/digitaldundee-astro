@@ -1,4 +1,5 @@
 ---
+import { cardFit } from '@utils/imageFit';
 import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
@@ -37,7 +38,7 @@ const formatDate = (date: Date) => {
 import '@styles/blocks/card.css';
 ---
 
-<article class="card event">
+<article class="card event" data-fit={cardFit(imageSrc)}>
   <a href={href}>
     {imageSrc && <Picture src={imageSrc} alt={imageAlt} quality={30} formats={['avif', 'webp']} />}
     <h3>{title}</h3>

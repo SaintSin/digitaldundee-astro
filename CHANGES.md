@@ -22,6 +22,12 @@ All notable changes to the Digital Dundee Astro project.
 - **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
 - **Event cards** — Bottom padding after the date
 
+### Card images
+
+#### Fixed
+
+- **Wide and portrait card images** — Cards crop images to a fixed box (`object-fit: cover`), which magnified wide logos and banners and cut off most of their content (the 343x52 Tayside Tech Fest banner was the worst case). New `src/utils/imageFit.ts` flags images wider than 2.6:1 or portrait (below 0.9:1); the news, event, success-story and resource cards set `data-fit="contain"` for them, and `card.css` shows them whole on a light background. Other images still fill the box. The underlying low-resolution and inconsistent source images are logged in `ISSUES.md`
+
 ### Content replicated from the live site, menu and contact
 
 #### Added

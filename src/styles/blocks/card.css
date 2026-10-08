@@ -38,6 +38,12 @@
     padding-block-end: var(--padding);
   }
 }
+/* Wide logos/banners and portrait posters are shown whole, not cropped */
+.card[data-fit='contain'] img {
+  background: var(--gray-1);
+  object-fit: contain;
+}
+
 .card a {
   text-decoration: none;
 }
