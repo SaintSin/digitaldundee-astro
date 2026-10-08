@@ -1,8 +1,102 @@
-# Changelog
+# Changes
 
 All notable changes to the Digital Dundee Astro project.
 
-## 2026-05-08 (latest)
+## 2026-10-08 (latest)
+
+### Astro 7.3.7
+
+#### Changed
+
+- Updated `astro` to `^7.3.7`, `@astrojs/mdx` to `^8.0.3`, `@astrojs/netlify` to `^8.2.8`, `jsdom`, `oxfmt` and the pinned pnpm version
+- Reformatted `two_column.css` selectors (oxfmt); no behaviour change
+
+---
+
+## 2026-10-02
+
+### AI discoverability (`llms.txt`, `robots.txt`)
+
+#### Added
+
+- **`astro-llms-md`** — Generates `llms.txt` and a markdown copy of every page (`/about.md`, ...) at build. Site name and description set; forms and asides stripped; paginated listing pages (`/news/2`, `/events/2`, ...) excluded. `llms-full.txt` is switched off (it was ~600KB)
+- **HTTP `Link` header** (`public/_headers`) — Advertises `/llms.txt`, the sitemap and the RSS feed on every response
+
+#### Changed
+
+- **`robots.txt`** — Explicitly allows AI search and assistant crawlers (GPTBot, ClaudeBot, PerplexityBot, and others) and blocks only Bytespider. No `Content-Signal` line. Same approach as pythonresources.com, which gets referrals from AI agents this way
+
+### Cookie consent & privacy
+
+#### Added
+
+- **`ConsentBanner.astro`** — Cookie banner using Google consent mode (ported from historyofphuket.com, simplified). Analytics are denied by default and `gtag.js` is only requested after "Accept analytics"; "Reject" or no choice means no Google request and no cookies. The choice is stored in `localStorage` (guarded for private windows)
+- **Cookie settings** — A `[data-consent-settings]` control in the footer and on the privacy page clears the stored choice, revokes consent and reopens the banner
+- **Privacy policy** (`/privacy-policy/`) — Linked from the banner and footer. The text is a draft adapted from the Phuket site and should be reviewed by Digital Dundee before launch
+
+#### Changed
+
+- **`Basehead.astro`** — Google Analytics is now consent-gated (`window.grantConsent` / `window.revokeConsent`) instead of loading on every page
+
+#### Fixed
+
+- **Nested `<main>`** — The layout `<main>` introduced below wrapped pages that already had their own `<main>`; page-level `<main class="wrapper flow">` is now `<div class="wrapper flow">` on all 30 pages
+
+### Accessibility, performance & security
+
+#### Added
+
+- **Hero video controls** (`Video.astro`) — Pause/play button for the background video and rotating word; starts paused for `prefers-reduced-motion`; poster frame (`public/videos/background-poster.jpg`) and `aria-hidden` on the video
+- **Security headers** (`public/_headers`) — `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Strict-Transport-Security` (`max-age=300` to start; raise once HTTPS is confirmed everywhere) and `Permissions-Policy`
+
+#### Changed
+
+- **Partytown removed** — `@astrojs/partytown` dropped; `gtag.js` loads with `defer` (now consent-gated, see above)
+- **`aria-label="Main"`** on the main nav; `:focus-visible` outline on dropdown links
+- **Redundant `aria-required`** removed where `required` is set (`ContactForm.astro`, `FormFooter.astro`)
+- **Italic font preload** (Open Sans Italic) removed from `Basehead.astro`; it is not needed above the fold
+- **JSON-LD** — `<` is escaped as `\u003c` in `JsonLd.astro` output
+
+#### Fixed
+
+- **Home page paragraph colour** — `index.astro` had a malformed `oklch(...)` value that browsers discarded; now `var(--color-text)` (also clears the 4.5:1 contrast threshold)
+
+### Modern CSS (from the starter template's `modern-web-guidance` pass)
+
+#### Added
+
+- **Cascade layers** — `style.css` declares `reset, base, theme, components, utilities` and imports each file into its layer
+- **Skip link and `<main id="content">`** — `BaseLayout.astro` now wraps content in a focusable `<main>`; skip link is the first child of the header; new `utilities/visually-hidden.css`
+- **Native cross-document view transitions** — `@view-transition { navigation: auto }` (off for `prefers-reduced-motion`) and `<link rel="expect" href="#content" blocking="render">` replace `ClientRouter`. Company logo `transition:name` props became inline `view-transition-name` styles
+- **Forced-colors** borders on the header and footer
+
+#### Changed
+
+- **Sass removed** — `_reset.scss`, `_layout.scss` and `_globals.scss` are now `_reset.css`, `_layout.css` and `_tokens.css` (`globals` renamed to `tokens`); `//` comments converted; `sass` dependency dropped
+- **Reduced motion** — removed the global `0.01ms` animation clamp from the reset
+- **`compositions/grid.css`** — `@media screen(md)` / `screen(lg)` replaced with `(min-width: 768px)` / `(min-width: 1024px)`; the `screen()` form broke the production build under Astro 7
+- **`CLAUDE.md`** — Updated for the file renames, plain CSS, and full-page-load navigation (no `astro:after-swap`)
+
+---
+
+## 2026-05-08 (styling)
+
+### Layout & footer styling
+
+#### Fixed
+
+- **Overlay/split sections broken by `Picture`** (`two_column.css`) — `<Picture>` renders `<picture>` (wrapping `<img>`), but the grid placement rules only matched `> img`, so the "Opening doors for digital do-ers" background images fell out of the layout. Selectors now use `:is(img, picture)` and `:not(img):not(picture)`; `picture` is `display: block` and its inner `img` fills it
+
+#### Changed
+
+- **Footer** (`Footer.astro`) — Two-column CSS grid (signup form left; news archive and "Connect With Us" social icons right) replacing the `full-width-split-screen` layout; copyright bar is text only
+- **Signup form** (`FormFooter.astro`) — Heading, "indicates required" note, light inputs with focus ring, uppercase labels, solid "Subscribe" button. Demo only: it is not wired to a mailing list
+- **News archive pills** (`NewsArchive.astro`) — Wrap onto multiple rows, fixed the `--grey-3` typo, link colour inherits, clearer outline and hover state
+- **Home** — "Find Out More" in the second overlay panel is now a link to `/be-dundee`; `Hero.astro` reformatted (no behaviour change)
+
+---
+
+## 2026-05-08 (metadata and social links)
 
 ### Site Metadata & Social Links
 
@@ -25,7 +119,7 @@ All notable changes to the Digital Dundee Astro project.
 
 ---
 
-## 2026-05-08
+## 2026-05-08 (images)
 
 ### Image Format Improvements
 
