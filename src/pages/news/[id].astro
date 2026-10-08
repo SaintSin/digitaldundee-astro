@@ -38,7 +38,10 @@ const newsArticleSchema: NewsArticle = {
 const meta = {
   title: article.data.seo.title,
   description: article.data.seo.description,
-  imageOG: article.data.seo.ogImage || article.data.imagePrimary.src,
+  // the stand-in image is a small 480x320 lockup; the full-size card shares better
+  imageOG: /placeholder/i.test(article.data.imagePrimary.src.src)
+    ? undefined
+    : article.data.imagePrimary.src.src,
   altOG: article.data.imagePrimary.alt,
   schema: [digitalDundeeOrganization, newsArticleSchema],
 };

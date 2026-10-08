@@ -23,6 +23,19 @@ All notable changes to the Digital Dundee Astro project.
 - **Card images** — Forced aspect ratios stretched non-matching images. They now use `object-fit: cover` at one ratio (1.8); the separate `.news` and `.event` ratios were removed
 - **Event cards** — Bottom padding after the date
 
+### Content: stray backticks
+
+#### Fixed
+
+- **Backtick used as an opening quote** — Three news articles (`dundee-computing-student-turns-teacher`, `dundee-researcher...images-impact`, `it's-not-one-thing...aphasia`) had a backtick before quoted titles such as `Computer Science for Everyone', which markdown treats as the start of inline code and broke the formatting. All 20 are now curly opening quotes (`‘`), including one in a title and image alt text
+
+### Social sharing card
+
+#### Fixed
+
+- **Generic Open Graph image** — `public/images/social/generic-social-1200x630.png`, the fallback image for every page without its own (and so the preview when most pages are shared), was the starter template's white "Generic OG Social Media Card" placeholder. It is now a 1200x630 card using the menu's Digital | DUNDEE lockup (Open Sans, magenta pipe, semibold DUNDEE) with a "Creative · Digital · Tech" line. The source is `design/og-card.html`, with instructions for re-rendering it
+- **Broken `og:image` URLs on 315 pages** — `Basehead.astro` always glued the image onto `/images/social/`, so events, resources and company pages (which pass `/_astro/...` image paths) got URLs like `/images/social//_astro/...`, and news and success stories (which passed a bare filename from `seo.ogImage`) pointed at files that do not exist. `Basehead` now accepts an image path, a full URL or a card filename, and news and success stories use their real processed image. The 40 news articles whose only image is the small `placeholder.png` use the full-size card instead. Checked in the build: all 706 pages now point at an image that exists (430 the generic card, 276 their own)
+
 ### Card images
 
 #### Fixed

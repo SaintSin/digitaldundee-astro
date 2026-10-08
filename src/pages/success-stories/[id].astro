@@ -18,7 +18,7 @@ const { Content } = await render(story);
 const meta = {
   title: story.data.seo.title,
   description: story.data.seo.description,
-  imageOG: story.data.seo.ogImage || story.data.imagePrimary.src,
+  imageOG: story.data.imagePrimary.src.src,
   altOG: story.data.imagePrimary.alt,
 };
 ---

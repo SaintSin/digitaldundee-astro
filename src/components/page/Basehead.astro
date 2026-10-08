@@ -18,6 +18,11 @@ const {
   schema,
 } = metaData;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// imageOG is either a processed image path (/_astro/...), a full URL, or the
+// filename of a card in public/images/social/
+const ogImage = /^(\/|https?:)/.test(imageOG)
+  ? new URL(imageOG, Astro.site).href
+  : new URL(`images/social/${imageOG}`, Astro.site).href;
 
 import '@styles/style.css';
 ---
@@ -33,7 +38,7 @@ import '@styles/style.css';
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={Astro.site + 'images/social/' + imageOG} />
+  <meta property="og:image" content={ogImage} />
   <meta property="og:image:alt" content={altOG} />
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
@@ -42,7 +47,7 @@ import '@styles/style.css';
   <meta property="twitter:description" content={description} />
   <meta
     property="twitter:image"
-    content={Astro.site + 'images/social/' + imageOG}
+    content={ogImage}
   />
   <meta name="twitter:image:alt" content={altOG} />
 
