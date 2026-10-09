@@ -81,11 +81,9 @@ h4,
 h5 {
   font-family: var(--font-montserrat);
 }
-p {
-  max-width: var(--maxchars);
-}
+p,
 li {
-  max-width: calc(var(--maxchars) -5);
+  max-width: var(--maxchars);
 }
 p,
 a,
