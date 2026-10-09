@@ -11,7 +11,6 @@ import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
 export default defineConfig({
-  prefetch: true,
   compressHTML: false, // the compressor drops the space between text and a following link
 
   // Live-site URLs that moved or were renamed here

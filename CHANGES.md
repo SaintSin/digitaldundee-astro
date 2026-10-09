@@ -14,6 +14,10 @@ All notable changes to the Digital Dundee Astro project.
 
 - **File path headers** — The first line of each `.astro`, `.ts` and `.css` file under `src/` is now its path (for example `// src/pages/be-dundee/collaborate.astro`); older short path comments were replaced. `env.d.ts` and the content files are left alone
 
+#### Changed
+
+- **Link prefetching** — Astro's prefetch script (`prefetch: true`, the one external JavaScript file on every page) is replaced by a `speculationrules` JSON block in `Basehead.astro`. Chromium browsers prefetch same-site pages on hover (moderate eagerness), PDFs excluded; other browsers just navigate normally. No script file
+
 #### Fixed
 
 - **Animation code on every page** — `astro-animations` (script and styles) was added by the base layout, but only the home page uses `data-animate`. It is now loaded by `index.astro` alone, so every other page is lighter

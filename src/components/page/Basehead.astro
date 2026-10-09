@@ -59,6 +59,23 @@ import '@styles/style.css';
   <meta name="generator" content={Astro.generator} />
   <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
+  <!-- Native prefetch on hover (Chromium); replaces Astro's prefetch script -->
+  <script type="speculationrules" is:inline>
+    {
+      "prefetch": [
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/*" },
+              { "not": { "href_matches": "/*.pdf" } }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+  </script>
+
   <!-- Preload variable fonts -->
   <link
     rel="preload"
