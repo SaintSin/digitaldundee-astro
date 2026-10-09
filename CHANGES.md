@@ -2,7 +2,20 @@
 
 All notable changes to the Digital Dundee Astro project.
 
-## 2026-10-08 (latest)
+## 2026-10-09 (latest)
+
+### Docs and housekeeping
+
+#### Added
+
+- **Issues log** — Two more open issues in `ISSUES.md`: three news articles with no body (also empty on the live site) and 25 duplicate resource entries in 12 groups
+
+#### Changed
+
+- **Dependencies** — `astro` 7.3.7 to 7.3.8 and `@astrojs/netlify` 8.2.8 to 8.2.9
+- **Formatting** — Tidied `ISSUES.md`, `collaborate.astro` and the workspace file
+
+## 2026-10-08
 
 ### Spacing: home page aligned with the original site
 
