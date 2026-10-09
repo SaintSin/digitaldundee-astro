@@ -1,0 +1,27 @@
+---
+// src/pages/zz-test-b.astro (temporary: contact page with only the form)
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import ContactForm from '@components/ContactForm.astro';
+import Hero from '@components/Hero.astro';
+import header from '@images/header/about.jpg';
+import Layout from '@layouts/BaseLayout.astro';
+import { digitalDundeeOrganization } from '@utils/schema';
+
+const meta = {
+  title: 'Contact Digital Dundee, Tay Tech and Tay5G | Digital Dundee',
+  description:
+    'Contact us about Digital Dundee, Tay Tech and Tay5G - a portal for the creative, digital, and tech sectors of Dundee and the wider Tay Cities region',
+  imageOG: 'generic-social-1200x630.png',
+  altOG: 'Contact Digital Dundee',
+  schema: digitalDundeeOrganization,
+};
+---
+
+<Layout metaData={meta}>
+  <Hero title="Contact" image={header} alt="Contact page header" />
+  <div class="wrapper flow">
+    <Breadcrumbs />
+
+    <ContactForm />
+  </div>
+</Layout>
