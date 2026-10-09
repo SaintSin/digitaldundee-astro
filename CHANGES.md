@@ -12,6 +12,7 @@ All notable changes to the Digital Dundee Astro project.
 
 #### Added
 
+- **Performance testing notes** — PageSpeed Insights caches results per URL and its mobile runs vary by several points, with an occasional blank first paint of about 2.5 seconds on any page (confirmed with two temporary test pages, since removed). Use a fresh query string (`?r=1`) for each run and quote a range. Current demo scores on mobile: 98 to 100 performance and 100 for accessibility, best practices and SEO; desktop 100
 - **File path headers** — The first line of each `.astro`, `.ts` and `.css` file under `src/` is now its path (for example `// src/pages/be-dundee/collaborate.astro`); older short path comments were replaced. `env.d.ts` and the content files are left alone
 
 #### Changed

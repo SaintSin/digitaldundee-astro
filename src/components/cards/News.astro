@@ -15,7 +15,15 @@ interface Props {
   priority?: boolean; // eager-load images that are above the fold
 }
 
-const { title, excerpt, pubDate, imageSrc, imageAlt, href, priority = false } = Astro.props;
+const {
+  title,
+  excerpt,
+  pubDate,
+  imageSrc,
+  imageAlt,
+  href,
+  priority = false,
+} = Astro.props;
 ---
 
 <article class="card news" {...cardImage(imageSrc)}>
