@@ -12,7 +12,7 @@ import RecentNews from '@components/RecentNews.astro';
 import UpcomingEvents from '@components/UpcomingEvents.astro';
 import VideoBack from '@components/Video.astro';
 import { digitalDundeeOrganization } from '@utils/schema';
-import { Animate } from 'astro-animations';
+import { AstroAnimations } from 'astro-animations';
 
 const meta = {
   title: 'Welcome to Digital Dundee and Tay Tech | Digital Dundee',
@@ -25,6 +25,7 @@ const meta = {
 ---
 
 <Layout metaData={meta}>
+  <AstroAnimations />
   <VideoBack />
   <div class="home flow">
     <h2

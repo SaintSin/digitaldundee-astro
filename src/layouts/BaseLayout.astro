@@ -6,7 +6,6 @@ import ConsentBanner from '@components/page/ConsentBanner.astro';
 import Footer from '@components/page/Footer.astro';
 import Header from '@components/page/Header.astro';
 import type { MetaData } from '@types';
-import { AstroAnimations } from 'astro-animations';
 
 interface Props {
   metaData: MetaData;
@@ -20,7 +19,6 @@ const { metaData } = Astro.props;
   <Basehead metaData={metaData} />
   <body>
     <Header />
-    <AstroAnimations />
 
     <main class="content" id="content" tabindex="-1">
       <slot />

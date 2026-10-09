@@ -16,6 +16,7 @@ All notable changes to the Digital Dundee Astro project.
 
 #### Fixed
 
+- **Animation code on every page** — `astro-animations` (script and styles) was added by the base layout, but only the home page uses `data-animate`. It is now loaded by `index.astro` alone, so every other page is lighter
 - **Render-blocking CSS** — `build.inlineStylesheets: 'always'` puts the (under 10 KB) stylesheet in the page, removing a render-blocking request that cost about 0.4 s on a slow phone
 - **Card image decoding** — Priority card images keep eager loading and high fetch priority but now decode asynchronously. Astro's `priority` defaults to synchronous decoding, which blocks painting while several images decode on a slow phone
 - **Font weight** — The four variable fonts were full character sets (Cyrillic, Greek, Vietnamese and more) at about 1 MB in total. They compete with the page's images on a slow phone and delayed the largest image by around 2 seconds in PageSpeed. They are now subset to Latin (the range Google Fonts serves for English) and Open Sans is pinned to its normal width, so the four files total 231 KB. The characters outside the subset in our content are a few Korean letters and arrows, which fell back to a system font before as well. Same file names, so no CSS changes
