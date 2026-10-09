@@ -10,6 +10,10 @@ All notable changes to the Digital Dundee Astro project.
 
 - **Issues log** — Two more open issues in `ISSUES.md`: three news articles with no body (also empty on the live site) and 25 duplicate resource entries in 12 groups
 
+#### Added
+
+- **File path headers** — The first line of each `.astro`, `.ts` and `.css` file under `src/` is now its path (for example `// src/pages/be-dundee/collaborate.astro`); older short path comments were replaced. `env.d.ts` and the content files are left alone
+
 #### Fixed
 
 - **Missing space before links** — The HTML compressor removed the newline between text and a following link ("email<a ...>"), so words ran into links. `compressHTML` is now off in `astro.config.mjs`

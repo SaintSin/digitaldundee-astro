@@ -1,3 +1,4 @@
+/* src/styles/blocks/card.css */
 .card {
   --padding: var(--space-xs);
   background: white;

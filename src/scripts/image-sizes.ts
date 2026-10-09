@@ -1,4 +1,4 @@
-// scripts/image-sizes.ts
+// src/scripts/image-sizes.ts
 // 250625 Set maxContentHeight to integer, code refactoring
 
 // Configuration constants

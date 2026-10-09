@@ -1,4 +1,4 @@
-// utils/schema.ts
+// src/utils/schema.ts
 import { getSocialLinksForJsonLd, siteMetadata } from '@config/siteMetadata';
 import type { BreadcrumbList, GovernmentOrganization, ListItem } from '@types';
 

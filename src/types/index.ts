@@ -1,4 +1,4 @@
-// types/index.ts
+// src/types/index.ts
 
 /**
  * Metadata for page SEO and social sharing

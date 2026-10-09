@@ -1,3 +1,4 @@
+// src/pages/rss.xml.ts
 import { getCollection } from 'astro:content';
 import rss from '@astrojs/rss';
 import { SITE_URL } from '@utils/schema';

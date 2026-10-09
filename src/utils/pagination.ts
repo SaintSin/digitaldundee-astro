@@ -1,3 +1,4 @@
+// src/utils/pagination.ts
 /**
  * Pagination utility for content collections
  *

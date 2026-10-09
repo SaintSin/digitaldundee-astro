@@ -1,3 +1,4 @@
+// src/utils/imageFit.ts
 import type { ImageMetadata } from 'astro';
 
 /**

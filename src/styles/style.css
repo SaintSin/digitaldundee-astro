@@ -1,3 +1,4 @@
+/* src/styles/style.css */
 @layer reset, base, theme, components, utilities;
 
 @import '_reset.css' layer(reset);

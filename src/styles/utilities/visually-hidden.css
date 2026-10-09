@@ -1,3 +1,4 @@
+/* src/styles/utilities/visually-hidden.css */
 .visually-hidden:where(:not(:focus-within, :active)) {
   position: absolute;
   margin: -1px;

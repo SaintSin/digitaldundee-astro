@@ -1,3 +1,4 @@
+// src/config/siteMetadata.ts
 /**
  * Site Metadata, Org Info & Social Links
  *

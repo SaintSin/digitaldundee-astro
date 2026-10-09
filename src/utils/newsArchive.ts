@@ -1,3 +1,4 @@
+// src/utils/newsArchive.ts
 import type { CollectionEntry } from 'astro:content';
 
 /**
