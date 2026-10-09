@@ -15,42 +15,6 @@
 @import 'utilities/centered.css' layer(components);
 @import 'utilities/visually-hidden.css' layer(utilities);
 
-@font-face {
-  font-style: normal;
-  font-weight: 300 800;
-  src: url('/fonts/OpenSans-VariableFont_wdthwght.woff2')
-    format('woff2-variations');
-  font-family: 'Open Sans Variable';
-  font-display: swap;
-}
-
-@font-face {
-  font-style: italic;
-  font-weight: 300 800;
-  src: url('/fonts/OpenSans-Italic-VariableFont_wdthwght.woff2')
-    format('woff2-variations');
-  font-family: 'Open Sans Variable';
-  font-display: swap;
-}
-
-@font-face {
-  font-style: normal;
-  font-weight: 100 900;
-  src: url('/fonts/Montserrat-VariableFont_wght.woff2')
-    format('woff2-variations');
-  font-family: 'Montserrat Variable';
-  font-display: swap;
-}
-
-@font-face {
-  font-style: italic;
-  font-weight: 100 900;
-  src: url('/fonts/Montserrat-Italic-VariableFont_wght.woff2')
-    format('woff2-variations');
-  font-family: 'Montserrat Variable';
-  font-display: swap;
-}
-
 /* Native cross-document view transitions (replaces ClientRouter) */
 @view-transition {
   navigation: auto;
@@ -68,7 +32,7 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   line-height: 1.625;
-  font-family: 'Open Sans Variable';
+  font-family: var(--font-opensans);
 }
 
 .content {

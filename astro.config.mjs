@@ -3,7 +3,7 @@
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
-import { defineConfig, svgoOptimizer } from 'astro/config';
+import { defineConfig, fontProviders, svgoOptimizer } from 'astro/config';
 import icon from 'astro-icon';
 import llmsTxt from 'astro-llms-md';
 
@@ -33,6 +33,26 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
   },
+
+  // Self-hosted Latin subsets from Google Fonts, with size-matched fallbacks
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Open Sans',
+      cssVariable: '--font-opensans',
+      weights: ['300 800'],
+      styles: ['normal', 'italic'],
+      subsets: ['latin'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Montserrat',
+      cssVariable: '--font-montserrat',
+      weights: ['300 800'],
+      styles: ['normal'],
+      subsets: ['latin'],
+    },
+  ],
 
   integrations: [
     sitemap(),

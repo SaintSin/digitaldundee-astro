@@ -1,5 +1,6 @@
 ---
 // src/components/page/Basehead.astro
+import { Font } from 'astro:assets';
 import JsonLd from '@components/page/JsonLd.astro';
 import { siteMetadata } from '@config/siteMetadata';
 import { Head } from '@felixicaza/astro-capo';
@@ -76,21 +77,9 @@ import '@styles/style.css';
     }
   </script>
 
-  <!-- Preload variable fonts -->
-  <link
-    rel="preload"
-    href="/fonts/OpenSans-VariableFont_wdthwght.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin
-  />
-  <link
-    rel="preload"
-    href="/fonts/Montserrat-VariableFont_wght.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin
-  />
+  <!-- Self-hosted fonts: preload the regular faces only -->
+  <Font cssVariable="--font-opensans" preload={[{ style: 'normal' }]} />
+  <Font cssVariable="--font-montserrat" preload={[{ style: 'normal' }]} />
 
   <!-- JSON-LD Structured Data -->
   <JsonLd schema={schema} />

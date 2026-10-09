@@ -16,10 +16,12 @@ All notable changes to the Digital Dundee Astro project.
 
 #### Changed
 
+- **Fonts via Astro's Fonts API** — Open Sans (normal and italic) and Montserrat (normal) now come from `fonts:` in `astro.config.mjs` with the Google provider, Latin subset only, replacing the hand-subset files in `public/fonts` and the manual `@font-face` rules. Astro self-hosts them (43 KB, 45 KB and 36 KB), adds size-matched fallback fonts so text does not jump when the web font loads, and preloads only the regular faces. This is the setup used on pythonresources.com. Montserrat italic was dropped; nothing used it. `--font-opensans` and `--font-montserrat` are now defined by Astro, not `_tokens.css`
 - **Link prefetching** — Astro's prefetch script (`prefetch: true`, the one external JavaScript file on every page) is replaced by a `speculationrules` JSON block in `Basehead.astro`. Chromium browsers prefetch same-site pages on hover (moderate eagerness), PDFs excluded; other browsers just navigate normally. No script file
 
 #### Fixed
 
+- **Page blank until `#content` parsed** — Removed `<link rel="expect" href="#content" blocking="render">` from the head. It held back all painting until the main element was parsed, and a PageSpeed run showed a blank screen for about 2.5 seconds. Page transitions are unaffected apart from a possible brief flash of the header
 - **Animation code on every page** — `astro-animations` (script and styles) was added by the base layout, but only the home page uses `data-animate`. It is now loaded by `index.astro` alone, so every other page is lighter
 - **Render-blocking CSS** — `build.inlineStylesheets: 'always'` puts the (under 10 KB) stylesheet in the page, removing a render-blocking request that cost about 0.4 s on a slow phone
 - **Card image decoding** — Priority card images keep eager loading and high fetch priority but now decode asynchronously. Astro's `priority` defaults to synchronous decoding, which blocks painting while several images decode on a slow phone
