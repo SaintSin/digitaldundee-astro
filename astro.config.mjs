@@ -30,6 +30,11 @@ export default defineConfig({
     responsiveStyles: true,
   },
 
+  // The whole stylesheet is under 10 KB: inline it and save a render-blocking request
+  build: {
+    inlineStylesheets: 'always',
+  },
+
   integrations: [
     sitemap(),
     icon(),
