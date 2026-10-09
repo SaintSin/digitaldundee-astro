@@ -75,8 +75,9 @@ const meta = {
         <>
           <h2 class="visually-hidden">Events, page {page.currentPage}</h2>
           <section class="grid" data-layout="thirds">
-            {page.data.map((event) => (
+            {page.data.map((event, i) => (
               <EventCard
+                priority={i < 3}
                 title={event.data.title}
                 eventDate={event.data.eventDate}
                 eventEndDate={event.data.eventEndDate}

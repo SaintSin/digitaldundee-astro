@@ -16,6 +16,8 @@ All notable changes to the Digital Dundee Astro project.
 
 #### Fixed
 
+- **Colour contrast** — The breadcrumb links and the "indicates required" note on the contact form used the lighter grey, which failed the WCAG contrast check on mobile (PageSpeed accessibility 96); they now use the body text colour
+- **Listing images load late** — On News and Events listings, the first three card images were lazy-loaded, so the largest image appeared about 5 seconds in on mobile. The News and Event cards take a `priority` prop and the listing pages set it for the first three, so those images load eagerly with high fetch priority
 - **Typographic quotes everywhere** — Straight quotes and apostrophes in page text, article bodies and frontmatter (`title`, `description`, `excerpt`, `name`, image alt text) are now curly. This started with paragraphs that mixed both styles (for example the Collaborate page quote). About 200 content and page files changed; code, URLs and attributes were left alone. Logged in `ISSUES.md`
 - **Connected Dundee lists** — Removed the `<p>` wrappers inside list items and added page styles matching the live list (20px indent, discs at both levels, more open line spacing)
 - **Missing space before links** — The HTML compressor removed the newline between text and a following link ("email<a ...>"), so words ran into links. `compressHTML` is now off in `astro.config.mjs`

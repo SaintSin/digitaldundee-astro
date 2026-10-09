@@ -14,6 +14,7 @@ interface Props {
   imageSrc?: ImageMetadata;
   imageAlt: string;
   href: string;
+  priority?: boolean; // eager-load images that are above the fold
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   imageSrc,
   imageAlt,
   href,
+  priority = false,
 } = Astro.props;
 
 // Format date
@@ -41,7 +43,7 @@ import '@styles/blocks/card.css';
 
 <article class="card event" {...cardImage(imageSrc)}>
   <a href={href}>
-    {imageSrc && <Picture src={imageSrc} alt={imageAlt} quality={30} formats={['avif', 'webp']} />}
+    {imageSrc && <Picture src={imageSrc} alt={imageAlt} quality={30} priority={priority} formats={['avif', 'webp']} />}
     <h3>{title}</h3>
     <time datetime={eventDate.toISOString()}>
       {formatDate(eventDate)}

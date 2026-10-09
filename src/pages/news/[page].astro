@@ -67,8 +67,9 @@ const meta = {
         <>
           <h2 class="visually-hidden">News, page {page.currentPage}</h2>
           <section class="grid" data-layout="thirds">
-            {page.data.map((item) => (
+            {page.data.map((item, i) => (
               <NewsCard
+                priority={i < 3}
                 title={item.data.title}
                 excerpt={item.data.excerpt}
                 pubDate={item.data.pubDate}

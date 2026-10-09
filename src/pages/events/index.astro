@@ -74,8 +74,9 @@ const meta = {
         <section class="flow">
           <h2>Forthcoming Events</h2>
           <div class="grid" data-layout="thirds">
-            {firstPageForthcoming.map((event) => (
+            {firstPageForthcoming.map((event, i) => (
               <EventCard
+                priority={i < 3}
                 title={event.data.title}
                 eventDate={event.data.eventDate}
                 eventEndDate={event.data.eventEndDate}
