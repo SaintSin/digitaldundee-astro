@@ -42,24 +42,36 @@ const meta = {
     <Picture src={img1} alt="Tay5G logo" formats={['avif', 'webp']} />
     <Picture src={img2} alt="Connected Dundee" formats={['avif', 'webp']} />
     <ul>
-    <li><p>Connected</p> <ul>
+    <li>Connected<ul>
     <li>Superfast digital connections, 5G programme and easy national and international travel</li>
     </ul></li>
-    <li><p>Thinking digital</p> <ul>
+    <li>Thinking digital<ul>
     <li>With a strong digital industry, digital skills for all citizens from school right through to retirement are essential for the future</li>
     </ul></li>
-    <li><p>Smart City</p> <ul>
+    <li>Smart City<ul>
     <li>Dundee is part of the Scottish Cities Alliance and works together with other Scottish cities to deliver Smart City projects, integrating data and digital technologies to improve citizen wellbeing and economic development</li>
     </ul></li>
-    <li><p>Collaborate</p> <ul>
+    <li>Collaborate<ul>
     <li>Dundee is part of many collaborative working groups focussed on digital service delivery in the most efficient way to maximise benefits</li>
     </ul></li>
-    <li><p>Mobile priority</p> <ul>
+    <li>Mobile priority<ul>
     <li>To best deliver digital services on the move or with private 5G networks</li>
     </ul></li>
-    <li><p>Digital Council</p> <ul>
+    <li>Digital Council<ul>
     <li>Committed to innovation and changing the way services are re-designed to provide them in the most effective way and maximise use of new technologies</li>
     </ul></li>
     </ul>
   </div>
 </Layout>
+<style>
+  /* Match the live page: narrower indent, open-spaced items, discs at every level */
+  ul {
+    padding-inline-start: var(--space-m);
+  }
+  ul ul {
+    list-style-type: disc;
+  }
+  li {
+    line-height: 2.3;
+  }
+</style>
