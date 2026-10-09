@@ -7,4 +7,4 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
 
-# minimumReleaseAge: 1440   # in minutes
+minimumReleaseAge: 60 # in minutes

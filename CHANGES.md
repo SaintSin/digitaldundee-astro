@@ -24,7 +24,7 @@ All notable changes to the Digital Dundee Astro project.
 
 #### Changed
 
-- **Dependencies** — `astro` 7.3.7 to 7.3.8 and `@astrojs/netlify` 8.2.8 to 8.2.9
+- **Dependencies** — `astro` 7.3.7 to 7.3.8 and `@astrojs/netlify` 8.2.8 to 8.2.9. Netlify's pnpm refuses packages published in the last 24 hours (`ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`), which failed the first deploy from GitHub, so `pnpm-workspace.yaml` now sets `minimumReleaseAge: 60` (minutes)
 - **Formatting** — Tidied `ISSUES.md`, `collaborate.astro` and the workspace file
 
 ## 2026-10-08
